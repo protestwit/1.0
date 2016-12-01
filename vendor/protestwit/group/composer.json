@@ -1,0 +1,25 @@
+{
+  "name": "protestwit/group",
+  "license": "proprietary",
+  "description": "group package",
+  "authors": [
+    {
+      "name": "Andrew Wolf",
+      "email": "a.james.wolf@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "classmap": [
+      "src/Protestwit/Group/Providers"
+    ],
+    "psr-0": {
+      "Protestwit\\Group\\": "src/"
+    }
+  },
+  "minimum-stability": "stable"
+}

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -38,6 +39,12 @@ class RouteServiceProvider extends ServiceProvider
     public function map(Router $router)
     {
         $this->mapWebRoutes($router);
+        Route::model('group', \Protestwit\Group\Models\Group::class);
+        Route::model('user', \App\User::class);
+        Route::model('tweet', \App\Tweet::class);
+        Route::model('tag', \App\Tag::class);
+        Route::model('dispatch', \App\Dispatch::class);
+        Route::model('comment', \App\Dispatch::class);
 
         //
     }

@@ -13,15 +13,19 @@ class ProcessTweet extends Job implements ShouldQueue
     use InteractsWithQueue, SerializesModels;
 
     protected $tweet;
+    protected $track;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($tweet)
+    public function __construct($tweet,$track = null)
     {
+        
         $this->tweet = $tweet;
+        $this->track = $track;
+        
     }
 
     /**
@@ -33,20 +37,50 @@ class ProcessTweet extends Job implements ShouldQueue
     {
         $tweet = json_decode($this->tweet,true);
         $tweet_text = isset($tweet['text']) ? $tweet['text'] : null;
-        $user_id = isset($tweet['user']['id_str']) ? $tweet['user']['id_str'] : null;
-        $user_screen_name = isset($tweet['user']['screen_name']) ? $tweet['user']['screen_name'] : null;
-        $user_avatar_url = isset($tweet['user']['profile_image_url_https']) ? $tweet['user']['profile_image_url_https'] : null;
 
-        if (isset($tweet['id'])) {
-            Tweet::create([
-                'id' => $tweet['id_str'],
-                'json' => $this->tweet,
-                'tweet_text' => $tweet_text,
-                'user_id' => $user_id,
-                'user_screen_name' => $user_screen_name,
-                'user_avatar_url' => $user_avatar_url,
-                'approved' => 0
-            ]);
+        if(isset($this->track))
+        {
+        foreach($this->track as $k => $possible_tag)
+        {
+            
+            if (stripos($tweet_text,$possible_tag) !== false)
+            {
+                $user_id = isset($tweet['user']['id_str']) ? $tweet['user']['id_str'] : null;
+                $user_screen_name = isset($tweet['user']['screen_name']) ? $tweet['user']['screen_name'] : null;
+                $user_avatar_url = isset($tweet['user']['profile_image_url_https']) ? $tweet['user']['profile_image_url_https'] : null;
+
+                \Log::info('Processing New Tweet:');
+                if (isset($tweet['id'])) {
+                    Tweet::create([
+                        'id' => $tweet['id_str'],
+                        'json' => $this->tweet,
+                        'tweet_text' => $tweet_text,
+                        'user_id' => $user_id,
+                        'user_screen_name' => $user_screen_name,
+                        'user_avatar_url' => $user_avatar_url,
+                        'retweet_count' => isset($tweet['retweeted_status']) && isset($tweet['retweeted_status']['retweet_count'])? $tweet['retweeted_status']['retweet_count'] : 0,
+                    ]);
+                } 
+            }
+        }
+        }
+        else {
+            //If there was no tracked set
+            $user_id = isset($tweet['user']['id_str']) ? $tweet['user']['id_str'] : null;
+            $user_screen_name = isset($tweet['user']['screen_name']) ? $tweet['user']['screen_name'] : null;
+            $user_avatar_url = isset($tweet['user']['profile_image_url_https']) ? $tweet['user']['profile_image_url_https'] : null;
+
+            if (isset($tweet['id'])) {
+                Tweet::create([
+                    'id' => $tweet['id_str'],
+                    'json' => $this->tweet,
+                    'tweet_text' => $tweet_text,
+                    'user_id' => $user_id,
+                    'user_screen_name' => $user_screen_name,
+                    'user_avatar_url' => $user_avatar_url,
+                    'approved' => 0
+                ]);
+            }
         }
 
     }

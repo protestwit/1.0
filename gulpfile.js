@@ -13,4 +13,17 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
     mix.sass('app.scss');
+    mix
+        .copy('vendor/bower_components/bootstrap/dist/js/bootstrap.js','resources/assets/js/bootstrap/bootstrap.js')
+        .less(
+            'app.less',
+            'public/css/app.css' //Styles that fall under the admin package
+        )
+        .scripts([
+            'bootstrap/bootstrap.js',
+        ], 'public/js/app.js')
+        .version([
+            'css/app.css',
+            'js/app.js',
+        ])
 });

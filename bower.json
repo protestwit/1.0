@@ -1,0 +1,22 @@
+{
+  "name": "protestwit",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Andrew Wolf <a.james.wolf@gmail.com>"
+  ],
+  "license": "Private",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}

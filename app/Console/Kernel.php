@@ -13,7 +13,13 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\ConnectToStreamingAPI::class
+        Commands\ConnectGroupTweetListeners::class,
+        Commands\TagAfterCreate::class,
+        Commands\Twitter\TweetAfterCreate::class,
+        Commands\Twitter\FollowUser::class,
+        Commands\Twitter\BuildUserFromTweet::class,
+        Commands\Twitter\BuildTagsFromTweet::class,
+        Commands\Twitter\ReTweet::class,
     ];
 
     /**

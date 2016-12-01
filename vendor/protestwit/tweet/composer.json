@@ -1,0 +1,25 @@
+{
+  "name": "protestwit/tweet",
+  "license": "proprietary",
+  "description": "tweet package",
+  "authors": [
+    {
+      "name": "Andrew Wolf",
+      "email": "a.james.wolf@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "classmap": [
+      "src/Protestwit/Tweet/Providers"
+    ],
+    "psr-0": {
+      "Protestwit\\Tweet\\": "src/"
+    }
+  },
+  "minimum-stability": "stable"
+}

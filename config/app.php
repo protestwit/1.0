@@ -156,6 +156,16 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Collective\Html\HtmlServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        Weidner\Goutte\GoutteServiceProvider::class,
+
+        Protestwit\Frontend\Providers\FrontendServiceProvider::class,
+        Protestwit\Twitter\Providers\TwitterServiceProvider::class,
+        Protestwit\Tweet\Providers\TweetServiceProvider::class,
+
+        Protestwit\Group\Providers\GroupServiceProvider::class,
+
     ],
 
     /*
@@ -184,6 +194,7 @@ return [
         'Event' => Illuminate\Support\Facades\Event::class,
         'File' => Illuminate\Support\Facades\File::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
+        'Goutte' => Weidner\Goutte\GoutteFacade::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
@@ -201,6 +212,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Twitter' => Protestwit\Twitter\Facades\Twitter::class,
+
 
     ],
 
