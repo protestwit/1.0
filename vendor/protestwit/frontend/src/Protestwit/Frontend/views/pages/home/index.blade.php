@@ -6,9 +6,8 @@
 @section('top')
     @include('frontend::blocks.nav.top.menu')
 @stop
-
 @section('content')
-
-   test
-
+    <component is={{ $vue->getViewName() }} inline-template>
+        <dispatches></dispatches>
+    </component>
 @stop

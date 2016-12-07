@@ -1,5 +1,6 @@
 <?php namespace Protestwit\Tweet\Listeners;
 
+use App\Dispatch;
 use App\Tag;
 use App\Tweet;
 use App\User;
@@ -34,6 +35,7 @@ class TweetAfterCreate
 
     public function handle(Tweet $tweet)
     {
+        \Log::info('Tweet After Create ' . $tweet->id);
         //Reset Tags Collection
         $this->tweet = $tweet;
         $this->tags = Tag::getModel()->newCollection();
@@ -52,22 +54,46 @@ class TweetAfterCreate
 
         }
         //Build User From Tweet
-        $user_data_array = json_decode(json_encode($tweet->json->user),true);
-        $user_data_array['twitter_id'] = $user_data_array['id_str'];
-        unset($user_data_array['id']);
-        
-//        \Log::info(print_r($user_data_array,true));
 
-        $this->user = User::findOrCreate($user_data_array);
-        
-        
+        //Handles fresh tweets
+        if (isset($tweet->json) && isset($tweet->json->user)) {
 
-        if ((int)$tweet->retweet_count > 20 && (int)$tweet->retweet_count < 50) {
-            $this->user->follow();
-            $this->tweet->retweet();
+            $user_data_array = json_decode($tweet->json->user,true);
+//            $this->user = User::findOrCreate($user_data_array);
+        }
+        elseif (isset($tweet->json)) {
+            $user_data_array = json_decode($tweet->json,true);
+//            \Log::info(print_r($user_data_array,true));
+            if(isset($user_data_array['user']) && isset($user_data_array['user']['id']))
+            {
+                $user_data_array['user']['twitter_id'] = $user_data_array['user']['id'];
+                \Log::info('Find or create user');
+            $this->user = User::findOrCreate($user_data_array['user']);
+        }
         }
 
 
+
+        \Log::info('Retweet Count: ' .$tweet->retweet_count);
+        if ((int)$tweet->retweet_count > 10 &&(int)$tweet->retweet_count < 5000) {
+
+            \Log::info('Creating Dispatch From Tweet '. $tweet->id);
+            $dispatch = Dispatch::updateOrCreate([
+                'tweet_id' => $tweet->id,
+                'tweet' => $tweet,
+                'retweet_count' => $tweet->content,
+            ]);
+
+            $dispatch->tweet()->save($tweet);
+
+            if (isset($this->user)) {
+//                $this->user->follow();
+            }
+            if (isset($this->tweet)) {
+//                $this->tweet->retweet();
+            }
+        }
+        
         //Build a list of groups from the tags
         foreach ($this->tags as $tag) {
             $groups = Group::where('public_tag','=',$tag->value)->orWhere('private_tag','=',$tag->value)->get();
@@ -82,36 +108,7 @@ class TweetAfterCreate
         foreach($this->tags as $tag)
         {
             $this->tweet->tags()->save($tag);
-            $this->user->tags()->save($tag);
-
-            foreach($this->groups as $group)
-            {
-                $group->tags()->save($tag);
-            }
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-//        Artisan::call('twitter_build_user_from_tweet', [
-//            'tweet' => $this->argument('tweet'),
-//        ]);
-//
-//        Artisan::call('twitter_follow_user', [
-//            'user_id' => $tweet->user_id,
-//        ]);
-//
-//        Artisan::call('twitter_build_tags_from_tweet', [
-//            'tweet' => $this->argument('tweet'),
-//        ]);
-        
-        
-        
+        } 
         
     }
 }

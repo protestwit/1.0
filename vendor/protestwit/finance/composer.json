@@ -1,0 +1,26 @@
+{
+  "name": "protestwit/finance",
+  "license": "proprietary",
+  "description": "finance package",
+  "authors": [
+    {
+      "name": "Andrew Wolf",
+      "email": "a.james.wolf@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "scheb/yahoo-finance-api": "^1.2"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "classmap": [
+      "src/Protestwit/Finance/Providers"
+    ],
+    "psr-0": {
+      "Protestwit\\Finance\\": "src/"
+    }
+  },
+  "minimum-stability": "stable"
+}

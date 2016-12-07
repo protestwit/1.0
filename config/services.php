@@ -35,11 +35,22 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'instagram' => [
+        'client_id' => env('INSTAGRAM_CONSUMER_KEY'),
+        'client_secret' => env('INSTAGRAM_CONSUMER_SECRET'),
+        'redirect' => env('INSTAGRAM_CALLBACK_URL'),
+    ],
 
     'twitter' => [
         'client_id' => env('TWITTER_CONSUMER_KEY'),
         'client_secret' => env('TWITTER_CONSUMER_SECRET'),
         'redirect' => env('TWITTER_CALLBACK_URL'),
+    ],
+    'google' => [
+        'places' => [
+            'client_id' => env('GOOGLE_PLACES_CONSUMER_KEY'),
+
+        ],
     ],
 
 ];

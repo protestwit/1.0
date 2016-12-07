@@ -1,7 +1,9 @@
 <?php namespace App;
 
 use App\Traits\Searchable;
-use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
+use Jenssegers\Mongodb\Eloquent\Model as Model;
+use Jenssegers\Mongodb\Eloquent\HybridRelations;
 
 /**
  * @description dispatches are broadcasts. By default they are simply published to social media channels.
@@ -11,34 +13,124 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Dispatch extends Model
 {
+    use HybridRelations;
     use Searchable;
+
+    protected $connection = 'archive';
+    protected $collection = 'dispatches';
+
+    protected $content;
+    
     protected $fillable = [
         'content',
         'tweet_id'
     ];
+
+    protected $appends = [
+        'vote_count',
+        'hotness',
+        'created_ago_text'
+    ];
     protected $searchableColumns = ['content', 'tweet_id'];
     protected $searchableRelations = [];
 
-    public static function findOrCreate($attributes = [])
+    public function save(array $options = [])
     {
-        $existingDispatch = Dispatch::where('content','=',$attributes['content'])->first();
+        if(!isset($this->id) || is_null($this->id))
+        {
+            $this->id = Dispatch::all()->count();
+        }
+
+        return parent::save($options);
+    }
+    
+    
+    public static function updateOrCreate($attributes = [])
+    {
+        if(isset($attributes['tweet_id']))
+        {
+            \Log::info('tweet id ' . $attributes['tweet_id']);
+            $existingDispatch = Dispatch::where('tweet_id','=',$attributes['tweet_id'])->first();
+            
+        }else{
+            $existingDispatch = Dispatch::where('content','=',$attributes['content'])->first();  
+        }
         if(!$existingDispatch) {
             $existingDispatch = Dispatch::create($attributes);
+        }else{
+            $existingDispatch->update($attributes);
         }
         return $existingDispatch;
     }
 
+    public function getContentAttribute()
+    {
+        if($this->tweet)
+        {
+            return $this->tweet->content;
+        }
+
+    }
+
+    public function getHoursSinceCreationAttribute()
+    {
+       return Carbon::createFromTimeStamp(strtotime($this->created_at))->diffInHours();
+    }
+
+    public function getMinutesSinceCreationAttribute()
+    {
+        return Carbon::createFromTimeStamp(strtotime($this->created_at))->diffInMinutes();
+    }
     
-    
+    public function getCreatedAgoTextAttribute()
+    {
+        return Carbon::createFromTimeStamp(strtotime($this->created_at))->diffForHumans();
+    }
+
+    public function getCreatedAtAttribute($value = null)
+    {
+
+        if($this->tweet && $this->tweet->json)
+        {
+            $data = json_decode($this->tweet->json);
+            $date_array = date_parse($data->created_at);
+            $value = date('Y-m-d H:i:s', mktime($date_array['hour'], $date_array['minute'], $date_array['second'], $date_array['month'], $date_array['day'], $date_array['year']));
+        }
+        return $value;
+
+    }
+
+    public function getHotnessAttribute()
+    {
+        if($this->minutes_since_creation > 0)
+        {
+            return (int)(($this->vote_count / $this->minutes_since_creation)* 100);
+        }
+        return $this->vote_count;
+
+    }
     
     public function getVoteCountAttribute()
     {
-        return $this->tweet->retweet_count + $this->votes->sum('value');
+        $vote = $this->votes->sum('value');
+        if(isset($this->tweet) && isset($this->tweet->retweet_count))
+        {
+            $retweet_count = $this->tweet->retweet_count;
+            $vote += $retweet_count;
+        }
+
+        return $vote;
     }
+
 
     public function tweet()
     {
-        return $this->hasOne('\App\Tweet','id_inc','tweet_id');
+//        return $this->embedsOne('\App\Tweet');
+        return $this->hasOne('\App\Tweet','id','tweet_id');
+    }
+    public function post()
+    {
+        return $this->hasOne('\App\Post','id','post_id');
     }
 
     public function tags()

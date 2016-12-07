@@ -61,12 +61,12 @@ class DispatchAfterCreate
         foreach($extracted_urls as $url) {
             $crawler = GoutteFacade::request('GET', $url);
 //            var_dump($this->getHtml($crawler));
-            var_dump($this->getImages($crawler));
+//            var_dump($this->getImages($crawler));
 
             if (is_array($this->getImages($crawler))) {
                 foreach ($this->getImages($crawler) as $image) {
                     $image = Image::findOrCreate([
-                        'url' => $image,
+                        'url' => str_replace(':large','',$image),
                     ]);
                     $this->images->add($image);
                 }
@@ -80,10 +80,10 @@ class DispatchAfterCreate
 
         foreach($this->images as $image)
         {
+            \Log::info('Adding Image');
             $dispatch->images()->save($image);
         }
         
-        dd($this->images->toArray());
         
     }
 }

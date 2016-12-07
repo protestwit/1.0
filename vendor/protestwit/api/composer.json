@@ -1,0 +1,25 @@
+{
+  "name": "protestwit/api",
+  "license": "proprietary",
+  "description": "api package",
+  "authors": [
+    {
+      "name": "Andrew Wolf",
+      "email": "a.james.wolf@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "classmap": [
+      "src/Protestwit/Api/Providers"
+    ],
+    "psr-0": {
+      "Protestwit\\Api\\": "src/"
+    }
+  },
+  "minimum-stability": "stable"
+}

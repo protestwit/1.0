@@ -20,7 +20,7 @@ class GroupSeeder extends Seeder
         $groups = [
             [
                 'name' => 'No Dakota Access Pipeline',
-                'slug' => 'north-dakota-access-pipeline',
+                'slug' => 'nodapl',
                 'public_tag' => 'nodapl',
                 'private_tag' => null,
                 'access_password' => null,
@@ -30,7 +30,7 @@ class GroupSeeder extends Seeder
             [
                 'name' => 'Water Is Life',
                 'slug' => 'waterislife',
-                'public_tag' => 'water-is-life',
+                'public_tag' => 'wil',
                 'private_tag' => null,
                 'access_password' => null,
                 'allow_public_subgroups' => 1,
@@ -39,7 +39,7 @@ class GroupSeeder extends Seeder
 
             [
                 'name' => 'Stop Kinder Morgan',
-                'slug' => 'kinder-morgan-pipeline',
+                'slug' => 'km',
                 'public_tag' => 'kindermorgan',
                 'private_tag' => null,
                 'access_password' => null,
@@ -47,13 +47,6 @@ class GroupSeeder extends Seeder
                 'is_public' => 1,
             ]
         ];
-        
-        
-        
-        
-        
-        
-        
         
         foreach($groups as $group) {
             \Protestwit\Group\Models\Group::create([

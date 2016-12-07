@@ -55,14 +55,16 @@ class ConnectGroupTweetListeners extends Command
             //Create two listeners, one for inbound hidden one for inbound public
             for ($i = 0; $i <= 1; $i++) {
 
-                
-                if($i == 0)
-                {
-                    $this->tracked[] = $group->public_tag;
 
-                }else
-                {
-                    $this->tracked[] = $group->private_tag;
+                if ($i == 0) {
+                    if (isset($group->public_tag)) {
+                        $this->tracked[] = $group->public_tag;
+                    }
+
+                } else {
+                    if (isset($group->private_tag)) {
+                        $this->tracked[] = $group->private_tag;
+                    }
                 }
                 
             }

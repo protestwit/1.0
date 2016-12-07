@@ -1,10 +1,22 @@
 {
   "private": true,
+  "scripts": {
+    "prod": "gulp --production",
+    "dev": "gulp watch"
+  },
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "laravel-elixir": "^5.0.0",
+    "bootstrap-sass": "^3.3.0"
   },
   "dependencies": {
-    "laravel-elixir": "^5.0.0",
-    "bootstrap-sass": "^3.0.0"
+    "ioredis": "^2.4.0",
+    "jquery": "^3.1.1",
+    "laravel-elixir-vueify": "^1.0.6",
+    "redis": "^2.6.3",
+    "socket.io": "^1.7.1",
+    "vue": "^1.0.28",
+    "vue-resource": "^0.7.4",
+    "vuex": "^0.6.3"
   }
 }

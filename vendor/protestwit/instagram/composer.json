@@ -1,0 +1,25 @@
+{
+  "name": "protestwit/instagram",
+  "license": "proprietary",
+  "description": "instagram package",
+  "authors": [
+    {
+      "name": "Andrew Wolf",
+      "email": "a.james.wolf@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "classmap": [
+      "src/Protestwit/Instagram/Providers"
+    ],
+    "psr-0": {
+      "Protestwit\\Instagram\\": "src/"
+    }
+  },
+  "minimum-stability": "stable"
+}

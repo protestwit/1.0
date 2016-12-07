@@ -65,6 +65,17 @@ return [
             'strict' => false,
             'engine' => null,
         ],
+        'archive' => [
+            'driver'   => 'mongodb',
+            'host'     => env('DB_ARCHIVE_HOST', 'localhost'),
+            'port'     => env('DB_ARCHIVE_PORT', 27017),
+            'database' => env('DB_ARCHIVE_DATABASE'),
+            'username' => env('DB_ARCHIVE_USERNAME'),
+            'password' => env('DB_ARCHIVE_PASSWORD'),
+            'options' => [
+                'database' => 'protestwit_archive' // sets the authentication database required by mongo 3
+            ]
+        ],
 
         'pgsql' => [
             'driver' => 'pgsql',

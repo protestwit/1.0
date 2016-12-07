@@ -19,30 +19,29 @@ class User extends Authenticatable
         'avatar',
         'twitter_id',
         'name',
-        'screen_name', 
-        'location', 
-        'profile_location', 
-        'description', 
-        'url', 
-        'follower_count', 
-        'friends_count', 
-        'listed_count', 
-        'favourites_count', 
-        'utc_offset', 
-        'time_zone', 
-        'geo_enabled', 
-        'statuses_count', 
-        'lang', 
-        'email', 
+        'screen_name',
+        'location',
+        'profile_location',
+        'description',
+        'url',
+        'follower_count',
+        'friends_count',
+        'listed_count',
+        'favourites_count',
+        'utc_offset',
+        'time_zone',
+        'geo_enabled',
+        'statuses_count',
+        'lang',
+        'email',
         'password',
         'token',
         'token_secret',
     ];
 
-    protected $searchableColumns = ['url', 'description','screen_name','name','twitter_id'];
+
+    protected $searchableColumns = ['url', 'description', 'screen_name', 'name', 'twitter_id'];
     protected $searchableRelations = ['tweets' => 'tweet_text'];
-
-
 
 
     /**
@@ -51,7 +50,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'email', ''
     ];
 
     public function follow()
@@ -65,19 +64,17 @@ class User extends Authenticatable
                 Twitter::postFollow($data);
                 $this->is_following = 1;
                 $this->save();
-            }catch(\Exception $e)
-            {
+            } catch (\Exception $e) {
                 \Log::info('Error Following User: ' . $this->screen_name . ' Error: ' . $e->getMessage());
             }
         }
     }
-    
-    
-    
+
+
     public static function findOrCreate($attributes = [])
     {
-        $existingUser = User::where('twitter_id','=',$attributes['twitter_id'])->first();
-        if(!$existingUser) {
+        $existingUser = User::where('twitter_id', '=', $attributes['twitter_id'])->first();
+        if (!$existingUser) {
             $existingUser = User::create($attributes);
         }
         return $existingUser;
@@ -86,41 +83,58 @@ class User extends Authenticatable
     //Relations
     public function tags()
     {
-        return $this->belongsToMany('\App\Tag','user_tags');
+        return $this->belongsToMany('\App\Tag', 'user_tags');
     }
-    
-    
-    
+
+
     public function tweets()
     {
-        return $this->hasMany('\App\Tweet','user_id','twitter_id');
+        return $this->hasMany('\App\Tweet', 'user_id', 'twitter_id');
     }
-    
+
     public function setScreenNameAttribute($value = null)
     {
         $this->attributes['screen_name'] = $value;
         $this->handle = $value;
         return $this;
     }
-    
+
     public function setTokenAttribute($value = null)
     {
-        $this->attributes['token'] = encrypt($value);
+        try {
+            $this->attributes['token'] = encrypt($value);
+        } catch (\Exception $e) {
+            \Log::error($e->getMessage());
+        }
     }
-    
+
     public function getTokenAttribute($value = null)
     {
-        return decrypt($value);
+        try {
+            return decrypt($value);
+        } catch (\Exception $e) {
+            return '';
+            \Log::error($e->getMessage());
+        }
     }
 
     public function setSecretTokenAttribute($value = null)
     {
-        $this->attributes['secret_token'] = encrypt($value);
+        try {
+            $this->attributes['secret_token'] = encrypt($value);
+        } catch (\Exception $e) {
+            \Log::error($e->getMessage());
+        }
     }
 
     public function getSecretTokenAttribute($value = null)
     {
-        return decrypt($value);
+        try {
+            return decrypt($value);
+        } catch (\Exception $e) {
+            \Log::error($e->getMessage());
+            return '';
+        }
     }
-        
+
 }

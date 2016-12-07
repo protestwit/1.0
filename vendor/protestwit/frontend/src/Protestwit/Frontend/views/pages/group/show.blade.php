@@ -63,6 +63,11 @@
             box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
         }
 
+        .timeline > li > .timeline-panel + .timeline-panel-inverted
+        {
+            margin-left:50px;
+        }
+
         .timeline > li > .timeline-panel:before {
             position: absolute;
             top: 26px;
@@ -174,7 +179,6 @@
         @foreach($dispatches as $dispatch)
             <li>
                 <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
-                <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
                         <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{$dispatch->created_at}}</small></p>
@@ -183,30 +187,47 @@
                         <div class="col-xs-12">
                         @if($dispatch->images->first())
                             <img width="100%" src="{{$dispatch->images->first()->url}}"/>
-
-                        @endif;
+                        @endif
                         </div>
                     </div>
                     <div class="timeline-body">
                         @include('frontend::blocks.dispatch.votewidget',['upvote_route' => 'dispatch.vote.up','downvote_route' => 'dispatch.vote.down', 'dispatch' => $dispatch])
                         <div class="col-xs-1 col-xs-offset-1">
-                            <img class="img-thumbnail media-object" src="{{ $dispatch->tweet->user_avatar_url }}" alt="Avatar">
+                            <img width="100px" class="img-thumbnail media-object" src="{{ $dispatch->user_avatar_url }}" alt="Avatar">
                         </div>
                         <div class="col-xs-7 col-xs-offset-1">
                             <p>{{ str_replace('RT','',$dispatch->content) }}</p>
                         </div>
                         <div class="col-xs-12">
                             <div class="col-xs-3">
-                                <a target="_blank" href="https://twitter.com/{{ $dispatch->tweet->user_screen_name }}/status/{{ $dispatch->tweet->id }}">
+                                <a target="_blank" href="https://twitter.com/{{ $dispatch->user_screen_name }}/status/{{ $dispatch->tweet_id }}">
                                     View on Twitter
                                 </a>
                             </div>
-                            <div class="col-xs-3">
-                                <a href="{{route('dispatch.comments',$dispatch)}}">
-                                    {{$dispatch->comments->count()}} comments
-                                </a>
+                            <div class="col-xs-5">
+                                @include('frontend::blocks.comment.countwidget',['route' => 'dispatch.comments', 'subject' => $dispatch])
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="timeline-panel timeline-panel-inverted">
+                    <div class="comments">
+                        @foreach($dispatch->comments as $comment)
+
+                        <div class="col-xs-12">
+                            {{$comment->content}}
+                            <hr>
+                        </div>
+                         @endforeach
+                    </div>
+                    <div class="comment-form">
+                        {{Form::open(['route' => ['dispatch.comment.store',$dispatch], 'method' => 'POST'])}}
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="input-group">
+                            <input class="form-control" name="content">
+                            <button class="btn btn-success" type="submit" value="Submit Comment">Test</button>
+                        </div>
+                        {{\Form::close()}}
                     </div>
                 </div>
             </li>
@@ -217,4 +238,8 @@
         {{$dispatches->links()}}
     </div>
 
+@stop
+
+@section('right')
+    @include('frontend::blocks.nav.group.rightmenu',['group' => $group])
 @stop

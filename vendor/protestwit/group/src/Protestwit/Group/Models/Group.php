@@ -1,9 +1,19 @@
 <?php namespace Protestwit\Group\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Traits\Searchable;
+use Jenssegers\Mongodb\Eloquent\Model as Model;
+use Jenssegers\Mongodb\Eloquent\HybridRelations;
 
 class Group extends Model
 {
+    protected $connection = 'archive';
+    protected $collection = 'groups';
+    protected $searchableColumns = ['public_tag','name'];
+    protected $searchableRelations = [];
+    
+    use HybridRelations;
+    use Searchable;
+    
     protected $fillable = [
         'name',
         'public_tag',
@@ -11,6 +21,24 @@ class Group extends Model
         'allow_public_subgroups',
         'is_public'
     ];
+
+    public function save(array $options = [])
+    {
+        
+        if(!isset($this->id) || is_null($this->id))
+        {
+            $this->id= Group::all()->count();
+
+        }
+
+        return parent::save($options);
+    }
+    
+    
+    
+    
+    
+    
     //Attributes
     public function getRouteKeyName()
     {
@@ -47,18 +75,29 @@ class Group extends Model
     //Relations
     public function tags()
     {
-//        return $this->belongsToMany('\App\Tag','group_tags');
-        return $this->belongsToMany('\App\Tag','group_tags','group_id','tag_id');
+        return $this->belongsToMany('\App\Tag','group_tags');
     }
 
 
     public function tweets()
     {
-        return $this->hasManyThrough('\App\Tweet','\App\Tag','id','id_inc','id');
+        return $this->belongsToMany('\App\Tweet','group_tweets','group_id','tweet_id');
     }
 
+    public function posts()
+    {
+        return $this->belongsToMany('\App\Post','group_posts','group_id','post_id');
+    }
 
+    public function dispatches()
+    {
+        return $this->belongsToMany('\App\Dispatch','group_dispatches','group_id','dispatch_id');
+    }
 
+    public function images()
+    {
+        return $this->belongsToMany('\App\Image','group_images','group_id','image_id');
+    }
     
     public function parent()
     {

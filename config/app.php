@@ -159,8 +159,12 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Weidner\Goutte\GoutteServiceProvider::class,
+        Jenssegers\Mongodb\MongodbServiceProvider::class,
+        SKAgarwal\GoogleApi\ServiceProvider::class,
 
+        Protestwit\Api\Providers\ApiServiceProvider::class,
         Protestwit\Frontend\Providers\FrontendServiceProvider::class,
+        Protestwit\Finance\Providers\FinanceServiceProvider::class,
         Protestwit\Twitter\Providers\TwitterServiceProvider::class,
         Protestwit\Tweet\Providers\TweetServiceProvider::class,
 
@@ -194,8 +198,10 @@ return [
         'Event' => Illuminate\Support\Facades\Event::class,
         'File' => Illuminate\Support\Facades\File::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
+        'GooglePlaces' => SKAgarwal\GoogleApi\Facade::class,
         'Goutte' => Weidner\Goutte\GoutteFacade::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
+        'Instagram' => Protestwit\Instagram\Facades\Instagram::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
@@ -216,7 +222,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Twitter' => Protestwit\Twitter\Facades\Twitter::class,
-
+        'Moloquent' => Jenssegers\Mongodb\Model::class,
 
     ],
 

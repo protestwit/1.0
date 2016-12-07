@@ -1,3 +1,82 @@
+
+#Installation
+* Install Node
+* Install Ruby
+* Install Mongodb
+* Install Apache/Nginx point your vhost to the /public directory
+* Copy .env.example to .env and configure
+    * DB_ARCHIVE_ATTRIBUTES are for your mongodb instance, by default null USERNAME and null PASSWORD works
+    * DB_HOST etc. is for your MySQL instance
+    * BROADCAST_DRIVER should be redis
+    * BROADCAST_DRIVER should be redis
+    * TWITTER_OPERATOR_ID is your twitter user id found here: http://gettwitterid.com/
+    * TWITTER_CALLBACK_URL is your twitter app's Callback URL found here: https://apps.twitter.com/
+    * TWITTER_OPERATOR_NAME is your twitter handle
+    * TWITTER_CONSUMER_KEY is your Consumer Key (API Key) found here: https://apps.twitter.com/
+    * TWITTER_CONSUMER_SECRET is your Consumer Secret (API Secret) found here: https://apps.twitter.com/
+    * TWITTER_ACCESS_TOKEN is your Access Token found here: https://apps.twitter.com/
+    * TWITTER_ACCESS_TOKEN_SECRET is your Access Token Secret found here: https://apps.twitter.com/
+    * GOOGLE_PLACES_CONSUMER_KEY is your Api key found under credentials here: https://console.developers.google.com/apis/dashboard?project=pbpma-999&duration=PT1H
+* Composer Install
+```composer install
+```
+* Navigate to each of the subdirectories of vendor/protestwit and run:
+```composer install
+```
+* Setup your key
+```php artisan key:generate
+```
+* Run server migrations - note :refresh will delete any data
+```php artisan migrate:refresh
+```
+* install job queue table
+```php artisan queue:table && php artisan migrate
+```
+* Seed the database
+```php artisan db:seed
+```
+* install node modules
+```npm install
+```
+* install bower components
+```bower install
+```
+* run gulpfile
+```gulp
+```
+* To start listening for tweets: (note that this has to be running in a separate console)
+```php artisan connect_group_tweet_listeners
+```
+* To start processing tweets: (note that this has to be running in a separate console)
+```php artisan queue:listen
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Console Commands
+
+To start watching gulp: gulp watch
+To start your sockets: node socket.js
+To start your mongo instance: mongod
+
+
+
+
+@todo re-enable csrf
+
 # Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)

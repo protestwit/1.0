@@ -11,15 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    if (Auth::check()) {
-        $tweets = App\Tweet::orderBy('created_at','desc')->paginate(5);
-    } else {
-        $tweets = App\Tweet::where('approved',1)->orderBy('created_at','desc')->take(5)->get();
-    }
 
-    return view('welcome', ['tweets' => $tweets]);
-});
 
 Route::post('approve-tweets', ['middleware' => 'auth', function (Illuminate\Http\Request $request) {
     foreach ($request->all() as $input_key => $input_val) {
@@ -50,3 +42,6 @@ Route::get('auth/twitter', ['as' => 'auth.twitter', 'uses' => '\App\Http\Control
 Route::get('auth/twitter/callback', ['as' => 'auth.twitter.callback', 'uses' => '\App\Http\Controllers\Auth\AuthController@handleTwitterCallback']);
 
 Route::get('/home', 'HomeController@index');
+
+
+Route::post('api/updateActiveCell','ActiveCellController@method');

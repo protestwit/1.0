@@ -10,7 +10,9 @@ class FrontendServiceProvider extends ServiceProvider
         View::composer(
             'frontend::blocks.nav.top.menu', 'Protestwit\Frontend\Http\ViewComposers\Nav\Top\Menu'
         );
-        
+        View::composer(
+            'frontend::*', 'Protestwit\Frontend\Http\ViewComposers\Vue'
+        );
         
         $packageDir = realpath(__DIR__.'/..');
         $this->loadViewsFrom($packageDir.'/views', 'frontend');

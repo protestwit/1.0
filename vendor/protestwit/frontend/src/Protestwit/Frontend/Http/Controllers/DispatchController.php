@@ -9,7 +9,7 @@ use Protestwit\Frontend\Http\Requests\Dispatch\CommentRequest;
 use Protestwit\Frontend\Http\Requests\Dispatch\CommentStoreRequest;
 use Protestwit\Frontend\Http\Requests\Dispatch\VoteDownRequest;
 use Protestwit\Frontend\Http\Requests\Dispatch\VoteUpRequest;
-use Protestwit\Frontend\Http\Requests\Home\IndexRequest;
+use Protestwit\Frontend\Http\Requests\Dispatch\IndexRequest;
 use Protestwit\Group\Models\Group;
 
 class DispatchController extends Controller
@@ -54,10 +54,10 @@ class DispatchController extends Controller
         $data = [
             'content' => $request->get('content'),
             'user_id' => \Auth::user()->twitter_id,
-            'dispatch_id' => $dispatch->id,
         ];
 
-        Comment::create($data);
+        $comment = Comment::create($data);
+        $dispatch->comments()->save($comment);
         return redirect()->back();
 
     }
@@ -66,8 +66,6 @@ class DispatchController extends Controller
 
     public function voteUp(VoteUpRequest $request, Dispatch $dispatch)
     {
-//        dd($dispatch->toArray());
-//        dd(\Auth::user()->id);
         //Check if user has already voted, if so check that it was an up vote if not change it
         $existing_vote = Vote::where('user_id', '=', \Auth::user()->id)->where('dispatch_id', '=', $dispatch->id)->first();
         if ($existing_vote) {
