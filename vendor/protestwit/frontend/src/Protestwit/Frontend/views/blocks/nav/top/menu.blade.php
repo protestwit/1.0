@@ -34,7 +34,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Protestwit</a>
+                <a class="navbar-brand" href="/">Protestwit</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -54,9 +54,16 @@
                         </ul>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="./">Login with Twitter</a></li>
-                </ul>
+                @if(!\Auth::user())
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a target="_blank" href="{{route('auth.twitter')}}">Login with Twitter</a></li>
+                    </ul>
+                    @else
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a target="_blank" href="{{route('auth.logout')}}">Logout</a></li>
+                    </ul>
+                @endif
+
             </div><!--/.nav-collapse -->
         </div>
     </nav>

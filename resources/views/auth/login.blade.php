@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <a class="btn btn-info" href="auth/twitter" role="button">Login with Twitter</a>
+        <a class="btn btn-info" href="{{route('auth.twitter')}}" role="button">Login with Twitter</a>
     </div>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -12,10 +12,8 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {!! csrf_field() !!}
-
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">E-Mail Address</label>
-
                             <div class="col-md-6">
                                 <input type="email" class="form-control" name="email" value="{{ old('email') }}">
 

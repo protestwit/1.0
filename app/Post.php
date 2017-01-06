@@ -6,6 +6,7 @@ use App\Traits\Searchable;
 use Carbon\Carbon;
 use Jenssegers\Mongodb\Eloquent\Model as Model;
 use Jenssegers\Mongodb\Eloquent\HybridRelations;
+use Protestwit\Group\Models\Group;
 
 class Post extends Model
 {
@@ -15,6 +16,8 @@ class Post extends Model
     protected $collection = 'posts';
 
     protected $fillable = [
+        'title',
+        'content',
         'post_author',
         'post_date',
         'post_date_gmt',
@@ -152,32 +155,47 @@ class Post extends Model
 
     public function getAuthorAttribute()
     {
-        return $this->attributes['post_author'];
+        if(isset($this->attributes['post_author'])) {
+            return $this->attributes['post_author'];
+        }
     }
 
     public function setCreatedAtAttribute($value = null)
     {
+
         $this->attributes['post_date'] = $value;
     }
 
     public function getCreatedAtAttribute()
     {
-        return $this->attributes['post_date'];
+        if(isset($this->attributes['post_date'])) {
+            return $this->attributes['post_date'];
+        }
     }
 
+
+    public function setPostTextAttribute($value = null)
+    {
+        $this->attributes['post_content'] = $value;
+    }
     public function setContentAttribute($value = null)
     {
-        $this->attributes['post_content'];
+        $this->attributes['post_content'] = $value;
+        return $this;
     }
 
     public function getContentAttribute()
     {
+        if(isset($this->attributes['post_content']))
+        {
         return $this->attributes['post_content'];
+        }
     }
 
     public function setTitleAttribute($value = null)
     {
-        $this->attributes['post_title'];
+        $this->attributes['post_title'] = $value;
+        return $this;
     }
 
     public function getTitleAttribute()
@@ -237,8 +255,11 @@ class Post extends Model
     {
         return $this->belongsTo('\App\Company','id','company_id');
     }
-    
-    
+
+    public function post()
+    {
+        return $this->hasOne('\App\Dispatch','id','dispatch_id');
+    }
     
     public function tweets()
     {
@@ -250,10 +271,56 @@ class Post extends Model
         return $this->belongsToMany('App\Image','post_images');
     }
 
+//    public function setGroupAttribute($value = [])
+//    {
+//        $data = [];
+//
+//        if(isset($value['id']) || isset($value['_id']))
+//        {
+//            $data['id'] = isset($value['_id']) ? $value['_id'] :  $value['id'];
+//            $existing = Group::where('id','=',$data['id'])->first();
+//
+//        }else{
+//            $existing = Group::create($value);
+//        }
+//
+//        $this->groups()->save($existing);
+//
+//    }
+
+    
     public function groups()
     {
-        return $this->belongsToMany('\App\Post','group_posts','group_id','post_id');
+        return $this->belongsToMany('\Protestwit\Group\Models\Group','group_posts','group_id','post_id');
     }
+
+
+    public function setEventAttribute($value = [])
+    {
+        $data = [];
+        if(isset($value['id']) || isset($value['_id']))
+        {
+            $data['id'] = isset($value['_id']) ? $value['_id'] :  $value['id'];
+            $existing = Event::where('id','=',$data['id'])->first();
+
+        }else{
+            $existing = Group::create($value);
+        }
+
+        $this->events()->save($existing);
+    }
+
+
+
+    
+
+    public function events()
+    {
+        return $this->belongsToMany('\App\Event','event_posts','event_id','post_id');
+    }
+
+
+
 
     public function tags()
     {

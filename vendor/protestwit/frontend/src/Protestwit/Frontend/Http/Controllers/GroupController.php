@@ -18,7 +18,12 @@ class GroupController extends Controller
 
                 $group_tag_ids = $group->tags()->lists('tags.id')->toArray();
 
-                $dispatches = Dispatch::with('tags')->paginate();
+                $dispatches = Dispatch::with('tags')
+                    ->with('link')
+                    ->with('post')
+                    ->with('tweet')
+
+                    ->paginate();
 
 //                $blogroll = Post::all();
 
@@ -30,7 +35,7 @@ class GroupController extends Controller
         
         
         
-        return view('frontend::pages.group.show',compact(['request','group','blogroll','dispatches']));
+        return view('frontend::pages.group.show',compact(['request','group','dispatches']));
     }
     
     

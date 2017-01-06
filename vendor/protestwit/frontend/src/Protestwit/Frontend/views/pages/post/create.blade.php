@@ -6,37 +6,49 @@
 @stop
 
 @section('content')
-    <div class="row">
-        <header id="post-header">
-            <ul class="text-center metadata" tabindex="0" role="list" aria-label="Metadata for article">
-                <li class="byline" tabindex="0">
-                    <span class="text-uppercase" itemprop="author">
-                        <a tabindex="-1" aria-hidden="true" role="presentation" rel="author" href="@todo">{{$post->author_full_name}}</a>
-                    </span>
-                    <span tabindex="-1" aria-hidden="true" role="presentation" itemprop="articleSection">
-			            {{$post->group_name}}
-                    </span>
-                </li>
-                <li tabindex="0" class="meta-pubdate inline-block">
-                    <span class="visually-hidden">Date of Publication: {{$post->published_date}}</span>
-                    <time aria-hidden="true" role="presentation" pubdate="{{$post->published_date}}">{{$post->published_date}}</time>
-                </li>
-            </ul>
-            <h1 tabindex="0" class="post-title" itemprop="name">
-                {{$post->title}}
-            </h1>
-            <figure class="wp-caption">
-                <img class="" alt="{{$post->lead_image_alt}}" src="{{$post->lead_image_url}}">
-            </figure>
-            <figcaption class="wp-caption-text link-underline">
-                <span class="marg-r-micro">
-                    The Russian Progress 62 spacecraft approaching the International Space Station on July 1, 2016.&nbsp;
-                </span>
-                <span class="credit link-underline-sm">
-                    <span aria-hidden="true" class="ui ui-photo inline-block ui-credit relative opacity-6 marg-r-sm"></span>
-                    {{$post->lead_image->author}}
-                </span>
-            </figcaption>
-        </header>
-    </div>
+
+    <component is={{ $vue->getViewName() }} inline-template>
+
+        {{Form::open(['route' => 'api.post.store', 'class' => 'form-horizontal'])}}
+
+        <hr>
+
+            <fieldset>
+                    <label for="title">Title</label>
+                    <input type="text" v-model="model.title" id="postTitle" class="form-control" name="title">
+                    <label for="content">Content</label>
+                    <textarea v-model="model.content" id="postText" class="form-control" name="content"></textarea>
+                    <div class="controls">
+                        <a >content policy</a>
+                        <a >formatting help</a>
+                    </div>
+                        <label for="group">choose a group</label>
+                        <input @keyUp="searchGroups(model.group.label)" type="text" v-model="model.group.label" id="postGroup" class="form-control" name="group">
+                        <div v-if="groupSearchOptions.length" class="input-search-dropdown">
+                            <a @click="chooseGroupFromSearch(option)" v-for="option in groupSearchOptions">
+                                @{{ option.name }}
+                            </a>
+                        </div>
+                        <label for="group">choose an event</label>
+                        <input @keyUp="searchEvents(model.event.label)"  type="text" v-model="model.event.label" id="postEvent" class="form-control" name="event">
+                        <div v-if="eventSearchOptions.length" class="input-search-dropdown">
+                            <a @click="chooseEventFromSearch(option)" v-for="option in eventSearchOptions">
+                                @{{ option.name }}
+                            </a>
+                        </div>
+                    <div class="controls">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pick Section Type <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li v-for="type in sectionTypes" >
+                                    <a @click="chooseSectionType(type)">@{{ type.label }}</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <div @click="addSection()" class="btn bdn-success"  class="btn btn-success">Add Section</div>
+                    <div @click="savePost()" class="btn bdn-success"  class="btn btn-success">Save</div>
+            </fieldset>
+        {{Form::close()}}
+        <pre>@{{ $data | json }}</pre>
+    </component>
 @stop

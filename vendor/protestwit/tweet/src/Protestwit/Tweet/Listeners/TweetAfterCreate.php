@@ -14,11 +14,6 @@ class TweetAfterCreate
     protected $user;
     protected $tweet;
     protected $groups;
-    
-    
-    
-    
-
 
     public function extractTags($string = '')
     {
@@ -43,9 +38,7 @@ class TweetAfterCreate
         
         //Build Tags From Tweet
         $text = $tweet->text;
-//        \Log::info($text);
         $extractedTags = $this->extractTags($text);
-//        \Log::info(print_r($extractedTags,true));
 
         foreach($extractedTags as $k => $v)
         {
@@ -57,19 +50,24 @@ class TweetAfterCreate
 
         //Handles fresh tweets
         if (isset($tweet->json) && isset($tweet->json->user)) {
-
-            $user_data_array = json_decode($tweet->json->user,true);
-//            $this->user = User::findOrCreate($user_data_array);
-        }
-        elseif (isset($tweet->json)) {
-            $user_data_array = json_decode($tweet->json,true);
+            \Log::info('User Case 1');
+            $user_data_array = json_decode($tweet->json->user, true);
+            $user_data_array['twitter_id'] = $user_data_array['id'];
+            unset($user_data_array['id']);
+            $this->user = User::findOrCreate($user_data_array);
+        } elseif (isset($tweet->json)) {
+            \Log::info('User Case 2');
+            $user_data_array = json_decode($tweet->json, true);
+            
 //            \Log::info(print_r($user_data_array,true));
-            if(isset($user_data_array['user']) && isset($user_data_array['user']['id']))
-            {
+            if (isset($user_data_array['user']) && isset($user_data_array['user']['id'])) {
+                //Trade the id for twitter_id
                 $user_data_array['user']['twitter_id'] = $user_data_array['user']['id'];
+                unset($user_data_array['user']['id']);
+
                 \Log::info('Find or create user');
-            $this->user = User::findOrCreate($user_data_array['user']);
-        }
+                $this->user = User::findOrCreate($user_data_array['user']);
+            }
         }
 
 

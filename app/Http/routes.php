@@ -27,9 +27,9 @@ Route::post('approve-tweets', ['middleware' => 'auth', function (Illuminate\Http
     return redirect()->back();
 }]);
 
-Route::get('login', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@showLoginForm']);
-Route::post('login', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@login']);
-Route::get('logout', ['as' => 'auth.logout', 'uses' => 'Auth\AuthController@logout']);
+Route::get('login', ['as' => 'auth.login', 'uses' => '\App\Http\Controllers\Auth\AuthController@showLoginForm']);
+Route::post('login', ['as' => 'auth.login', 'uses' => '\App\Http\Controllers\Auth\AuthController@login']);
+Route::get('logout', ['as' => 'auth.logout', 'uses' => '\App\Http\Controllers\Auth\AuthController@logout']);
 
 Route::get('register', ['as' => 'auth.register', 'uses' => 'Auth\AuthController@showRegistrationForm']);
 Route::post('register', ['as' => 'auth.register', 'uses' => 'Auth\AuthController@register']);
@@ -40,8 +40,3 @@ Route::post('password/reset', ['as' => 'auth.password.reset', 'uses' => 'Auth\Pa
 
 Route::get('auth/twitter', ['as' => 'auth.twitter', 'uses' => '\App\Http\Controllers\Auth\AuthController@redirectToTwitter']);
 Route::get('auth/twitter/callback', ['as' => 'auth.twitter.callback', 'uses' => '\App\Http\Controllers\Auth\AuthController@handleTwitterCallback']);
-
-Route::get('/home', 'HomeController@index');
-
-
-Route::post('api/updateActiveCell','ActiveCellController@method');

@@ -1,14 +1,15 @@
 <template>
     <div id="BoycotIndexView">
+        <pre>{{ data | json }}
         <slot name="boycott_index"></slot>
     </div>
 </template>
 
 <script>
-    import BoycottList from '../../boycott/BoycottList.vue'
+
 	export default {
 		components: {
-            BoycottList
+
 		},
 		filters: {
 

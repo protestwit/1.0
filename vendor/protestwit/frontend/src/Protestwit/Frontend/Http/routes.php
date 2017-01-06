@@ -3,17 +3,15 @@
 Route::get('test', ['as' => 'home', 'uses' => 'Protestwit\Frontend\Http\Controllers\TestController@index']);
 
 
-Route::get('groups', ['as' => 'groups.index', 'uses' => 'Protestwit\Frontend\Http\Controllers\GroupsController@index']);
+Route::get('groups', ['as' => 'groups.index', 'uses' => 'Protestwit\Frontend\Http\Controllers\GroupController@index']);
 
-
-
-Route::get('{group}', ['as' => 'group.show', 'uses' => 'Protestwit\Frontend\Http\Controllers\GroupController@show']);
+Route::get('/g/{group}', ['as' => 'group.show', 'uses' => 'Protestwit\Frontend\Http\Controllers\GroupController@show']);
 
 
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('', ['as' => 'home', 'uses' => 'Protestwit\Frontend\Http\Controllers\HomeController@index']);
-    Route::get('{group}/boycotts', ['as' => 'boycott.index', 'uses' => 'Protestwit\Frontend\Http\Controllers\BoycottController@index']);
+    Route::get('/g/{group}/boycotts', ['as' => 'boycott.index', 'uses' => 'Protestwit\Frontend\Http\Controllers\BoycottController@index']);
 });
 
 Route::group(['middleware' => ['web'],'prefix' => 'tags'], function () {
@@ -25,7 +23,7 @@ Route::group(['middleware' => ['web'],'prefix' => 'tag'], function () {
 });
 
 
-Route::get('{group}/posts', ['as' => 'posts.index', 'uses' => 'Protestwit\Frontend\Http\Controllers\PostController@index']);
+Route::get('/g/{group}/posts', ['as' => 'posts.index', 'uses' => 'Protestwit\Frontend\Http\Controllers\PostController@index']);
 
 
 Route::group(['middleware' => ['web'],'prefix' => 'post'], function () {
@@ -37,8 +35,8 @@ Route::group(['middleware' => ['web'],'prefix' => 'post'], function () {
 });
 
 //Tweets
-Route::get('{group}/tweets', ['as' => 'tweets.index', 'uses' => 'Protestwit\Frontend\Http\Controllers\TweetController@index']);
-Route::get('{group}/posts', ['as' => 'posts.index', 'uses' => 'Protestwit\Frontend\Http\Controllers\PostController@index']);
+Route::get('/g/{group}/tweets', ['as' => 'tweets.index', 'uses' => 'Protestwit\Frontend\Http\Controllers\TweetController@index']);
+Route::get('/g/{group}/posts', ['as' => 'posts.index', 'uses' => 'Protestwit\Frontend\Http\Controllers\PostController@index']);
 
 
 Route::group(['middleware' => ['web'],'prefix' => 'tweet'], function () {
@@ -48,11 +46,14 @@ Route::group(['middleware' => ['web'],'prefix' => 'tweet'], function () {
     Route::post('/{tweet}/comment', ['as' => 'tweet.comment.store', 'uses' => 'Protestwit\Frontend\Http\Controllers\TweetController@commentStore']);
 });
 
+Route::group(['middleware' => ['web'],'prefix' => 'user'], function () {
+    Route::get('', ['as' => 'user.index', 'uses' => 'Protestwit\Frontend\Http\Controllers\UserController@index']);
+});
 
 
 
 
-Route::get('{group}/dispatches', ['as' => 'dispatches.index', 'uses' => 'Protestwit\Frontend\Http\Controllers\DispatchController@index']);
+Route::get('/g/{group}/dispatches', ['as' => 'dispatches.index', 'uses' => 'Protestwit\Frontend\Http\Controllers\DispatchController@index']);
 
 
 Route::group(['middleware' => ['web'],'prefix' => 'dispatch'], function () {
@@ -63,6 +64,5 @@ Route::group(['middleware' => ['web'],'prefix' => 'dispatch'], function () {
 });
 
 
-Route::group(['middleware' => ['web'],'prefix' => 'post'], function () {
-    Route::get('/{post}', ['as' => 'post.show', 'uses' => 'Protestwit\Frontend\Http\Controllers\PostController@show']);
-});
+
+    Route::get('/g/{group}/comment/{post}', ['as' => 'post.show', 'uses' => 'Protestwit\Frontend\Http\Controllers\PostController@show']);

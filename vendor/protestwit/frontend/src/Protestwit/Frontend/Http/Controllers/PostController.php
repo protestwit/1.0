@@ -40,7 +40,7 @@ class PostController extends Controller
             'post_author' => json_encode($user),
         ]);
 
-        dd($post->toArray());
+
         return view('frontend::pages.post.create',compact(['post','request']));
     }
 
@@ -59,7 +59,7 @@ class PostController extends Controller
 
     }
 
-    public function show(ShowRequest $request, Post $post)
+    public function show(ShowRequest $request, Group $group, Post $post)
     {
         return view('frontend::pages.post.show',compact(['post','request']));
         

@@ -1,20 +1,23 @@
-<template>
+<template type="text/html">
     <div id="HomeView">
         <slot></slot>
     </div>
 </template>
 
-<script>
+<script type="text/javascript">
 
-import Message from '../../Message.vue'
-import Dispatches from '../../dispatch/DispatchList.vue'
+import Dispatch from '../../dispatch/DispatchModel.vue'
+
 	export default {
 		components: {
-            Message,
-            Dispatches,
+            Dispatch,
+
 		},
 		filters: {
 
+		},
+		ready(){
+		console.log("ready");
 		},
 		data(){
 		    return {

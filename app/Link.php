@@ -58,6 +58,10 @@ class Link extends Model
         return $this->hasMany('\App\Vote','link_id','_id');
     }
 
+    public function dispatch()
+    {
+        return $this->hasOne('\App\Dispatch','id','dispatch_id');
+    }
 
 
 }

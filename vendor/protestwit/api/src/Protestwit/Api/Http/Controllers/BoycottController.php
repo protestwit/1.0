@@ -47,7 +47,7 @@ class BoycottController extends Controller
         
     }
 
-    public function destroy(IndexRequest $request, Dispatch $dispatch)
+    public function destroy(DestroyRequest $request, Dispatch $dispatch)
     {
 
 

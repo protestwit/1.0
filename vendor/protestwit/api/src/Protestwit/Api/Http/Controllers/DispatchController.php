@@ -24,21 +24,22 @@ class DispatchController extends Controller
         
     }
 
-    public function destroy(IndexRequest $request, Dispatch $dispatch)
-    {
 
+    public function destroy(DestroyRequest $request, Dispatch $dispatch)
+    {
+        return Dispatch::destroy($dispatch->id);
 
     }
 
     public function update(UpdateRequest $request, Dispatch $dispatch)
     {
-
+        return $dispatch->update($request->all());
 
     }
 
     public function store(StoreRequest $request, Dispatch $dispatch)
     {
-
+        return Dispatch::create($request->all());
 
     }
     

@@ -60,8 +60,6 @@ module.exports = function(arraybuffer, start, end) {
 };
 
 },{}],3:[function(require,module,exports){
-module.exports = { "default": require("core-js/library/fn/object/assign"), __esModule: true };
-},{"core-js/library/fn/object/assign":11}],4:[function(require,module,exports){
 
 /**
  * Expose `Backoff`.
@@ -148,7 +146,7 @@ Backoff.prototype.setJitter = function(jitter){
 };
 
 
-},{}],5:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 /*
  * base64-arraybuffer
  * https://github.com/niklasvh/base64-arraybuffer
@@ -217,7 +215,7 @@ Backoff.prototype.setJitter = function(jitter){
   };
 })();
 
-},{}],6:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 (function (global){
 /**
  * Create a blob builder even when vendor prefixes exist
@@ -317,9 +315,9 @@ module.exports = (function() {
 })();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 
-},{}],8:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 /**
  * Slice reference.
  */
@@ -344,7 +342,7 @@ module.exports = function(obj, fn){
   }
 };
 
-},{}],9:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 
 /**
  * Expose `Emitter`.
@@ -510,7 +508,7 @@ Emitter.prototype.hasListeners = function(event){
   return !! this.listeners(event).length;
 };
 
-},{}],10:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 
 module.exports = function(a, b){
   var fn = function(){};
@@ -518,362 +516,7 @@ module.exports = function(a, b){
   a.prototype = new fn;
   a.prototype.constructor = a;
 };
-},{}],11:[function(require,module,exports){
-require('../../modules/es6.object.assign');
-module.exports = require('../../modules/_core').Object.assign;
-},{"../../modules/_core":16,"../../modules/es6.object.assign":46}],12:[function(require,module,exports){
-module.exports = function(it){
-  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
-  return it;
-};
-},{}],13:[function(require,module,exports){
-var isObject = require('./_is-object');
-module.exports = function(it){
-  if(!isObject(it))throw TypeError(it + ' is not an object!');
-  return it;
-};
-},{"./_is-object":29}],14:[function(require,module,exports){
-// false -> Array#indexOf
-// true  -> Array#includes
-var toIObject = require('./_to-iobject')
-  , toLength  = require('./_to-length')
-  , toIndex   = require('./_to-index');
-module.exports = function(IS_INCLUDES){
-  return function($this, el, fromIndex){
-    var O      = toIObject($this)
-      , length = toLength(O.length)
-      , index  = toIndex(fromIndex, length)
-      , value;
-    // Array#includes uses SameValueZero equality algorithm
-    if(IS_INCLUDES && el != el)while(length > index){
-      value = O[index++];
-      if(value != value)return true;
-    // Array#toIndex ignores holes, Array#includes - not
-    } else for(;length > index; index++)if(IS_INCLUDES || index in O){
-      if(O[index] === el)return IS_INCLUDES || index || 0;
-    } return !IS_INCLUDES && -1;
-  };
-};
-},{"./_to-index":39,"./_to-iobject":41,"./_to-length":42}],15:[function(require,module,exports){
-var toString = {}.toString;
-
-module.exports = function(it){
-  return toString.call(it).slice(8, -1);
-};
-},{}],16:[function(require,module,exports){
-var core = module.exports = {version: '2.4.0'};
-if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
-},{}],17:[function(require,module,exports){
-// optional / simple context binding
-var aFunction = require('./_a-function');
-module.exports = function(fn, that, length){
-  aFunction(fn);
-  if(that === undefined)return fn;
-  switch(length){
-    case 1: return function(a){
-      return fn.call(that, a);
-    };
-    case 2: return function(a, b){
-      return fn.call(that, a, b);
-    };
-    case 3: return function(a, b, c){
-      return fn.call(that, a, b, c);
-    };
-  }
-  return function(/* ...args */){
-    return fn.apply(that, arguments);
-  };
-};
-},{"./_a-function":12}],18:[function(require,module,exports){
-// 7.2.1 RequireObjectCoercible(argument)
-module.exports = function(it){
-  if(it == undefined)throw TypeError("Can't call method on  " + it);
-  return it;
-};
-},{}],19:[function(require,module,exports){
-// Thank's IE8 for his funny defineProperty
-module.exports = !require('./_fails')(function(){
-  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
-});
-},{"./_fails":23}],20:[function(require,module,exports){
-var isObject = require('./_is-object')
-  , document = require('./_global').document
-  // in old IE typeof document.createElement is 'object'
-  , is = isObject(document) && isObject(document.createElement);
-module.exports = function(it){
-  return is ? document.createElement(it) : {};
-};
-},{"./_global":24,"./_is-object":29}],21:[function(require,module,exports){
-// IE 8- don't enum bug keys
-module.exports = (
-  'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
-).split(',');
-},{}],22:[function(require,module,exports){
-var global    = require('./_global')
-  , core      = require('./_core')
-  , ctx       = require('./_ctx')
-  , hide      = require('./_hide')
-  , PROTOTYPE = 'prototype';
-
-var $export = function(type, name, source){
-  var IS_FORCED = type & $export.F
-    , IS_GLOBAL = type & $export.G
-    , IS_STATIC = type & $export.S
-    , IS_PROTO  = type & $export.P
-    , IS_BIND   = type & $export.B
-    , IS_WRAP   = type & $export.W
-    , exports   = IS_GLOBAL ? core : core[name] || (core[name] = {})
-    , expProto  = exports[PROTOTYPE]
-    , target    = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE]
-    , key, own, out;
-  if(IS_GLOBAL)source = name;
-  for(key in source){
-    // contains in native
-    own = !IS_FORCED && target && target[key] !== undefined;
-    if(own && key in exports)continue;
-    // export native or passed
-    out = own ? target[key] : source[key];
-    // prevent global pollution for namespaces
-    exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
-    // bind timers to global for call from export context
-    : IS_BIND && own ? ctx(out, global)
-    // wrap global constructors for prevent change them in library
-    : IS_WRAP && target[key] == out ? (function(C){
-      var F = function(a, b, c){
-        if(this instanceof C){
-          switch(arguments.length){
-            case 0: return new C;
-            case 1: return new C(a);
-            case 2: return new C(a, b);
-          } return new C(a, b, c);
-        } return C.apply(this, arguments);
-      };
-      F[PROTOTYPE] = C[PROTOTYPE];
-      return F;
-    // make static versions for prototype methods
-    })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
-    // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
-    if(IS_PROTO){
-      (exports.virtual || (exports.virtual = {}))[key] = out;
-      // export proto methods to core.%CONSTRUCTOR%.prototype.%NAME%
-      if(type & $export.R && expProto && !expProto[key])hide(expProto, key, out);
-    }
-  }
-};
-// type bitmap
-$export.F = 1;   // forced
-$export.G = 2;   // global
-$export.S = 4;   // static
-$export.P = 8;   // proto
-$export.B = 16;  // bind
-$export.W = 32;  // wrap
-$export.U = 64;  // safe
-$export.R = 128; // real proto method for `library` 
-module.exports = $export;
-},{"./_core":16,"./_ctx":17,"./_global":24,"./_hide":26}],23:[function(require,module,exports){
-module.exports = function(exec){
-  try {
-    return !!exec();
-  } catch(e){
-    return true;
-  }
-};
-},{}],24:[function(require,module,exports){
-// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
-var global = module.exports = typeof window != 'undefined' && window.Math == Math
-  ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
-if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
-},{}],25:[function(require,module,exports){
-var hasOwnProperty = {}.hasOwnProperty;
-module.exports = function(it, key){
-  return hasOwnProperty.call(it, key);
-};
-},{}],26:[function(require,module,exports){
-var dP         = require('./_object-dp')
-  , createDesc = require('./_property-desc');
-module.exports = require('./_descriptors') ? function(object, key, value){
-  return dP.f(object, key, createDesc(1, value));
-} : function(object, key, value){
-  object[key] = value;
-  return object;
-};
-},{"./_descriptors":19,"./_object-dp":31,"./_property-desc":36}],27:[function(require,module,exports){
-module.exports = !require('./_descriptors') && !require('./_fails')(function(){
-  return Object.defineProperty(require('./_dom-create')('div'), 'a', {get: function(){ return 7; }}).a != 7;
-});
-},{"./_descriptors":19,"./_dom-create":20,"./_fails":23}],28:[function(require,module,exports){
-// fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = require('./_cof');
-module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
-  return cof(it) == 'String' ? it.split('') : Object(it);
-};
-},{"./_cof":15}],29:[function(require,module,exports){
-module.exports = function(it){
-  return typeof it === 'object' ? it !== null : typeof it === 'function';
-};
-},{}],30:[function(require,module,exports){
-'use strict';
-// 19.1.2.1 Object.assign(target, source, ...)
-var getKeys  = require('./_object-keys')
-  , gOPS     = require('./_object-gops')
-  , pIE      = require('./_object-pie')
-  , toObject = require('./_to-object')
-  , IObject  = require('./_iobject')
-  , $assign  = Object.assign;
-
-// should work with symbols and should have deterministic property order (V8 bug)
-module.exports = !$assign || require('./_fails')(function(){
-  var A = {}
-    , B = {}
-    , S = Symbol()
-    , K = 'abcdefghijklmnopqrst';
-  A[S] = 7;
-  K.split('').forEach(function(k){ B[k] = k; });
-  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
-}) ? function assign(target, source){ // eslint-disable-line no-unused-vars
-  var T     = toObject(target)
-    , aLen  = arguments.length
-    , index = 1
-    , getSymbols = gOPS.f
-    , isEnum     = pIE.f;
-  while(aLen > index){
-    var S      = IObject(arguments[index++])
-      , keys   = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S)
-      , length = keys.length
-      , j      = 0
-      , key;
-    while(length > j)if(isEnum.call(S, key = keys[j++]))T[key] = S[key];
-  } return T;
-} : $assign;
-},{"./_fails":23,"./_iobject":28,"./_object-gops":32,"./_object-keys":34,"./_object-pie":35,"./_to-object":43}],31:[function(require,module,exports){
-var anObject       = require('./_an-object')
-  , IE8_DOM_DEFINE = require('./_ie8-dom-define')
-  , toPrimitive    = require('./_to-primitive')
-  , dP             = Object.defineProperty;
-
-exports.f = require('./_descriptors') ? Object.defineProperty : function defineProperty(O, P, Attributes){
-  anObject(O);
-  P = toPrimitive(P, true);
-  anObject(Attributes);
-  if(IE8_DOM_DEFINE)try {
-    return dP(O, P, Attributes);
-  } catch(e){ /* empty */ }
-  if('get' in Attributes || 'set' in Attributes)throw TypeError('Accessors not supported!');
-  if('value' in Attributes)O[P] = Attributes.value;
-  return O;
-};
-},{"./_an-object":13,"./_descriptors":19,"./_ie8-dom-define":27,"./_to-primitive":44}],32:[function(require,module,exports){
-exports.f = Object.getOwnPropertySymbols;
-},{}],33:[function(require,module,exports){
-var has          = require('./_has')
-  , toIObject    = require('./_to-iobject')
-  , arrayIndexOf = require('./_array-includes')(false)
-  , IE_PROTO     = require('./_shared-key')('IE_PROTO');
-
-module.exports = function(object, names){
-  var O      = toIObject(object)
-    , i      = 0
-    , result = []
-    , key;
-  for(key in O)if(key != IE_PROTO)has(O, key) && result.push(key);
-  // Don't enum bug & hidden keys
-  while(names.length > i)if(has(O, key = names[i++])){
-    ~arrayIndexOf(result, key) || result.push(key);
-  }
-  return result;
-};
-},{"./_array-includes":14,"./_has":25,"./_shared-key":37,"./_to-iobject":41}],34:[function(require,module,exports){
-// 19.1.2.14 / 15.2.3.14 Object.keys(O)
-var $keys       = require('./_object-keys-internal')
-  , enumBugKeys = require('./_enum-bug-keys');
-
-module.exports = Object.keys || function keys(O){
-  return $keys(O, enumBugKeys);
-};
-},{"./_enum-bug-keys":21,"./_object-keys-internal":33}],35:[function(require,module,exports){
-exports.f = {}.propertyIsEnumerable;
-},{}],36:[function(require,module,exports){
-module.exports = function(bitmap, value){
-  return {
-    enumerable  : !(bitmap & 1),
-    configurable: !(bitmap & 2),
-    writable    : !(bitmap & 4),
-    value       : value
-  };
-};
-},{}],37:[function(require,module,exports){
-var shared = require('./_shared')('keys')
-  , uid    = require('./_uid');
-module.exports = function(key){
-  return shared[key] || (shared[key] = uid(key));
-};
-},{"./_shared":38,"./_uid":45}],38:[function(require,module,exports){
-var global = require('./_global')
-  , SHARED = '__core-js_shared__'
-  , store  = global[SHARED] || (global[SHARED] = {});
-module.exports = function(key){
-  return store[key] || (store[key] = {});
-};
-},{"./_global":24}],39:[function(require,module,exports){
-var toInteger = require('./_to-integer')
-  , max       = Math.max
-  , min       = Math.min;
-module.exports = function(index, length){
-  index = toInteger(index);
-  return index < 0 ? max(index + length, 0) : min(index, length);
-};
-},{"./_to-integer":40}],40:[function(require,module,exports){
-// 7.1.4 ToInteger
-var ceil  = Math.ceil
-  , floor = Math.floor;
-module.exports = function(it){
-  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
-};
-},{}],41:[function(require,module,exports){
-// to indexed object, toObject with fallback for non-array-like ES3 strings
-var IObject = require('./_iobject')
-  , defined = require('./_defined');
-module.exports = function(it){
-  return IObject(defined(it));
-};
-},{"./_defined":18,"./_iobject":28}],42:[function(require,module,exports){
-// 7.1.15 ToLength
-var toInteger = require('./_to-integer')
-  , min       = Math.min;
-module.exports = function(it){
-  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
-};
-},{"./_to-integer":40}],43:[function(require,module,exports){
-// 7.1.13 ToObject(argument)
-var defined = require('./_defined');
-module.exports = function(it){
-  return Object(defined(it));
-};
-},{"./_defined":18}],44:[function(require,module,exports){
-// 7.1.1 ToPrimitive(input [, PreferredType])
-var isObject = require('./_is-object');
-// instead of the ES6 spec version, we didn't implement @@toPrimitive case
-// and the second argument - flag - preferred type is a string
-module.exports = function(it, S){
-  if(!isObject(it))return it;
-  var fn, val;
-  if(S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
-  if(typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it)))return val;
-  if(!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
-  throw TypeError("Can't convert object to primitive value");
-};
-},{"./_is-object":29}],45:[function(require,module,exports){
-var id = 0
-  , px = Math.random();
-module.exports = function(key){
-  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
-};
-},{}],46:[function(require,module,exports){
-// 19.1.3.1 Object.assign(target, source)
-var $export = require('./_export');
-
-$export($export.S + $export.F, 'Object', {assign: require('./_object-assign')});
-},{"./_export":22,"./_object-assign":30}],47:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 (function (process){
 
 /**
@@ -1054,7 +697,7 @@ function localstorage(){
 }
 
 }).call(this,require('_process'))
-},{"./debug":48,"_process":73}],48:[function(require,module,exports){
+},{"./debug":11,"_process":36}],11:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -1256,11 +899,11 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":69}],49:[function(require,module,exports){
+},{"ms":32}],12:[function(require,module,exports){
 
 module.exports = require('./lib/index');
 
-},{"./lib/index":50}],50:[function(require,module,exports){
+},{"./lib/index":13}],13:[function(require,module,exports){
 
 module.exports = require('./socket');
 
@@ -1272,7 +915,7 @@ module.exports = require('./socket');
  */
 module.exports.parser = require('engine.io-parser');
 
-},{"./socket":51,"engine.io-parser":60}],51:[function(require,module,exports){
+},{"./socket":14,"engine.io-parser":23}],14:[function(require,module,exports){
 (function (global){
 /**
  * Module dependencies.
@@ -2014,7 +1657,7 @@ Socket.prototype.filterUpgrades = function (upgrades) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./transport":52,"./transports/index":53,"component-emitter":59,"debug":47,"engine.io-parser":60,"indexof":67,"parsejson":70,"parseqs":71,"parseuri":72}],52:[function(require,module,exports){
+},{"./transport":15,"./transports/index":16,"component-emitter":22,"debug":10,"engine.io-parser":23,"indexof":30,"parsejson":33,"parseqs":34,"parseuri":35}],15:[function(require,module,exports){
 /**
  * Module dependencies.
  */
@@ -2173,7 +1816,7 @@ Transport.prototype.onClose = function () {
   this.emit('close');
 };
 
-},{"component-emitter":59,"engine.io-parser":60}],53:[function(require,module,exports){
+},{"component-emitter":22,"engine.io-parser":23}],16:[function(require,module,exports){
 (function (global){
 /**
  * Module dependencies
@@ -2230,7 +1873,7 @@ function polling (opts) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./polling-jsonp":54,"./polling-xhr":55,"./websocket":57,"xmlhttprequest-ssl":58}],54:[function(require,module,exports){
+},{"./polling-jsonp":17,"./polling-xhr":18,"./websocket":20,"xmlhttprequest-ssl":21}],17:[function(require,module,exports){
 (function (global){
 
 /**
@@ -2465,7 +2108,7 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./polling":56,"component-inherit":10}],55:[function(require,module,exports){
+},{"./polling":19,"component-inherit":9}],18:[function(require,module,exports){
 (function (global){
 /**
  * Module requirements.
@@ -2893,7 +2536,7 @@ function unloadHandler () {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./polling":56,"component-emitter":59,"component-inherit":10,"debug":47,"xmlhttprequest-ssl":58}],56:[function(require,module,exports){
+},{"./polling":19,"component-emitter":22,"component-inherit":9,"debug":10,"xmlhttprequest-ssl":21}],19:[function(require,module,exports){
 /**
  * Module dependencies.
  */
@@ -3140,7 +2783,7 @@ Polling.prototype.uri = function () {
   return schema + '://' + (ipv6 ? '[' + this.hostname + ']' : this.hostname) + port + this.path + query;
 };
 
-},{"../transport":52,"component-inherit":10,"debug":47,"engine.io-parser":60,"parseqs":71,"xmlhttprequest-ssl":58,"yeast":94}],57:[function(require,module,exports){
+},{"../transport":15,"component-inherit":9,"debug":10,"engine.io-parser":23,"parseqs":34,"xmlhttprequest-ssl":21,"yeast":56}],20:[function(require,module,exports){
 (function (global){
 /**
  * Module dependencies.
@@ -3429,7 +3072,7 @@ WS.prototype.check = function () {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../transport":52,"component-inherit":10,"debug":47,"engine.io-parser":60,"parseqs":71,"ws":7,"yeast":94}],58:[function(require,module,exports){
+},{"../transport":15,"component-inherit":9,"debug":10,"engine.io-parser":23,"parseqs":34,"ws":6,"yeast":56}],21:[function(require,module,exports){
 (function (global){
 // browser shim for xmlhttprequest module
 
@@ -3470,7 +3113,7 @@ module.exports = function (opts) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"has-cors":66}],59:[function(require,module,exports){
+},{"has-cors":29}],22:[function(require,module,exports){
 
 /**
  * Expose `Emitter`.
@@ -3635,7 +3278,7 @@ Emitter.prototype.hasListeners = function(event){
   return !! this.listeners(event).length;
 };
 
-},{}],60:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 (function (global){
 /**
  * Module dependencies.
@@ -4248,7 +3891,7 @@ exports.decodePayloadAsBinary = function (data, binaryType, callback) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./keys":61,"after":1,"arraybuffer.slice":2,"base64-arraybuffer":5,"blob":6,"has-binary":62,"wtf-8":93}],61:[function(require,module,exports){
+},{"./keys":24,"after":1,"arraybuffer.slice":2,"base64-arraybuffer":4,"blob":5,"has-binary":25,"wtf-8":55}],24:[function(require,module,exports){
 
 /**
  * Gets the keys for an object.
@@ -4269,7 +3912,7 @@ module.exports = Object.keys || function keys (obj){
   return arr;
 };
 
-},{}],62:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 (function (global){
 
 /*
@@ -4331,12 +3974,12 @@ function hasBinary(data) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"isarray":63}],63:[function(require,module,exports){
+},{"isarray":26}],26:[function(require,module,exports){
 module.exports = Array.isArray || function (arr) {
   return Object.prototype.toString.call(arr) == '[object Array]';
 };
 
-},{}],64:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 (function (global){
 
 /*
@@ -4399,9 +4042,9 @@ function hasBinary(data) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"isarray":65}],65:[function(require,module,exports){
-arguments[4][63][0].apply(exports,arguments)
-},{"dup":63}],66:[function(require,module,exports){
+},{"isarray":28}],28:[function(require,module,exports){
+arguments[4][26][0].apply(exports,arguments)
+},{"dup":26}],29:[function(require,module,exports){
 
 /**
  * Module exports.
@@ -4420,7 +4063,7 @@ try {
   module.exports = false;
 }
 
-},{}],67:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 
 var indexOf = [].indexOf;
 
@@ -4431,7 +4074,7 @@ module.exports = function(arr, obj){
   }
   return -1;
 };
-},{}],68:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 (function (global){
 /*! JSON v3.3.2 | http://bestiejs.github.io/json3 | Copyright 2012-2014, Kit Cambridge | http://kit.mit-license.org */
 ;(function () {
@@ -5337,7 +4980,7 @@ module.exports = function(arr, obj){
 }).call(this);
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],69:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -5488,7 +5131,7 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's'
 }
 
-},{}],70:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 (function (global){
 /**
  * JSON parse.
@@ -5523,7 +5166,7 @@ module.exports = function parsejson(data) {
   }
 };
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],71:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 /**
  * Compiles a querystring
  * Returns string representation of the object
@@ -5562,7 +5205,7 @@ exports.decode = function(qs){
   return qry;
 };
 
-},{}],72:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 /**
  * Parses an URI
  *
@@ -5603,7 +5246,7 @@ module.exports = function parseuri(str) {
     return uri;
 };
 
-},{}],73:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -5785,7 +5428,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],74:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -5896,7 +5539,7 @@ exports.connect = lookup;
 exports.Manager = require('./manager');
 exports.Socket = require('./socket');
 
-},{"./manager":75,"./socket":77,"./url":78,"debug":47,"socket.io-parser":81}],75:[function(require,module,exports){
+},{"./manager":38,"./socket":40,"./url":41,"debug":10,"socket.io-parser":44}],38:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -6458,7 +6101,7 @@ Manager.prototype.onreconnect = function () {
   this.emitAll('reconnect', attempt);
 };
 
-},{"./on":76,"./socket":77,"backo2":4,"component-bind":8,"component-emitter":79,"debug":47,"engine.io-client":49,"indexof":67,"socket.io-parser":81}],76:[function(require,module,exports){
+},{"./on":39,"./socket":40,"backo2":3,"component-bind":7,"component-emitter":42,"debug":10,"engine.io-client":12,"indexof":30,"socket.io-parser":44}],39:[function(require,module,exports){
 
 /**
  * Module exports.
@@ -6484,7 +6127,7 @@ function on (obj, ev, fn) {
   };
 }
 
-},{}],77:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -6905,7 +6548,7 @@ Socket.prototype.compress = function (compress) {
   return this;
 };
 
-},{"./on":76,"component-bind":8,"component-emitter":79,"debug":47,"has-binary":64,"socket.io-parser":81,"to-array":87}],78:[function(require,module,exports){
+},{"./on":39,"component-bind":7,"component-emitter":42,"debug":10,"has-binary":27,"socket.io-parser":44,"to-array":50}],41:[function(require,module,exports){
 (function (global){
 
 /**
@@ -6984,9 +6627,9 @@ function url (uri, loc) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"debug":47,"parseuri":72}],79:[function(require,module,exports){
-arguments[4][59][0].apply(exports,arguments)
-},{"dup":59}],80:[function(require,module,exports){
+},{"debug":10,"parseuri":35}],42:[function(require,module,exports){
+arguments[4][22][0].apply(exports,arguments)
+},{"dup":22}],43:[function(require,module,exports){
 (function (global){
 /*global Blob,File*/
 
@@ -7131,7 +6774,7 @@ exports.removeBlobs = function(data, callback) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./is-buffer":82,"isarray":85}],81:[function(require,module,exports){
+},{"./is-buffer":45,"isarray":48}],44:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -7537,7 +7180,7 @@ function error(data){
   };
 }
 
-},{"./binary":80,"./is-buffer":82,"component-emitter":9,"debug":83,"json3":68}],82:[function(require,module,exports){
+},{"./binary":43,"./is-buffer":45,"component-emitter":8,"debug":46,"json3":31}],45:[function(require,module,exports){
 (function (global){
 
 module.exports = isBuf;
@@ -7554,7 +7197,7 @@ function isBuf(obj) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],83:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 
 /**
  * This is the web browser implementation of `debug()`.
@@ -7724,7 +7367,7 @@ function localstorage(){
   } catch (e) {}
 }
 
-},{"./debug":84}],84:[function(require,module,exports){
+},{"./debug":47}],47:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -7923,9 +7566,9 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":86}],85:[function(require,module,exports){
-arguments[4][63][0].apply(exports,arguments)
-},{"dup":63}],86:[function(require,module,exports){
+},{"ms":49}],48:[function(require,module,exports){
+arguments[4][26][0].apply(exports,arguments)
+},{"dup":26}],49:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -8052,7 +7695,7 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-},{}],87:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 module.exports = toArray
 
 function toArray(list, index) {
@@ -8067,7 +7710,7 @@ function toArray(list, index) {
     return array
 }
 
-},{}],88:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 var Vue // late bind
 var map = Object.create(null)
 var shimmed = false
@@ -8368,7 +8011,7 @@ function format (id) {
   return match ? match[0] : id
 }
 
-},{}],89:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 /*!
  * vue-resource v0.7.4
  * https://github.com/vuejs/vue-resource
@@ -9745,7 +9388,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 module.exports = plugin;
-},{}],90:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 (function (process){
 /*!
  * Vue.js v1.0.28
@@ -19986,7 +19629,7 @@ setTimeout(function () {
 
 module.exports = Vue;
 }).call(this,require('_process'))
-},{"_process":73}],91:[function(require,module,exports){
+},{"_process":36}],54:[function(require,module,exports){
 var inserted = exports.cache = {}
 
 exports.insert = function (css) {
@@ -20006,642 +19649,7 @@ exports.insert = function (css) {
   return elem
 }
 
-},{}],92:[function(require,module,exports){
-/*!
- * Vuex v0.6.3
- * (c) 2016 Evan You
- * Released under the MIT License.
- */
-(function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global.Vuex = factory());
-}(this, function () { 'use strict';
-
-  var babelHelpers = {};
-  babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-    return typeof obj;
-  } : function (obj) {
-    return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
-  };
-
-  babelHelpers.classCallCheck = function (instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
-    }
-  };
-
-  babelHelpers.createClass = function () {
-    function defineProperties(target, props) {
-      for (var i = 0; i < props.length; i++) {
-        var descriptor = props[i];
-        descriptor.enumerable = descriptor.enumerable || false;
-        descriptor.configurable = true;
-        if ("value" in descriptor) descriptor.writable = true;
-        Object.defineProperty(target, descriptor.key, descriptor);
-      }
-    }
-
-    return function (Constructor, protoProps, staticProps) {
-      if (protoProps) defineProperties(Constructor.prototype, protoProps);
-      if (staticProps) defineProperties(Constructor, staticProps);
-      return Constructor;
-    };
-  }();
-
-  babelHelpers.toConsumableArray = function (arr) {
-    if (Array.isArray(arr)) {
-      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
-
-      return arr2;
-    } else {
-      return Array.from(arr);
-    }
-  };
-
-  babelHelpers;
-
-  /**
-   * Merge an array of objects into one.
-   *
-   * @param {Array<Object>} arr
-   * @return {Object}
-   */
-
-  function mergeObjects(arr) {
-    return arr.reduce(function (prev, obj) {
-      Object.keys(obj).forEach(function (key) {
-        var existing = prev[key];
-        if (existing) {
-          // allow multiple mutation objects to contain duplicate
-          // handlers for the same mutation type
-          if (Array.isArray(existing)) {
-            existing.push(obj[key]);
-          } else {
-            prev[key] = [prev[key], obj[key]];
-          }
-        } else {
-          prev[key] = obj[key];
-        }
-      });
-      return prev;
-    }, {});
-  }
-
-  /**
-   * Deep clone an object. Faster than JSON.parse(JSON.stringify()).
-   *
-   * @param {*} obj
-   * @return {*}
-   */
-
-  function deepClone(obj) {
-    if (Array.isArray(obj)) {
-      return obj.map(deepClone);
-    } else if (obj && (typeof obj === 'undefined' ? 'undefined' : babelHelpers.typeof(obj)) === 'object') {
-      var cloned = {};
-      var keys = Object.keys(obj);
-      for (var i = 0, l = keys.length; i < l; i++) {
-        var key = keys[i];
-        cloned[key] = deepClone(obj[key]);
-      }
-      return cloned;
-    } else {
-      return obj;
-    }
-  }
-
-  /**
-   * Hacks to get access to Vue internals.
-   * Maybe we should expose these...
-   */
-
-  var Watcher = void 0;
-  function getWatcher(vm) {
-    if (!Watcher) {
-      var unwatch = vm.$watch('__vuex__', function (a) {
-        return a;
-      });
-      Watcher = vm._watchers[0].constructor;
-      unwatch();
-    }
-    return Watcher;
-  }
-
-  var Dep = void 0;
-  function getDep(vm) {
-    if (!Dep) {
-      Dep = vm._data.__ob__.dep.constructor;
-    }
-    return Dep;
-  }
-
-  var hook = typeof window !== 'undefined' && window.__VUE_DEVTOOLS_GLOBAL_HOOK__;
-
-  var devtoolMiddleware = {
-    onInit: function onInit(state, store) {
-      if (!hook) return;
-      hook.emit('vuex:init', store);
-      hook.on('vuex:travel-to-state', function (targetState) {
-        var currentState = store._vm._data;
-        store._dispatching = true;
-        Object.keys(targetState).forEach(function (key) {
-          currentState[key] = targetState[key];
-        });
-        store._dispatching = false;
-      });
-    },
-    onMutation: function onMutation(mutation, state) {
-      if (!hook) return;
-      hook.emit('vuex:mutation', mutation, state);
-    }
-  };
-
-  function override (Vue) {
-    // override init and inject vuex init procedure
-    var _init = Vue.prototype._init;
-    Vue.prototype._init = function () {
-      var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-      options.init = options.init ? [vuexInit].concat(options.init) : vuexInit;
-      _init.call(this, options);
-    };
-
-    /**
-     * Vuex init hook, injected into each instances init hooks list.
-     */
-
-    function vuexInit() {
-      var options = this.$options;
-      var store = options.store;
-      var vuex = options.vuex;
-      // store injection
-
-      if (store) {
-        this.$store = store;
-      } else if (options.parent && options.parent.$store) {
-        this.$store = options.parent.$store;
-      }
-      // vuex option handling
-      if (vuex) {
-        if (!this.$store) {
-          console.warn('[vuex] store not injected. make sure to ' + 'provide the store option in your root component.');
-        }
-        var state = vuex.state;
-        var getters = vuex.getters;
-        var actions = vuex.actions;
-        // handle deprecated state option
-
-        if (state && !getters) {
-          console.warn('[vuex] vuex.state option will been deprecated in 1.0. ' + 'Use vuex.getters instead.');
-          getters = state;
-        }
-        // getters
-        if (getters) {
-          options.computed = options.computed || {};
-          for (var key in getters) {
-            defineVuexGetter(this, key, getters[key]);
-          }
-        }
-        // actions
-        if (actions) {
-          options.methods = options.methods || {};
-          for (var _key in actions) {
-            options.methods[_key] = makeBoundAction(this.$store, actions[_key], _key);
-          }
-        }
-      }
-    }
-
-    /**
-     * Setter for all getter properties.
-     */
-
-    function setter() {
-      throw new Error('vuex getter properties are read-only.');
-    }
-
-    /**
-     * Define a Vuex getter on an instance.
-     *
-     * @param {Vue} vm
-     * @param {String} key
-     * @param {Function} getter
-     */
-
-    function defineVuexGetter(vm, key, getter) {
-      if (typeof getter !== 'function') {
-        console.warn('[vuex] Getter bound to key \'vuex.getters.' + key + '\' is not a function.');
-      } else {
-        Object.defineProperty(vm, key, {
-          enumerable: true,
-          configurable: true,
-          get: makeComputedGetter(vm.$store, getter),
-          set: setter
-        });
-      }
-    }
-
-    /**
-     * Make a computed getter, using the same caching mechanism of computed
-     * properties. In addition, it is cached on the raw getter function using
-     * the store's unique cache id. This makes the same getter shared
-     * across all components use the same underlying watcher, and makes
-     * the getter evaluated only once during every flush.
-     *
-     * @param {Store} store
-     * @param {Function} getter
-     */
-
-    function makeComputedGetter(store, getter) {
-      var id = store._getterCacheId;
-
-      // cached
-      if (getter[id]) {
-        return getter[id];
-      }
-      var vm = store._vm;
-      var Watcher = getWatcher(vm);
-      var Dep = getDep(vm);
-      var watcher = new Watcher(vm, function (state) {
-        return getter(state);
-      }, null, { lazy: true });
-      var computedGetter = function computedGetter() {
-        if (watcher.dirty) {
-          watcher.evaluate();
-        }
-        if (Dep.target) {
-          watcher.depend();
-        }
-        return watcher.value;
-      };
-      getter[id] = computedGetter;
-      return computedGetter;
-    }
-
-    /**
-     * Make a bound-to-store version of a raw action function.
-     *
-     * @param {Store} store
-     * @param {Function} action
-     * @param {String} key
-     */
-
-    function makeBoundAction(store, action, key) {
-      if (typeof action !== 'function') {
-        console.warn('[vuex] Action bound to key \'vuex.actions.' + key + '\' is not a function.');
-      }
-      return function vuexBoundAction() {
-        for (var _len = arguments.length, args = Array(_len), _key2 = 0; _key2 < _len; _key2++) {
-          args[_key2] = arguments[_key2];
-        }
-
-        return action.call.apply(action, [this, store].concat(args));
-      };
-    }
-
-    // option merging
-    var merge = Vue.config.optionMergeStrategies.computed;
-    Vue.config.optionMergeStrategies.vuex = function (toVal, fromVal) {
-      if (!toVal) return fromVal;
-      if (!fromVal) return toVal;
-      return {
-        getters: merge(toVal.getters, fromVal.getters),
-        state: merge(toVal.state, fromVal.state),
-        actions: merge(toVal.actions, fromVal.actions)
-      };
-    };
-  }
-
-  var Vue = void 0;
-  var uid = 0;
-
-  var Store = function () {
-
-    /**
-     * @param {Object} options
-     *        - {Object} state
-     *        - {Object} actions
-     *        - {Object} mutations
-     *        - {Array} middlewares
-     *        - {Boolean} strict
-     */
-
-    function Store() {
-      var _this = this;
-
-      var _ref = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-      var _ref$state = _ref.state;
-      var state = _ref$state === undefined ? {} : _ref$state;
-      var _ref$mutations = _ref.mutations;
-      var mutations = _ref$mutations === undefined ? {} : _ref$mutations;
-      var _ref$modules = _ref.modules;
-      var modules = _ref$modules === undefined ? {} : _ref$modules;
-      var _ref$middlewares = _ref.middlewares;
-      var middlewares = _ref$middlewares === undefined ? [] : _ref$middlewares;
-      var _ref$strict = _ref.strict;
-      var strict = _ref$strict === undefined ? false : _ref$strict;
-      babelHelpers.classCallCheck(this, Store);
-
-      this._getterCacheId = 'vuex_store_' + uid++;
-      this._dispatching = false;
-      this._rootMutations = this._mutations = mutations;
-      this._modules = modules;
-      // bind dispatch to self
-      var dispatch = this.dispatch;
-      this.dispatch = function () {
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-          args[_key] = arguments[_key];
-        }
-
-        dispatch.apply(_this, args);
-      };
-      // use a Vue instance to store the state tree
-      // suppress warnings just in case the user has added
-      // some funky global mixins
-      if (!Vue) {
-        throw new Error('[vuex] must call Vue.use(Vuex) before creating a store instance.');
-      }
-      var silent = Vue.config.silent;
-      Vue.config.silent = true;
-      this._vm = new Vue({
-        data: state
-      });
-      Vue.config.silent = silent;
-      this._setupModuleState(state, modules);
-      this._setupModuleMutations(modules);
-      this._setupMiddlewares(middlewares, state);
-      // add extra warnings in strict mode
-      if (strict) {
-        this._setupMutationCheck();
-      }
-    }
-
-    /**
-     * Getter for the entire state tree.
-     * Read only.
-     *
-     * @return {Object}
-     */
-
-    babelHelpers.createClass(Store, [{
-      key: 'dispatch',
-
-
-      /**
-       * Dispatch an action.
-       *
-       * @param {String} type
-       */
-
-      value: function dispatch(type) {
-        for (var _len2 = arguments.length, payload = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-          payload[_key2 - 1] = arguments[_key2];
-        }
-
-        var silent = false;
-        // compatibility for object actions, e.g. FSA
-        if ((typeof type === 'undefined' ? 'undefined' : babelHelpers.typeof(type)) === 'object' && type.type && arguments.length === 1) {
-          payload = [type.payload];
-          if (type.silent) silent = true;
-          type = type.type;
-        }
-        var mutation = this._mutations[type];
-        var state = this.state;
-        if (mutation) {
-          this._dispatching = true;
-          // apply the mutation
-          if (Array.isArray(mutation)) {
-            mutation.forEach(function (m) {
-              return m.apply(undefined, [state].concat(babelHelpers.toConsumableArray(payload)));
-            });
-          } else {
-            mutation.apply(undefined, [state].concat(babelHelpers.toConsumableArray(payload)));
-          }
-          this._dispatching = false;
-          if (!silent) this._applyMiddlewares(type, payload);
-        } else {
-          console.warn('[vuex] Unknown mutation: ' + type);
-        }
-      }
-
-      /**
-       * Watch state changes on the store.
-       * Same API as Vue's $watch, except when watching a function,
-       * the function gets the state as the first argument.
-       *
-       * @param {String|Function} expOrFn
-       * @param {Function} cb
-       * @param {Object} [options]
-       */
-
-    }, {
-      key: 'watch',
-      value: function watch(expOrFn, cb, options) {
-        var _this2 = this;
-
-        return this._vm.$watch(function () {
-          return typeof expOrFn === 'function' ? expOrFn(_this2.state) : _this2._vm.$get(expOrFn);
-        }, cb, options);
-      }
-
-      /**
-       * Hot update mutations & modules.
-       *
-       * @param {Object} options
-       *        - {Object} [mutations]
-       *        - {Object} [modules]
-       */
-
-    }, {
-      key: 'hotUpdate',
-      value: function hotUpdate() {
-        var _ref2 = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-        var mutations = _ref2.mutations;
-        var modules = _ref2.modules;
-
-        this._rootMutations = this._mutations = mutations || this._rootMutations;
-        this._setupModuleMutations(modules || this._modules);
-      }
-
-      /**
-       * Attach sub state tree of each module to the root tree.
-       *
-       * @param {Object} state
-       * @param {Object} modules
-       */
-
-    }, {
-      key: '_setupModuleState',
-      value: function _setupModuleState(state, modules) {
-        Object.keys(modules).forEach(function (key) {
-          Vue.set(state, key, modules[key].state || {});
-        });
-      }
-
-      /**
-       * Bind mutations for each module to its sub tree and
-       * merge them all into one final mutations map.
-       *
-       * @param {Object} updatedModules
-       */
-
-    }, {
-      key: '_setupModuleMutations',
-      value: function _setupModuleMutations(updatedModules) {
-        var modules = this._modules;
-        var allMutations = [this._rootMutations];
-        Object.keys(updatedModules).forEach(function (key) {
-          modules[key] = updatedModules[key];
-        });
-        Object.keys(modules).forEach(function (key) {
-          var module = modules[key];
-          if (!module || !module.mutations) return;
-          // bind mutations to sub state tree
-          var mutations = {};
-          Object.keys(module.mutations).forEach(function (name) {
-            var original = module.mutations[name];
-            mutations[name] = function (state) {
-              for (var _len3 = arguments.length, args = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
-                args[_key3 - 1] = arguments[_key3];
-              }
-
-              original.apply(undefined, [state[key]].concat(args));
-            };
-          });
-          allMutations.push(mutations);
-        });
-        this._mutations = mergeObjects(allMutations);
-      }
-
-      /**
-       * Setup mutation check: if the vuex instance's state is mutated
-       * outside of a mutation handler, we throw en error. This effectively
-       * enforces all mutations to the state to be trackable and hot-reloadble.
-       * However, this comes at a run time cost since we are doing a deep
-       * watch on the entire state tree, so it is only enalbed with the
-       * strict option is set to true.
-       */
-
-    }, {
-      key: '_setupMutationCheck',
-      value: function _setupMutationCheck() {
-        var _this3 = this;
-
-        var Watcher = getWatcher(this._vm);
-        /* eslint-disable no-new */
-        new Watcher(this._vm, '$data', function () {
-          if (!_this3._dispatching) {
-            throw new Error('[vuex] Do not mutate vuex store state outside mutation handlers.');
-          }
-        }, { deep: true, sync: true });
-        /* eslint-enable no-new */
-      }
-
-      /**
-       * Setup the middlewares. The devtools middleware is always
-       * included, since it does nothing if no devtool is detected.
-       *
-       * A middleware can demand the state it receives to be
-       * "snapshots", i.e. deep clones of the actual state tree.
-       *
-       * @param {Array} middlewares
-       * @param {Object} state
-       */
-
-    }, {
-      key: '_setupMiddlewares',
-      value: function _setupMiddlewares(middlewares, state) {
-        var _this4 = this;
-
-        this._middlewares = [devtoolMiddleware].concat(middlewares);
-        this._needSnapshots = middlewares.some(function (m) {
-          return m.snapshot;
-        });
-        if (this._needSnapshots) {
-          console.log('[vuex] One or more of your middlewares are taking state snapshots ' + 'for each mutation. Make sure to use them only during development.');
-        }
-        var initialSnapshot = this._prevSnapshot = this._needSnapshots ? deepClone(state) : null;
-        // call init hooks
-        this._middlewares.forEach(function (m) {
-          if (m.onInit) {
-            m.onInit(m.snapshot ? initialSnapshot : state, _this4);
-          }
-        });
-      }
-
-      /**
-       * Apply the middlewares on a given mutation.
-       *
-       * @param {String} type
-       * @param {Array} payload
-       */
-
-    }, {
-      key: '_applyMiddlewares',
-      value: function _applyMiddlewares(type, payload) {
-        var _this5 = this;
-
-        var state = this.state;
-        var prevSnapshot = this._prevSnapshot;
-        var snapshot = void 0,
-            clonedPayload = void 0;
-        if (this._needSnapshots) {
-          snapshot = this._prevSnapshot = deepClone(state);
-          clonedPayload = deepClone(payload);
-        }
-        this._middlewares.forEach(function (m) {
-          if (m.onMutation) {
-            if (m.snapshot) {
-              m.onMutation({ type: type, payload: clonedPayload }, snapshot, prevSnapshot, _this5);
-            } else {
-              m.onMutation({ type: type, payload: payload }, state, _this5);
-            }
-          }
-        });
-      }
-    }, {
-      key: 'state',
-      get: function get() {
-        return this._vm._data;
-      },
-      set: function set(v) {
-        throw new Error('[vuex] Vuex root state is read only.');
-      }
-    }]);
-    return Store;
-  }();
-
-  function install(_Vue) {
-    if (Vue) {
-      console.warn('[vuex] already installed. Vue.use(Vuex) should be called only once.');
-      return;
-    }
-    Vue = _Vue;
-    override(Vue);
-  }
-
-  // auto install in dist mode
-  if (typeof window !== 'undefined' && window.Vue) {
-    install(window.Vue);
-  }
-
-  function createLogger() {
-    console.warn('[vuex] Vuex.createLogger has been deprecated.' + 'Use `import createLogger from \'vuex/logger\' instead.');
-  }
-
-  var index = {
-    Store: Store,
-    install: install,
-    createLogger: createLogger
-  };
-
-  return index;
-
-}));
-},{}],93:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 (function (global){
 /*! https://mths.be/wtf8 v1.0.0 by @mathias */
 ;(function(root) {
@@ -20879,7 +19887,7 @@ exports.insert = function (css) {
 }(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],94:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 'use strict';
 
 var alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_'.split('')
@@ -20949,7 +19957,7 @@ yeast.encode = encode;
 yeast.decode = decode;
 module.exports = yeast;
 
-},{}],95:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -20961,25 +19969,9 @@ var _vue = require('vue');
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _store = require('./vuex/store');
-
-var _store2 = _interopRequireDefault(_store);
-
-var _App = require('./components/App.vue');
-
-var _App2 = _interopRequireDefault(_App);
-
 var _IndexView = require('./components/views/home/IndexView.vue');
 
 var _IndexView2 = _interopRequireDefault(_IndexView);
-
-var _IndexView3 = require('./components/views/boycott/IndexView.vue');
-
-var _IndexView4 = _interopRequireDefault(_IndexView3);
-
-var _reverse = require('./filters/reverse.js');
-
-var _reverse2 = _interopRequireDefault(_reverse);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20990,20 +19982,14 @@ window.$ = $;
 _vue2.default.use(require('vue-resource'));
 window.addEventListener('load', function () {
     new _vue2.default({
-        store: _store2.default,
         el: 'body',
-        data: {
-            currentView: { default: '' }
-        },
+        data: {},
         ready: function ready() {},
 
         components: {
-            App: _App2.default,
-            Home: _IndexView2.default,
-            BoycottIndex: _IndexView4.default
-
+            Home: _IndexView2.default
         },
-        filters: { Reverse: _reverse2.default },
+        filters: {},
         http: {
             headers: {
                 'X-CSRF-TOKEN': function XCSRFTOKEN() {
@@ -21019,765 +20005,473 @@ window.addEventListener('load', function () {
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./components/App.vue":98,"./components/views/boycott/IndexView.vue":134,"./components/views/home/IndexView.vue":135,"./filters/reverse.js":137,"./vuex/store":139,"socket.io-client":74,"vue":90,"vue-resource":89}],96:[function(require,module,exports){
+},{"./components/views/home/IndexView.vue":66,"socket.io-client":37,"vue":53,"vue-resource":52}],58:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.test{\n\n}\n\n")
+var __vueify_style__ = __vueify_insert__.insert("\n\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vue = require('vue');
+var _ImageModel = require('./media/ImageModel.vue');
 
-var _vue2 = _interopRequireDefault(_vue);
+var _ImageModel2 = _interopRequireDefault(_ImageModel);
 
-var _ajax = require('../directives/ajax.js');
+var _VideoModel = require('./media/VideoModel.vue');
 
-var _ajax2 = _interopRequireDefault(_ajax);
+var _VideoModel2 = _interopRequireDefault(_VideoModel);
+
+var _TweetController = require('./controllers/TweetController.vue');
+
+var _TweetController2 = _interopRequireDefault(_TweetController);
+
+var _TweetModel = require('./types/TweetModel.vue');
+
+var _TweetModel2 = _interopRequireDefault(_TweetModel);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_vue2.default.use(require('vue-resource'));
-
 exports.default = {
-    components: {},
-    directives: {
-        Ajax: _ajax2.default
+    components: {
+        Tweet: _TweetModel2.default,
+        TweetController: _TweetController2.default,
+        ImageModel: _ImageModel2.default,
+        VideoModel: _VideoModel2.default
     },
-    ready: function ready() {},
+    filters: {},
+    props: {
+        model: { default: {} }
+
+    },
+    ready: function ready() {
+        console.log("dispatch ready");
+    },
+
+    computed: {
+        // a computed getter
+        classes: function classes() {
+
+            var defaults = {
+                header: 'stream-item-header',
+                time: 'time',
+                text: 'text-container',
+                media: 'media-container',
+                video: 'video-container',
+                image: 'image-container',
+                imageThumb: 'image-thumb',
+                imageController: 'image-controller'
+            };
+
+            //If the model has a class for the defaults use the models data
+            if (typeof this.model.classes !== 'undefined') {
+                for (var key in defaults) {
+                    if (defaults.hasOwnProperty(key)) {
+                        // console.log(key + " -> " + p[key]);
+                        //If the model has this class set we set that to the default
+                        if (typeof this.model.classes[key] !== 'undefined') {
+                            defaults[key] = this.model.classes[key];
+                        }
+                    }
+                }
+            }
+
+            return defaults;
+        }
+    },
     data: function data() {
         return {};
     },
 
-
-    computed: {},
-    watch: {},
-    props: [],
+    directives: {},
+    events: {},
     methods: {}
+
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n    <h1>Ajax Form</h1>\n<form action=\"test\" method=\"POST\" v-ajax=\"\" complete=\"Submission is complete\">\n    Test\n    <button type=\"submit\">submit</button>\n</form>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n    <div class=\"DispatchModel dispatch\">\n        <slot></slot>\n    </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.test{\n\n}\n\n"] = false
+    __vueify_insert__.cache["\n\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-5d00c12a", module.exports)
+    hotAPI.createRecord("_v-0100e758", module.exports)
   } else {
-    hotAPI.update("_v-5d00c12a", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-0100e758", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../directives/ajax.js":136,"vue":90,"vue-hot-reload-api":88,"vue-resource":89,"vueify/lib/insert-css":91}],97:[function(require,module,exports){
+},{"./controllers/TweetController.vue":60,"./media/ImageModel.vue":61,"./media/VideoModel.vue":62,"./types/TweetModel.vue":65,"vue":53,"vue-hot-reload-api":51,"vueify/lib/insert-css":54}],59:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.completed { text-decoration: line-through;}\n\n")
+var __vueify_style__ = __vueify_insert__.insert("\n\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+	value: true
+});
+exports.default = {
+	props: {
+		model: { default: {} }
+
+	},
+	methods: {
+		showRepliesModal: function showRepliesModal() {
+			console.log('@todo show replies');
+		},
+		showHotnessModal: function showHotnessModal() {
+			console.log('@todo show hotness');
+		},
+		showSharesModal: function showSharesModal() {
+			console.log('@todo show shares');
+		},
+		deleteDispatch: function deleteDispatch() {
+			console.log('@todo delete dispatch');
+		},
+		activateDispatch: function activateDispatch() {
+			console.log('@todo activate dispatch');
+		},
+		editDispatch: function editDispatch() {
+			console.log('@todo activate dispatch');
+		}
+	},
+	components: {},
+	filters: {},
+	ready: function ready() {
+		console.log("PostController ready");
+	},
+
+	computed: {},
+	data: function data() {
+		return {};
+	},
+
+	directives: {},
+	events: {}
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n    <div class=\"Controller TweetController\">\n        <slot></slot>\n    </div>\n</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["\n\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-67add968", module.exports)
+  } else {
+    hotAPI.update("_v-67add968", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":53,"vue-hot-reload-api":51,"vueify/lib/insert-css":54}],60:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("\n\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	props: {
+		model: { default: {} }
+
+	},
+	methods: {
+		showRepliesModal: function showRepliesModal() {
+			console.log('@todo show replies');
+		},
+		showHotnessModal: function showHotnessModal() {
+			console.log('@todo show hotness');
+		},
+		showSharesModal: function showSharesModal() {
+			console.log('@todo show shares');
+		},
+		deleteDispatch: function deleteDispatch() {
+			console.log('@todo delete dispatch');
+		},
+		activateDispatch: function activateDispatch() {
+			console.log('@todo activate dispatch');
+		},
+		editDispatch: function editDispatch() {
+			console.log('@todo activate dispatch');
+		}
+	},
+	components: {},
+	filters: {},
+	ready: function ready() {
+		console.log("TweetController ready");
+	},
+
+	computed: {},
+	data: function data() {
+		return {};
+	},
+
+	directives: {},
+	events: {}
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n    <div class=\"Controller TweetController\">\n        <slot></slot>\n    </div>\n</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["\n\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-907a64a6", module.exports)
+  } else {
+    hotAPI.update("_v-907a64a6", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":53,"vue-hot-reload-api":51,"vueify/lib/insert-css":54}],61:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("\n.image-container img{max-width:100%}\n.image-container {position:relative;}\n.media-container .image-thumb img{height:50px}\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+				value: true
 });
 
-var _vue = require('vue');
+var _ImageController = require('./controllers/ImageController.vue');
 
-var _vue2 = _interopRequireDefault(_vue);
+var _ImageController2 = _interopRequireDefault(_ImageController);
+
+var _PostModel = require('../types/PostModel.vue');
+
+var _PostModel2 = _interopRequireDefault(_PostModel);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-    components: {},
-    ready: function ready() {},
-    created: function created() {},
-    data: function data() {
-        return {
-            hidden: false
-        };
-    },
+				components: {
+								ImageController: _ImageController2.default,
+								ImagePost: _PostModel2.default
+				},
+				props: {
+								model: { default: {} },
+								classes: { default: {} },
+								visible: { default: false }
+				},
+				methods: {
+								toggleVisibility: function toggleVisibility() {
+												this.visible = !this.visible;
+								},
+								disableVisibility: function disableVisibility() {
+												this.visible = false;
+								},
+								enableVisibility: function enableVisibility() {
+												this.visible = true;
+								}
+				},
+				ready: function ready() {
+								console.log("image model ready");
+				},
 
+				computed: {
+								src: function src() {
+												return this.model.url;
+								}
+				},
 
-    computed: {},
-    watch: {},
-    props: {
-        type: { default: 'info' }
-    },
-    methods: {
-        hideAlert: function hideAlert(alert) {
-            this.hidden = true;
-        },
-        isHidden: function isHidden(alert) {
-            return this.hidden;
-        },
-        isVisible: function isVisible(task) {
-            return !this.hidden;
-        }
-    }
+				data: function data() {
+								return {};
+				},
+
+				directives: {},
+				events: {}
+
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"alert alert-{{type}}\">\n    <a @click=\"hideAlert(this)\" class=\"close\" data-dismiss=\"alert\"></a>\n    <slot></slot>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div :class=\"classes.image\">\n    <div class=\"Media ImageModel\">\n        <slot></slot>\n    </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.completed { text-decoration: line-through;}\n\n"] = false
+    __vueify_insert__.cache["\n.image-container img{max-width:100%}\n.image-container {position:relative;}\n.media-container .image-thumb img{height:50px}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-28a46c85", module.exports)
+    hotAPI.createRecord("_v-53a84791", module.exports)
   } else {
-    hotAPI.update("_v-28a46c85", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-53a84791", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],98:[function(require,module,exports){
+},{"../types/PostModel.vue":64,"./controllers/ImageController.vue":63,"vue":53,"vue-hot-reload-api":51,"vueify/lib/insert-css":54}],62:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("\n\n")
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	components: {},
+	filters: {},
+	props: {
+		model: { default: {} },
+		classes: {}
+
+	},
+	ready: function ready() {
+		console.log("video ready");
+	},
+	data: function data() {
+		return {};
+	},
+
+	directives: {},
+	events: {},
+	methods: {}
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div :class=\"classes.video\">\n    <div class=\"Media ImageModel\">\n        <slot></slot>\n    </div>\n</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["\n\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-ebed3f1e", module.exports)
+  } else {
+    hotAPI.update("_v-ebed3f1e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":53,"vue-hot-reload-api":51,"vueify/lib/insert-css":54}],63:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("\n.image-controller{}\n.media-container .ImageController {\n        position: absolute;\n        top: 0;\n        width: 100%;\n        height: 100%;\n        background-color: rgba(255,255,255,0.1);\n        color: #fff;\n}\n .ImageController .navbar.transparent , .ImageController .navbar.transparent > nav > li:hover, .ImageController .navbar.transparent  .nav > li > a:hover, .ImageController .navbar.transparent .nav > li > a:focus {\n    background: rgba(0,0,0,0.4);\n    color: #fff;\n}\n.ImageController .navbar.transparent .nav > li > a:hover, .nav > li > a:focus {\n    color: #000;\n}\n\n\n")
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    components: {},
+    props: {
+        model: { default: {} },
+        classes: { default: {} },
+        visible: { default: false }
+    },
+    methods: {
+        toggleVisibility: function toggleVisibility() {
+            this.visible = !this.visible;
+        },
+        disableVisibility: function disableVisibility() {
+            this.visible = false;
+        },
+        enableVisibility: function enableVisibility() {
+            this.visible = true;
+        },
+        showEditModal: function showEditModal() {
+            this.visible = true;
+        },
+        copyLink: function copyLink() {
+            this.visible = true;
+        },
+        showCommentModal: function showCommentModal() {
+            this.visible = true;
+        }
+    },
+    ready: function ready() {
+        console.log("image model ready");
+    },
+
+    computed: {
+        src: function src() {
+            return this.model.url;
+        }
+    },
+
+    data: function data() {
+        return {};
+    },
+
+    directives: {},
+    events: {}
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Controller ImageController\">\n    <slot></slot>\n</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["\n.image-controller{}\n.media-container .ImageController {\n        position: absolute;\n        top: 0;\n        width: 100%;\n        height: 100%;\n        background-color: rgba(255,255,255,0.1);\n        color: #fff;\n}\n .ImageController .navbar.transparent , .ImageController .navbar.transparent > nav > li:hover, .ImageController .navbar.transparent  .nav > li > a:hover, .ImageController .navbar.transparent .nav > li > a:focus {\n    background: rgba(0,0,0,0.4);\n    color: #fff;\n}\n.ImageController .navbar.transparent .nav > li > a:hover, .nav > li > a:focus {\n    color: #000;\n}\n\n\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-08ac5542", module.exports)
+  } else {
+    hotAPI.update("_v-08ac5542", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":53,"vue-hot-reload-api":51,"vueify/lib/insert-css":54}],64:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("\n\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _Grid = require('./Grid.vue');
+var _PostController = require('../controllers/PostController.vue');
 
-var _Grid2 = _interopRequireDefault(_Grid);
+var _PostController2 = _interopRequireDefault(_PostController);
 
-var _Countdemo = require('./Countdemo.vue');
+var _ImageModel = require('../media/ImageModel.vue');
 
-var _Countdemo2 = _interopRequireDefault(_Countdemo);
+var _ImageModel2 = _interopRequireDefault(_ImageModel);
 
-var _Skilllevel = require('./Skilllevel.vue');
+var _VideoModel = require('../media/VideoModel.vue');
 
-var _Skilllevel2 = _interopRequireDefault(_Skilllevel);
-
-var _FullName = require('./FullName.vue');
-
-var _FullName2 = _interopRequireDefault(_FullName);
-
-var _PlanSelector = require('./PlanSelector.vue');
-
-var _PlanSelector2 = _interopRequireDefault(_PlanSelector);
-
-var _TaskList = require('./TaskList.vue');
-
-var _TaskList2 = _interopRequireDefault(_TaskList);
-
-var _Alert = require('./Alert.vue');
-
-var _Alert2 = _interopRequireDefault(_Alert);
-
-var _Tweet = require('./twitter/Tweet.vue');
-
-var _Tweet2 = _interopRequireDefault(_Tweet);
-
-var _Message = require('./Message.vue');
-
-var _Message2 = _interopRequireDefault(_Message);
-
-var _AjaxForm = require('./AjaxForm.vue');
-
-var _AjaxForm2 = _interopRequireDefault(_AjaxForm);
-
-var _reverse = require('../filters/reverse.js');
-
-var _reverse2 = _interopRequireDefault(_reverse);
+var _VideoModel2 = _interopRequireDefault(_VideoModel);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
 	components: {
-		Grid: _Grid2.default,
-		Tweet: _Tweet2.default,
-		Countdemo: _Countdemo2.default,
-		Skilllevel: _Skilllevel2.default,
-		FullName: _FullName2.default,
-		PlanSelector: _PlanSelector2.default,
-		TaskList: _TaskList2.default,
-		Alert: _Alert2.default,
-		Message: _Message2.default,
-		AjaxForm: _AjaxForm2.default
+		ImageModel: _ImageModel2.default,
+		VideoModel: _VideoModel2.default
 	},
-	filters: {
-		Reverse: _reverse2.default
+	props: {
+		model: { default: {
+				classes: {
+					header: 'stream-item-header'
+				}
+			} }
+
 	},
+	ready: function ready() {
+		console.log("post ready");
+	},
+
+	computed: {},
 	data: function data() {
-		return {
-			messages: []
-		};
+		return {};
 	},
 
 	directives: {},
-	events: {
-		//'new-message': function(message) {
-		//    console.log('Parent is handling ' + message);
-		//}
-	},
-	methods: {
-		handleNewMessage: function handleNewMessage(message) {
-			this.messages.push(message);
-		}
-
-	}
+	events: {},
+	methods: {},
+	filters: {}
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div id=\"app\">\n    <pre>        {{ $data }}\n        </pre>\n    <grid></grid>\n    <countdemo subject=\"Likes\"></countdemo>\n    <countdemo subject=\"Disslikes\"></countdemo>\n    <skilllevel></skilllevel>\n    <full-name></full-name>\n    <plan-selector></plan-selector>\n    <task-list></task-list>\n    <alert type=\"danger\">{{'Danger Danger' | reverse }}</alert>\n    <message @new-message=\"handleNewMessage\"></message>\n    <ajax-form></ajax-form>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-61ece30a", module.exports)
-  } else {
-    hotAPI.update("_v-61ece30a", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"../filters/reverse.js":137,"./AjaxForm.vue":96,"./Alert.vue":97,"./Countdemo.vue":99,"./FullName.vue":100,"./Grid.vue":101,"./Message.vue":102,"./PlanSelector.vue":103,"./Skilllevel.vue":104,"./TaskList.vue":105,"./twitter/Tweet.vue":133,"vue":90,"vue-hot-reload-api":88}],99:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.test{\n\n}\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _vue = require('vue');
-
-var _vue2 = _interopRequireDefault(_vue);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_vue2.default.use(require('vue-resource'));
-
-exports.default = {
-    ready: function ready() {},
-    data: function data() {
-        return { count: 0 };
-    },
-
-    props: ['subject'],
-    methods: {
-        handleSubmission: function handleSubmission(e) {
-            alert('handle');
-            e.preventDefault();
-        },
-        buttonClicked: function buttonClicked(e) {
-            this.updateCount();
-        },
-        updateCount: function updateCount(e) {
-            this.count += 1;
-        }
-    }
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\nSubject: {{ subject }}\nIncrement Count: {{ count }}\n  <button @click=\"buttonClicked\" type=\"submit\">Submit Me</button>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.test{\n\n}\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-0b5931ca", module.exports)
-  } else {
-    hotAPI.update("_v-0b5931ca", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"vue":90,"vue-hot-reload-api":88,"vue-resource":89,"vueify/lib/insert-css":91}],100:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.test{\n\n}\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _vue = require('vue');
-
-var _vue2 = _interopRequireDefault(_vue);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_vue2.default.use(require('vue-resource'));
-
-exports.default = {
-    ready: function ready() {},
-    data: function data() {
-        return {
-            firstName: 1000,
-            lastName: 1000
-        };
-    },
-
-
-    computed: {
-        fullName: function fullName() {
-            return this.firstName + ' ' + this.lastName;
-        }
-    },
-    watch: {
-        firstName: function firstName(first) {
-            alert(first);
-        }
-    },
-    props: [],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<h1>Full Name</h1>\n    <input type=\"text\" v-model=\"firstName\">\n    <input type=\"text\" v-model=\"lastName\">\n    {{ fullName }}\n\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.test{\n\n}\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-3b376321", module.exports)
-  } else {
-    hotAPI.update("_v-3b376321", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"vue":90,"vue-hot-reload-api":88,"vue-resource":89,"vueify/lib/insert-css":91}],101:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\nbody {\n  font-family: Helvetica Neue, Arial, sans-serif;\n  font-size: 14px;\n  color: #444;\n}\n\ntable {\n  border: 2px solid #42b983;\n  border-radius: 3px;\n  background-color: #fff;\n}\n\nth {\n  background-color: #42b983;\n  color: rgba(255, 255, 255, 0.66);\n  cursor: pointer;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -user-select: none;\n}\n\ntd {\n  background-color: #f9f9f9;\n}\n\n.cell {\n    width: 200px;\n}\n.cell.activeRow.activeColumn {\n    background-color: #B2DECA;\n}\n.view label {\n    white-space: pre;\n    word-break: break-word;\n    padding: 6px;\n    display: block;\n    line-height: 1.2;\n    -webkit-transition: color 0.4s;\n    transition: color 0.4s;\n}\n\n.cell.editing .view {\n    display: none;\n}\n\nth,\ntd {\n  min-width: 120px;\n}\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _vue = require('vue');
-
-var _vue2 = _interopRequireDefault(_vue);
-
-var _socket = require('socket.io-client');
-
-var _socket2 = _interopRequireDefault(_socket);
-
-var _actions = require('../vuex/actions');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_vue2.default.use(require('vue-resource'));
-
-var socket = (0, _socket2.default)('http://127.0.0.1:8080');
-
-exports.default = {
-    vuex: {
-        actions: {
-            // es6 shorthand
-            updateActiveCellPosition: _actions.updateActiveCellPosition
-        },
-        getters: {
-            columns: function columns(state) {
-                return state.columns;
-            },
-            data: function data(state) {
-                return state.data;
-            },
-
-            // add active cell highlight
-            activeRowIndex: function activeRowIndex(state) {
-                return state.activeRowIndex;
-            },
-            activeColumnIndex: function activeColumnIndex(state) {
-                return state.activeColumnIndex;
-            }
-        }
-    },
-
-    ready: function ready() {
-        socket.on('clicked-cell-channel:App\\Events\\UserChangedActiveCell', function (data) {
-
-            this.updateActiveCellPosition(data.rowIndex, data.columnIndex);
-        }.bind(this));
-    },
-
-
-    methods: {
-        // called on as a result of user clicking on cell
-        makeCellActive: function makeCellActive(rowIndex, columnIndex) {
-            _vue2.default.http.post('api/updateActiveCell', { rowIndex: rowIndex, columnIndex: columnIndex });
-        }
-    }
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"table\">\n    Grid\n    <table>\n        <thead>\n        <tr>\n            <th v-for=\"key in columns\">\n                {{ key | capitalize }}\n            </th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr v-for=\"(rowIndex, entry) in data\">\n            <td v-for=\"(columnIndex, key) in columns\" class=\"cell\" :class=\"{activeRow: rowIndex == activeRowIndex,\n                             activeColumn: columnIndex == activeColumnIndex}\">\n                <div class=\"view\">\n                    <label @click=\"makeCellActive(rowIndex, columnIndex)\">{{ entry[key] }}</label>\n                </div>\n            </td>\n        </tr><tr>\n        </tr></tbody>\n    </table>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\nbody {\n  font-family: Helvetica Neue, Arial, sans-serif;\n  font-size: 14px;\n  color: #444;\n}\n\ntable {\n  border: 2px solid #42b983;\n  border-radius: 3px;\n  background-color: #fff;\n}\n\nth {\n  background-color: #42b983;\n  color: rgba(255, 255, 255, 0.66);\n  cursor: pointer;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -user-select: none;\n}\n\ntd {\n  background-color: #f9f9f9;\n}\n\n.cell {\n    width: 200px;\n}\n.cell.activeRow.activeColumn {\n    background-color: #B2DECA;\n}\n.view label {\n    white-space: pre;\n    word-break: break-word;\n    padding: 6px;\n    display: block;\n    line-height: 1.2;\n    -webkit-transition: color 0.4s;\n    transition: color 0.4s;\n}\n\n.cell.editing .view {\n    display: none;\n}\n\nth,\ntd {\n  min-width: 120px;\n}\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-a8ad53a6", module.exports)
-  } else {
-    hotAPI.update("_v-a8ad53a6", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"../vuex/actions":138,"socket.io-client":74,"vue":90,"vue-hot-reload-api":88,"vue-resource":89,"vueify/lib/insert-css":91}],102:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.completed { text-decoration: line-through;}\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _vue = require('vue');
-
-var _vue2 = _interopRequireDefault(_vue);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    components: {},
-    ready: function ready() {},
-    created: function created() {},
-    data: function data() {
-        return {
-            message: ''
-        };
-    },
-
-
-    computed: {},
-    watch: {},
-    props: {},
-    methods: {
-        storeMessage: function storeMessage() {
-            this.$dispatch('new-message', this.message);
-            //$dispatch only goes to parents
-            //$broadcast goes to children
-            this.message = '';
-        }
-    }
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"\">\n    <input type=\"text\" v-model=\"message\" @keyup.enter=\"storeMessage\">\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.completed { text-decoration: line-through;}\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-56a19520", module.exports)
-  } else {
-    hotAPI.update("_v-56a19520", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],103:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.test{\n\n}\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _vue = require('vue');
-
-var _vue2 = _interopRequireDefault(_vue);
-
-var _Plan = require('./planselector/Plan.vue');
-
-var _Plan2 = _interopRequireDefault(_Plan);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_vue2.default.use(require('vue-resource'));
-
-exports.default = {
-    components: { Plan: _Plan2.default
-    },
-    ready: function ready() {},
-    data: function data() {
-        return {
-            plans: [{ name: 'Enterprise', price: 100 }, { name: 'Pro', price: 10 }, { name: 'Free', price: 0 }],
-            active: {}
-        };
-    },
-
-
-    computed: {
-        fullName: function fullName() {
-            return this.firstName + ' ' + this.lastName;
-        }
-    },
-    watch: {
-        firstName: function firstName(first) {
-            alert(first);
-        }
-    },
-    props: [],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<h1>Plan Selector</h1>\n<div v-for=\"plan in plans\">\n    <plan :plan=\"plan\" :active.sync=\"active\"></plan>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.test{\n\n}\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-bf8515e2", module.exports)
-  } else {
-    hotAPI.update("_v-bf8515e2", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"./planselector/Plan.vue":131,"vue":90,"vue-hot-reload-api":88,"vue-resource":89,"vueify/lib/insert-css":91}],104:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.test{\n\n}\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _vue = require('vue');
-
-var _vue2 = _interopRequireDefault(_vue);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_vue2.default.use(require('vue-resource'));
-
-exports.default = {
-    ready: function ready() {},
-    data: function data() {
-        return {
-            points: 1000
-        };
-    },
-
-
-    computed: {
-        skill: function skill() {
-            if (this.points <= 99) {
-                return 'Beginner';
-            };
-            if (this.points > 999) {
-                return 'Advanced';
-            };
-            if (this.points >= 100) {
-                return 'Intermediate';
-            };
-        }
-    },
-    props: [],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<h1>Skill: {{ skill }}</h1>\n    <input type=\"text\" v-model=\"points\">\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.test{\n\n}\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-08153e0c", module.exports)
-  } else {
-    hotAPI.update("_v-08153e0c", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"vue":90,"vue-hot-reload-api":88,"vue-resource":89,"vueify/lib/insert-css":91}],105:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.completed { text-decoration: line-through;}\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _vue = require('vue');
-
-var _vue2 = _interopRequireDefault(_vue);
-
-var _Task = require('./tasklist/Task.vue');
-
-var _Task2 = _interopRequireDefault(_Task);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_vue2.default.use(require('vue-resource'));
-
-exports.default = {
-    components: {
-        Task: _Task2.default
-    },
-    ready: function ready() {},
-    created: function created() {
-        this.fetchTasks();
-    },
-    data: function data() {
-        return {
-            tasks: []
-        };
-    },
-
-
-    computed: {
-        remaining: function remaining() {
-            return this.tasks.filter(this.inProgress).length;
-        }
-    },
-    watch: {},
-    props: [],
-    methods: {
-        fetchTasks: function fetchTasks() {
-            var resource = this.$resource('api/task/{id}');
-
-            resource.get().then(function (tasks) {
-                this.tasks = tasks;
-            }).bind(this);
-        },
-        fetchTask: function fetchTask(task) {
-            var resource = this.$resource('api/task/{id}');
-            resource.get({ id: task.id }).then(function (task) {}).bind(this);
-        },
-        updateTask: function updateTask(task) {
-            var resource = this.$resource('api/task/{id}');
-            resource.update({ id: task.id }, { body: task.body }).then(function (task) {}).bind(this);
-        },
-
-        isCompleted: function isCompleted(task) {
-            return task.completed;
-        },
-        inProgress: function inProgress(task) {
-            return !this.isCompleted(task);
-        },
-        archiveCompleted: function archiveCompleted() {
-            this.tasks = this.tasks.filter(this.inProgress);
-        }
-    }
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<h1>Task List</h1>\n<h2>Remaining Tasks\n    <span v-show=\"remaining\">({{remaining}})</span></h2>\n<ul v-show=\"tasks.length\">\n    <div v-for=\"task in tasks\">\n        <task :task=\"task\" :tasks=\"tasks\"></task>\n    </div>\n</ul>\n<span v-else=\"\">\n  No Tasks Available\n</span>\n<button v-show=\"tasks.filter(this.isCompleted).length\" @click=\"archiveCompleted\">Archive</button>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.completed { text-decoration: line-through;}\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-014e14aa", module.exports)
-  } else {
-    hotAPI.update("_v-014e14aa", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"./tasklist/Task.vue":132,"vue":90,"vue-hot-reload-api":88,"vue-resource":89,"vueify/lib/insert-css":91}],106:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _CompanyList = require('../company/CompanyList.vue');
-
-var _CompanyList2 = _interopRequireDefault(_CompanyList);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    components: {
-        CompanyList: _CompanyList2.default
-    },
-    ready: function ready() {},
-    created: function created() {},
-    data: function data() {
-        return {};
-    },
-
-
-    computed: {},
-    watch: {},
-    props: ['boycott', 'boycotts'],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div v-show=\"boycott\" class=\"stream-item\">\n    <company-list :companies=\"boycott.companies\"></company-list>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-59805d7d", module.exports)
-  } else {
-    hotAPI.update("_v-59805d7d", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"../company/CompanyList.vue":114,"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],107:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _vue = require('vue');
-
-var _vue2 = _interopRequireDefault(_vue);
-
-var _Boycott = require('./Boycott.vue');
-
-var _Boycott2 = _interopRequireDefault(_Boycott);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    components: {
-        Boycott: _Boycott2.default
-    },
-    ready: function ready() {},
-    created: function created() {
-        this.fetchBoycotts();
-    },
-    data: function data() {
-        return {
-            boycotts: []
-        };
-    },
-
-
-    computed: {},
-    watch: {},
-    props: {},
-    methods: {
-        fetchBoycotts: function fetchBoycotts() {
-            var resource = this.$resource('api/boycott');
-
-            resource.get().then(function (boycotts) {
-                this.boycotts = boycotts.data.data;
-            }).bind(this);
-        }
-    }
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<ul class=\"stream\" v-show=\"boycotts.length\">\n    <div v-for=\"boycott in boycotts\">\n        <boycott :boycott=\"boycott\" :boycotts=\"boycotts\"></boycott>\n    </div>\n</ul>\n<span v-else=\"\">\n    No Boycotts Available\n</span>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n    <div class=\"Type PostModel\">\n        <slot></slot>\n    </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -21787,59 +20481,69 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-391df8bb", module.exports)
+    hotAPI.createRecord("_v-4c64098b", module.exports)
   } else {
-    hotAPI.update("_v-391df8bb", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-4c64098b", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"./Boycott.vue":106,"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],108:[function(require,module,exports){
+},{"../controllers/PostController.vue":59,"../media/ImageModel.vue":61,"../media/VideoModel.vue":62,"vue":53,"vue-hot-reload-api":51,"vueify/lib/insert-css":54}],65:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+				value: true
 });
 
-var _StockTicker = require('./StockTicker.vue');
+var _TweetController = require('../controllers/TweetController.vue');
 
-var _StockTicker2 = _interopRequireDefault(_StockTicker);
+var _TweetController2 = _interopRequireDefault(_TweetController);
 
-var _CompanyHeader = require('./CompanyHeader.vue');
+var _ImageModel = require('../media/ImageModel.vue');
 
-var _CompanyHeader2 = _interopRequireDefault(_CompanyHeader);
+var _ImageModel2 = _interopRequireDefault(_ImageModel);
 
-var _CompanyBody = require('./CompanyBody.vue');
+var _VideoModel = require('../media/VideoModel.vue');
 
-var _CompanyBody2 = _interopRequireDefault(_CompanyBody);
-
-var _CompanyFooter = require('./CompanyFooter.vue');
-
-var _CompanyFooter2 = _interopRequireDefault(_CompanyFooter);
+var _VideoModel2 = _interopRequireDefault(_VideoModel);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-    components: {
-        StockTicker: _StockTicker2.default,
-        CompanyHeader: _CompanyHeader2.default,
-        CompanyBody: _CompanyBody2.default,
-        CompanyFooter: _CompanyFooter2.default
-    },
-    ready: function ready() {},
-    created: function created() {},
-    data: function data() {
-        return {};
-    },
+				components: {
+								TweetController: _TweetController2.default,
+								ImageModel: _ImageModel2.default,
+								VideoModel: _VideoModel2.default
+				},
+				props: {
+								model: { default: {
+																classes: {
+																				header: 'stream-item-header'
+																}
+												} }
 
+				},
+				ready: function ready() {
+								console.log("tweet ready");
+				},
 
-    computed: {},
-    watch: {},
-    props: ['company'],
-    methods: {}
+				computed: {
+								test: 'orange'
+				},
+				data: function data() {
+								return {
+												test: 'green'
+								};
+				},
+
+				directives: {},
+				events: {},
+				methods: {},
+				filters: {}
+
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"Affiliate\" v-show=\"company\">\n    <company-header :company=\"company\"></company-header>\n    <company-body :company=\"company\"></company-body>\n    <company-footer :company=\"company\"></company-footer>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n    <div class=\"Type TweetModel\">\n        <slot></slot>\n    </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -21849,1571 +20553,33 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-3c482957", module.exports)
+    hotAPI.createRecord("_v-547383f4", module.exports)
   } else {
-    hotAPI.update("_v-3c482957", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-547383f4", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"./CompanyBody.vue":111,"./CompanyFooter.vue":112,"./CompanyHeader.vue":113,"./StockTicker.vue":115,"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],109:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _Affiliate = require('./Affiliate.vue');
-
-var _Affiliate2 = _interopRequireDefault(_Affiliate);
-
-var _Company = require('./Company.vue');
-
-var _Company2 = _interopRequireDefault(_Company);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    components: {
-        Affiliate: _Affiliate2.default
-    },
-    ready: function ready() {
-
-        // this.dispatch.json = JSON.parse(JSON.stringify(dispatch.tweet.json));
-    },
-    created: function created() {},
-    data: function data() {
-        return {};
-    },
-
-
-    computed: {},
-    watch: {},
-    props: ['company'],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div v-show=\"company\" class=\"affiliate-list\">\n    <div class=\"Affiliates\">\n        <div v-for=\"company in company.affiliates\">\n            <affiliate :company.sync=\"company\"></affiliate>\n        </div>\n    </div>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-cdef70d6", module.exports)
-  } else {
-    hotAPI.update("_v-cdef70d6", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"./Affiliate.vue":108,"./Company.vue":110,"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],110:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _CompanyHeader = require('./CompanyHeader.vue');
-
-var _CompanyHeader2 = _interopRequireDefault(_CompanyHeader);
-
-var _CompanyFooter = require('./CompanyFooter.vue');
-
-var _CompanyFooter2 = _interopRequireDefault(_CompanyFooter);
-
-var _StockTicker = require('./StockTicker.vue');
-
-var _StockTicker2 = _interopRequireDefault(_StockTicker);
-
-var _AffiliateList = require('./AffiliateList.vue');
-
-var _AffiliateList2 = _interopRequireDefault(_AffiliateList);
-
-var _SubsidiaryList = require('./SubsidiaryList.vue');
-
-var _SubsidiaryList2 = _interopRequireDefault(_SubsidiaryList);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    components: {
-        StockTicker: _StockTicker2.default,
-        AffiliateList: _AffiliateList2.default,
-        SubsidiaryList: _SubsidiaryList2.default,
-        CompanyHeader: _CompanyHeader2.default,
-        CompanyFooter: _CompanyFooter2.default
-    },
-    ready: function ready() {},
-    created: function created() {},
-    data: function data() {
-        return {
-            showAffiliates: false
-        };
-    },
-
-
-    computed: {},
-    watch: {},
-    props: [{
-        'company': '',
-        'name': 'company'
-    }],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div v-show=\"company\">\n    <stock-ticker v-show=\"company.symbol\" :company.sync=\"company\"></stock-ticker>\n    <div v-show=\"company\">\n        <company-header :company.sync=\"company\"></company-header>\n    </div>\n    <div @click=\"toggleAffiliates()\">Show/Hide Affiliates</div>\n    <div v-show=\"showAffiliates\">\n        <affiliate-list :company=\"company\"></affiliate-list>\n        <subsidiary-list :company=\"company\"></subsidiary-list>\n    </div>\n    <div v-show=\"company\">\n        <company-footer :company.sync=\"company\"></company-footer>\n    </div>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-408a1d07", module.exports)
-  } else {
-    hotAPI.update("_v-408a1d07", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"./AffiliateList.vue":109,"./CompanyFooter.vue":112,"./CompanyHeader.vue":113,"./StockTicker.vue":115,"./SubsidiaryList.vue":117,"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],111:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _Place = require('../place/Place.vue');
-
-var _Place2 = _interopRequireDefault(_Place);
-
-var _AddressContainer = require('../place/AddressContainer.vue');
-
-var _AddressContainer2 = _interopRequireDefault(_AddressContainer);
-
-var _WebsiteContainer = require('../place/WebsiteContainer.vue');
-
-var _WebsiteContainer2 = _interopRequireDefault(_WebsiteContainer);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    components: {
-        Place: _Place2.default,
-        IconContainer: _AddressContainer2.default,
-        AddressContainer: _AddressContainer2.default,
-        PhoneContainer: _AddressContainer2.default,
-        NameContainer: _AddressContainer2.default,
-        WebsiteContainer: _WebsiteContainer2.default,
-        MapContainer: _WebsiteContainer2.default,
-        ReviewsContainer: _WebsiteContainer2.default
-    },
-    ready: function ready() {},
-    created: function created() {},
-    data: function data() {
-        return {};
-    },
-
-
-    computed: {},
-    watch: {},
-    props: ['company'],
-    methods: {
-        togglePlaceReviews: function togglePlaceReviews(place) {
-            if (typeof place.reviews.toggle === "undefined") {
-                place.reviews.toggle = true;
-            } else {
-                place.reviews.toggle = !place.reviews.toggle;
-            }
-
-            console.log(place.reviews.toggle);
-        },
-        showRideShareModal: function showRideShareModal(place) {},
-        showTweetStreamModal: function showTweetStreamModal(place) {},
-        showCreatePostModal: function showCreatePostModal(place) {},
-        copyEventLink: function copyEventLink(place) {},
-        shareEventOnTwitter: function shareEventOnTwitter(place) {},
-        shareEventOnFacebook: function shareEventOnFacebook(place) {}
-    }
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"CompanyBody\" v-show=\"company\">\n    <div v-for=\"place in company.places\">\n        <div class=\"row\">\n            <div class=\"col-xs-1\">\n                <img v-show=\"place.icon\" :src=\"place.icon\">\n            </div>\n            <div class=\"card col-xs-8\">\n                <div class=\"col-xs-12\" v-show=\"place.name\">\n                    <h3>{{place.name}}</h3>\n                </div>\n                <div class=\"col-xs-9 address\" v-show=\"place.formatted_address\">\n                    {{place.formatted_address}}\n                </div>\n                <div class=\"col-xs-9 phone-number\" v-show=\"place.formatted_phone_number\">\n                    <div class=\"small\">{{place.formatted_phone_number}}</div>\n                </div>\n                <div class=\"col-xs-12\" v-show=\"place.website\">\n                    <a href=\"{{place.website}}\"><span class=\"small\">{{place.website}}</span></a>\n                </div>\n            </div>\n            <div class=\"placeMenu col-xs-3\">\n                <nav class=\"navbar navbar-default sidebar\" role=\"navigation\">\n                    <div class=\"container-fluid\">\n                        <div class=\"navbar-header\">\n                            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-sidebar-navbar-collapse-1\">\n                                <span class=\"sr-only\">Toggle navigation</span>\n                                <span class=\"icon-bar\"></span>\n                                <span class=\"icon-bar\"></span>\n                                <span class=\"icon-bar\"></span>\n                            </button>\n                        </div>\n                        <div class=\"collapse navbar-collapse\" id=\"bs-sidebar-navbar-collapse-1\">\n                            <ul class=\"nav navbar-nav\">\n                                <li class=\"active\"><a href=\"#\">Event Home<span style=\"font-size:16px;\" class=\"pull-right hidden-xs showopacity glyphicon glyphicon-home\"></span></a></li>\n                                <li class=\"dropdown\">\n                                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Event Tools <span class=\"caret\"></span><span style=\"font-size:16px;\" class=\"pull-right hidden-xs showopacity glyphicon glyphicon-user\"></span></a>\n                                    <ul class=\"dropdown-menu forAnimate\" role=\"menu\">\n                                        <li><a @click=\"showRideShareModal(place)\">Ride Share</a></li>\n                                        <li><a @click=\"showTweetStreamModal(place)\">Tweet Stream</a></li>\n                                        <li><a @click=\"showCreatePostModal(place)\">Create Post</a></li>\n                                        <li class=\"divider\"></li>\n                                        <li><a @click=\"copyEventLink(place)\">Copy Link</a></li>\n                                        <li><a @click=\"shareEventOnTwitter(place)\" href=\"#\">Share Link On Twitter</a></li>\n                                        <li><a @click=\"shareEventOnFacebook(place)\" href=\"#\">Share Link Of Facebook</a></li>\n                                        <li class=\"divider\"></li>\n                                    </ul>\n                                </li>\n                                <li><a @click=\"registerUserForEvent(place)\">Register For Event<span style=\"font-size:16px;\" class=\"pull-right hidden-xs showopacity glyphicon glyphicon-th-list\"></span></a></li>\n                            </ul>\n                        </div>\n                    </div>\n                </nav>\n            </div>\n        </div>\n        <div class=\"row map\">\n            <div class=\"col-xs-12\" v-show=\"place.geometry\">\n                Map Container\n            </div>\n        </div>\n        <div v-show=\"place.reviews\" class=\"row reviews\">\n            <div @click.sync=\"togglePlaceReviews(place)\">\n                Show/Hide Reviews\n                <ul v-show=\"place.reviews.toggle\">\n                    <li v-for=\"review in place.reviews\">\n                        {{review.author_name}}\n                        {{review.author_url}}\n                        {{review.rating}}\n                        {{review.relative_time_description}}\n                        {{review.text}}\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n</div>\n\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-14104a49", module.exports)
-  } else {
-    hotAPI.update("_v-14104a49", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"../place/AddressContainer.vue":128,"../place/Place.vue":129,"../place/WebsiteContainer.vue":130,"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],112:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = {
-    components: {},
-    ready: function ready() {},
-    created: function created() {},
-    data: function data() {
-        return {};
-    },
-
-
-    computed: {},
-    watch: {},
-    props: ['company'],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-2406cbfc", module.exports)
-  } else {
-    hotAPI.update("_v-2406cbfc", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],113:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _StockTicker = require('./StockTicker.vue');
-
-var _StockTicker2 = _interopRequireDefault(_StockTicker);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    components: {
-        StockTicker: _StockTicker2.default
-    },
-    ready: function ready() {},
-    created: function created() {},
-    data: function data() {
-        return {
-            showEventModal: false,
-            showPostModal: false,
-            showCommentModal: false
-        };
-    },
-
-
-    computed: {},
-    watch: {},
-    props: ['company'],
-    methods: {
-        showCreateEventModal: function (company) {
-            console.log('CompanyHeader showCreateEventModal');
-            this.enableCreateEventModal = true;
-            this.eventModalCompany = company;
-        }.bind(undefined),
-        showCreatePostModal: function showCreatePostModal(company) {},
-        shareEventOnTwitter: function shareEventOnTwitter(company) {},
-        copyCompanyLink: function copyCompanyLink(company) {},
-        showCreateCommentModal: function showCreateCommentModal(company) {}
-    }
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"header\" v-show=\"company\">\n    <h3>{{company.name}}</h3>\n    <div class=\"row\">\n        <div class=\"place-footer\" v-show=\"company\">\n            <div class=\"content-footer navbar navbar-default\" role=\"navigation\">\n                <div class=\"container\">\n                    <div class=\"navbar-collapse collapse\">\n                        <ul class=\"nav navbar-nav\">\n                            <li><a @click=\"showCreateEventModal = true\">Create Event</a></li>\n                            <li><a @click=\"showCreatePostModal(company)\">New Post</a></li>\n                            <li v-show=\"company.posts\"><a href=\"#contact\">{{company.posts.length}} Posts</a></li>\n                            <li v-show=\"company.comments\"><a href=\"#contact\">{{company.comments.length}} Comments</a></li>\n                            <li class=\"dropdown\">\n                                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">More <span class=\"caret\"></span></a>\n                                <ul class=\"dropdown-menu\">\n                                    <li><a @click=\"shareEventOnTwitter(company)\">Share via Twitter/a&gt;</a></li><a @click=\"shareEventOnTwitter(company)\">\n                                    </a><li><a @click=\"shareEventOnTwitter(company)\"></a><a @click=\"copyCompanyLink(company)\">Copy link to Company</a></li>\n                                    <li><a @click=\"showCreateCommentModal(place)\">Comment</a></li>\n                                </ul>\n                            </li>\n                        </ul>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n<create-event-modal :company.sync=\"company\" :show.sync=\"showCreateEventModal\"></create-event-modal>\n<create-event-modal :company.sync=\"company\" :show.sync=\"showCommentModal\"></create-event-modal>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-0f2efdf4", module.exports)
-  } else {
-    hotAPI.update("_v-0f2efdf4", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"./StockTicker.vue":115,"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],114:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _Company = require('./Company.vue');
-
-var _Company2 = _interopRequireDefault(_Company);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    components: {
-        Company: _Company2.default
-    },
-    ready: function ready() {
-
-        // this.dispatch.json = JSON.parse(JSON.stringify(dispatch.tweet.json));
-    },
-    created: function created() {},
-    data: function data() {
-        return {};
-    },
-
-
-    computed: {},
-    watch: {},
-    props: ['companies'],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div v-show=\"companies\" v-for=\"company in companies\">\n    company\n    <company :name=\"company\" :company.sync=\"company\"></company>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-026e3976", module.exports)
-  } else {
-    hotAPI.update("_v-026e3976", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"./Company.vue":110,"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],115:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n\n")
+},{"../controllers/TweetController.vue":60,"../media/ImageModel.vue":61,"../media/VideoModel.vue":62,"vue":53,"vue-hot-reload-api":51,"vueify/lib/insert-css":54}],66:[function(require,module,exports){
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = {
-    components: {},
-    ready: function ready() {
-
-        // this.dispatch.json = JSON.parse(JSON.stringify(dispatch.tweet.json));
-    },
-    created: function created() {
-        this.fetchLiveQuote();
-    },
-    data: function data() {
-        return {
-            latestQuote: {}
-        };
-    },
-
-
-    computed: {},
-    watch: {},
-    props: ['company'],
-    methods: {
-        fetchLiveQuote: function fetchLiveQuote() {
-
-            var wsql = "select * from yahoo.finance.quotes where symbol in ('" + this.company.symbol + "')";
-            stockYQL = 'http://query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent(wsql) + '&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json';
-            var resource = this.$resource(stockYQL);
-
-            resource.get({}).then(function (data) {
-                this.latestQuote = data.data.query.results.quote;
-            }).bind(this);
-        }
-    }
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div v-show=\"company\" class=\"finance-ticker\">\n    <div class=\"Stocks\">\n        <span class=\"Symbol\">\n            <b class=\"Stat\"><i data-replace=\"Symbol\">{{company.symbol}}</i>:<i>{{ latestQuote.StockExchange}}</i></b>\n            <b class=\"Label\">( <i>{{company.name}}</i> )</b>\n        </span>\n        <span class=\"Price\"><b class=\"Label\">Last Price</b> <b class=\"Stat\">${{latestQuote.LastTradePriceOnly}}</b></span>\n        <span class=\"Change\"><b class=\"Label\">Change</b> <b class=\"Stat\">{{latestQuote.Change}}</b> <b class=\"Stat\">({{latestQuote.ChangeinPercent}})</b></span>\n        <span class=\"Volume\"><b class=\"Label\">Volume</b> <b class=\"Stat\">{{ latestQuote.AverageDailyVolume }}</b></span>\n        <span class=\"MarketCapitalization\"><b class=\"Label\">Mkt Cap</b> <b class=\"Stat\">$<i>{{latestQuote.MarketCapitalization}}</i></b></span>\n        <span class=\"LastUpdated\"><b class=\"Label\">Last Trade</b> <b class=\"Stat\"><i>{{latestQuote.LastTradeDate}}</i> <i>{{latestQuote.LastTradeTime}}</i> </b></span>\n    </div>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-39e1b86c", module.exports)
-  } else {
-    hotAPI.update("_v-39e1b86c", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],116:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _CompanyHeader = require('./CompanyHeader.vue');
-
-var _CompanyHeader2 = _interopRequireDefault(_CompanyHeader);
-
-var _CompanyBody = require('./CompanyBody.vue');
-
-var _CompanyBody2 = _interopRequireDefault(_CompanyBody);
-
-var _CompanyFooter = require('./CompanyFooter.vue');
-
-var _CompanyFooter2 = _interopRequireDefault(_CompanyFooter);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    components: {
-        CompanyHeader: _CompanyHeader2.default,
-        CompanyBody: _CompanyBody2.default,
-        CompanyFooter: _CompanyFooter2.default
-    },
-    ready: function ready() {},
-    created: function created() {},
-    data: function data() {
-        return {};
-    },
-
-
-    computed: {},
-    watch: {},
-    props: ['company', 'name'],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div v-show=\"company\">\n    <company-header :company.sync=\"company\"></company-header>\n    <company-body :company.sync=\"company\"></company-body>\n    <company-footer :company.sync=\"company\"></company-footer>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-f7cab15a", module.exports)
-  } else {
-    hotAPI.update("_v-f7cab15a", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"./CompanyBody.vue":111,"./CompanyFooter.vue":112,"./CompanyHeader.vue":113,"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],117:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _Subsidiary = require('./Subsidiary.vue');
-
-var _Subsidiary2 = _interopRequireDefault(_Subsidiary);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    components: {
-        Subsidiary: _Subsidiary2.default
-    },
-    ready: function ready() {
-
-        // this.dispatch.json = JSON.parse(JSON.stringify(dispatch.tweet.json));
-    },
-    created: function created() {},
-    data: function data() {
-        return {};
-    },
-
-
-    computed: {},
-    watch: {},
-    props: ['company'],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div v-show=\"company\" class=\"subsidiary-list\">\n    <div class=\"Subsidiaries\">\n        <div v-for=\"company in company.subsidiaries\">\n            <subsidiary :company=\"company\"></subsidiary>\n        </div>\n    </div>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-d19930de", module.exports)
-  } else {
-    hotAPI.update("_v-d19930de", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"./Subsidiary.vue":116,"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],118:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.completed { text-decoration: line-through;}\n.dispatch {\n\n}\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _assign = require('babel-runtime/core-js/object/assign');
-
-var _assign2 = _interopRequireDefault(_assign);
-
-var _Tweet = require('./dispatch/Tweet.vue');
-
-var _Tweet2 = _interopRequireDefault(_Tweet);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    components: {
-        Tweet: _Tweet2.default
-    },
-    ready: function ready() {
-
-        // this.dispatch.json = JSON.parse(JSON.stringify(dispatch.tweet.json));
-    },
-    created: function created() {},
-    data: function data() {
-        return {};
-    },
-
-
-    computed: {
-        data: function data() {
-            if (this.dispatch) {
-                if (this.dispatch.tweet && this.dispatch.tweet.json) {
-                    tweetData = JSON.parse(this.dispatch.tweet.json);
-                    //Combine the dispatch tweet json with the dispatch data
-                    if (tweetData.retweeted_status) {
-                        (0, _assign2.default)(tweetData.retweeted_status, this.dispatch);
-                        (0, _assign2.default)(this.dispatch, tweetData.retweeted_status);
-                    } else {
-                        (0, _assign2.default)(tweetData, this.dispatch);
-                        (0, _assign2.default)(this.dispatch, tweetData);
-                    }
-                }
-                return this.dispatch;
-            }
-            return {};
-        },
-        content: function content() {
-            if (this.data.text) {
-                return this.data.text;
-            }
-        },
-        createdAt: function createdAt() {
-            if (this.data.created_at) {
-                return this.data.created_at;
-            }
-        },
-        tweetId: function tweetId() {
-            //If it is a retweet refer to that user
-            if (this.data.tweet && this.data.tweet.id) {
-                return this.data.tweet.id;
-            } else if (this.data.id_str) {
-                return this.data.id_str;
-            }
-        },
-        userAvatarUrl: function userAvatarUrl() {
-            if (this.data.user && this.data.user.profile_image_url) {
-                return this.data.user.profile_image_url;
-            }
-        },
-        userScreenName: function userScreenName() {
-            if (this.data.user && this.data.user.screen_name) {
-                return this.data.user.screen_name;
-            }
-        },
-        userLink: function userLink() {
-            if (this.data.user && this.data.user.screen_name) {
-                return 'https://twitter.com/' + this.data.user.screen_name;
-            }
-        }
-
-    },
-    watch: {},
-    props: ['dispatch', 'dispatches'],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div v-show=\"dispatch.tweet\" class=\"stream-item\">\n    <tweet :dispatch=\"dispatch\"></tweet>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.completed { text-decoration: line-through;}\n.dispatch {\n\n}\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-2216c385", module.exports)
-  } else {
-    hotAPI.update("_v-2216c385", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"./dispatch/Tweet.vue":120,"babel-runtime/core-js/object/assign":3,"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],119:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.completed { text-decoration: line-through;}\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _vue = require('vue');
-
-var _vue2 = _interopRequireDefault(_vue);
-
-var _Dispatch = require('./Dispatch.vue');
-
-var _Dispatch2 = _interopRequireDefault(_Dispatch);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    components: {
-        Dispatch: _Dispatch2.default
-    },
-    ready: function ready() {},
-    created: function created() {
-        this.fetchDispatches();
-    },
-    data: function data() {
-        return {
-            dispatches: []
-        };
-    },
-
-
-    computed: {},
-    watch: {},
-    props: {},
-    methods: {
-        fetchDispatches: function fetchDispatches() {
-            var resource = this.$resource('api/dispatch');
-
-            resource.get().then(function (dispatches) {
-                this.dispatches = dispatches.data.data;
-            }).bind(this);
-        }
-    }
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<ul class=\"stream\" v-show=\"dispatches.length\">\n    <div v-for=\"dispatch in dispatches\">\n        <dispatch :dispatch=\"dispatch\" :dispatches=\"dispatches\"></dispatch>\n    <div>\n</div></div></ul>\n<span v-else=\"\">\n    No Dispatches Available\n</span>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.completed { text-decoration: line-through;}\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-64821ac3", module.exports)
-  } else {
-    hotAPI.update("_v-64821ac3", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"./Dispatch.vue":118,"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],120:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.completed { text-decoration: line-through;}\n.dispatch {\n\n}\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _assign = require('babel-runtime/core-js/object/assign');
-
-var _assign2 = _interopRequireDefault(_assign);
-
-var _Context = require('./tweet/Context.vue');
-
-var _Context2 = _interopRequireDefault(_Context);
-
-var _Content = require('./tweet/Content.vue');
-
-var _Content2 = _interopRequireDefault(_Content);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    components: {
-        Context: _Context2.default, Content: _Content2.default
-    },
-    ready: function ready() {
-
-        // this.dispatch.json = JSON.parse(JSON.stringify(dispatch.tweet.json));
-    },
-    created: function created() {},
-    data: function data() {
-        return {};
-    },
-
-
-    computed: {
-        data: function data() {
-            if (this.dispatch) {
-                if (this.dispatch.tweet && this.dispatch.tweet.json) {
-                    tweetData = JSON.parse(this.dispatch.tweet.json);
-                    //Combine the dispatch tweet json with the dispatch data
-                    if (tweetData.retweeted_status) {
-                        (0, _assign2.default)(tweetData.retweeted_status, this.dispatch);
-                        (0, _assign2.default)(this.dispatch, tweetData.retweeted_status);
-                    } else {
-                        (0, _assign2.default)(tweetData, this.dispatch);
-                        (0, _assign2.default)(this.dispatch, tweetData);
-                    }
-                }
-                return this.dispatch;
-            }
-            return {};
-        },
-        content: function content() {
-            if (this.data.text) {
-                return this.data.text;
-            }
-        },
-        createdAt: function createdAt() {
-            if (this.data.created_at) {
-                return this.data.created_at;
-            }
-        },
-        tweetId: function tweetId() {
-            //If it is a retweet refer to that user
-            if (this.data.tweet && this.data.tweet.id) {
-                return this.data.tweet.id;
-            } else if (this.data.id_str) {
-                return this.data.id_str;
-            }
-        },
-        userAvatarUrl: function userAvatarUrl() {
-            if (this.data.user && this.data.user.profile_image_url) {
-                return this.data.user.profile_image_url;
-            }
-        },
-        userScreenName: function userScreenName() {
-            if (this.data.user && this.data.user.screen_name) {
-                return this.data.user.screen_name;
-            }
-        },
-        userLink: function userLink() {
-            if (this.data.user && this.data.user.screen_name) {
-                return 'https://twitter.com/' + this.data.user.screen_name;
-            }
-        }
-
-    },
-    watch: {},
-    props: ['dispatch'],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"stream-item\">\n<div :class=\"classes\">\n    <context :dispatch=\"dispatch\"></context>\n    <content :dispatch=\"dispatch\"></content>\n</div>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.completed { text-decoration: line-through;}\n.dispatch {\n\n}\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-457b62cc", module.exports)
-  } else {
-    hotAPI.update("_v-457b62cc", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"./tweet/Content.vue":121,"./tweet/Context.vue":122,"babel-runtime/core-js/object/assign":3,"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],121:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _Header = require('./content/Header.vue');
-
-var _Header2 = _interopRequireDefault(_Header);
-
-var _Footer = require('./content/Footer.vue');
-
-var _Footer2 = _interopRequireDefault(_Footer);
-
-var _Media = require('./content/Media.vue');
-
-var _Media2 = _interopRequireDefault(_Media);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    components: {
-        ContentHeader: _Header2.default,
-        ContentFooter: _Footer2.default,
-        ContentMedia: _Media2.default
-    },
-    ready: function ready() {},
-    created: function created() {},
-    data: function data() {
-        return {
-            classes: ['tweet']
-        };
-    },
-
-
-    computed: {
-        data: function data() {
-            return {};
-        },
-        tweetText: function tweetText() {
-            if (this.data.text) {
-                return this.data.text;
-            } else if (this.dispatch.text) {
-                return this.dispatch.text;
-            }
-        },
-        tweetLink: function tweetLink() {
-
-            if (this.data.user && this.data.user.screen_name) {
-                return 'https://twitter.com/' + this.data.user.screen_name + '/status/' + this.dispatch.tweet.id;
-            }
-        }
-    },
-    watch: {},
-    props: ['dispatch'],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\n<div class=\"content\">\n    <content-header :dispatch=\"dispatch\"></content-header>\n    <div class=\"js-tweet-text-container\">\n        <p class=\"TweetTextSize TweetTextSize--16px js-tweet-text tweet-text\" lang=\"en\" data-aria-label-part=\"4\">\n            {{ tweetText }}\n            <a href=\"{{tweetLink}}\" rel=\"nofollow\" dir=\"ltr\" class=\"twitter-timeline-link u-hidden\" target=\"_blank\" :title=\"tweetLink\">\n                <span class=\"u-hiddenVidually\">{{tweetLink}}</span>\n            </a>\n        </p>\n    </div>\n    <content-media :dispatch=\"dispatch\"></content-media>\n    <content-footer :dispatch=\"dispatch\"></content-footer>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-f8db5a92", module.exports)
-  } else {
-    hotAPI.update("_v-f8db5a92", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"./content/Footer.vue":123,"./content/Header.vue":124,"./content/Media.vue":125,"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],122:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.completed { text-decoration: line-through;}\n.dispatch {\n\n}\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = {
-    components: {},
-    ready: function ready() {
-
-        // this.dispatch.json = JSON.parse(JSON.stringify(dispatch.tweet.json));
-    },
-    created: function created() {},
-    data: function data() {
-        return {
-            classes: ['tweet']
-        };
-    },
-
-
-    computed: {
-        data: function data() {
-
-            return {};
-        }
-    },
-    watch: {},
-    props: ['dispatch'],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.completed { text-decoration: line-through;}\n.dispatch {\n\n}\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-d6ba6e26", module.exports)
-  } else {
-    hotAPI.update("_v-d6ba6e26", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],123:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = {
-    components: {},
-    ready: function ready() {
-
-        // this.dispatch.json = JSON.parse(JSON.stringify(dispatch.tweet.json));
-    },
-    created: function created() {},
-    data: function data() {
-        return {};
-    },
-
-
-    computed: {
-        data: function data() {
-
-            return {};
-        },
-        tweetReplies: function tweetReplies() {
-            if (this.dispatch.comments) {
-                return this.dispatch.comments.length;
-            }
-        },
-        tweetRetweets: function tweetRetweets() {
-            if (this.dispatch.retweet_count) {
-                return this.dispatch.retweet_count;
-            }
-        },
-        tweetLikes: function tweetLikes() {
-            if (this.dispatch.vote_count) {
-                return this.dispatch.vote_count;
-            }
-        },
-        tweetHotness: function tweetHotness() {
-            if (this.dispatch.hotness) {
-                return this.dispatch.hotness;
-            }
-        }
-    },
-    watch: {},
-    props: ['dispatch'],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"content-footer navbar navbar-default\" role=\"navigation\">\n    <div class=\"container\">\n        <div class=\"navbar-collapse collapse\">\n            <ul class=\"nav navbar-nav\">\n                <li><a href=\"#about\">{{tweetReplies}} replies</a></li>\n                <li><a href=\"#contact\">{{tweetRetweets}} retweets</a></li>\n                <li><a href=\"#contact\">{{tweetLikes}} likes</a></li>\n                <li><a href=\"#contact\">{{tweetHotness}} Hotness</a></li>\n                <li class=\"dropdown\">\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">More <span class=\"caret\"></span></a>\n                    <ul class=\"dropdown-menu\">\n                        <li><a href=\"#\">Share via Direct Message</a></li>\n                        <li><a href=\"#\">Copy link to Dispatch</a></li>\n                        <li><a href=\"#\">Copy link to Tweet</a></li>\n                        <li><a href=\"#\">Create new related Post</a></li>\n                        <li><a href=\"#\">Comment</a></li>\n                    </ul>\n                </li>\n\n            </ul>\n\n        </div>\n    </div>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-476361e0", module.exports)
-  } else {
-    hotAPI.update("_v-476361e0", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],124:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.completed { text-decoration: line-through;}\n.dispatch {\n\n}\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _assign = require('babel-runtime/core-js/object/assign');
-
-var _assign2 = _interopRequireDefault(_assign);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    components: {},
-    ready: function ready() {
-
-        // this.dispatch.json = JSON.parse(JSON.stringify(dispatch.tweet.json));
-    },
-    created: function created() {},
-    data: function data() {
-        return {
-            classes: ['tweet']
-        };
-    },
-
-
-    computed: {
-        data: function data() {
-            if (this.dispatch) {
-                if (this.dispatch.tweet && this.dispatch.tweet.json) {
-                    tweetData = JSON.parse(this.dispatch.tweet.json);
-                    //Combine the dispatch tweet json with the dispatch data
-                    if (tweetData.retweeted_status) {
-                        (0, _assign2.default)(tweetData.retweeted_status, this.dispatch);
-                        (0, _assign2.default)(this.dispatch, tweetData.retweeted_status);
-                    } else {
-                        (0, _assign2.default)(tweetData, this.dispatch);
-                        (0, _assign2.default)(this.dispatch, tweetData);
-                    }
-                }
-                return this.dispatch;
-            }
-            return {};
-        },
-        userAvatarUrl: function userAvatarUrl() {
-            if (this.data.user && this.data.user.profile_image_url) {
-                return this.data.user.profile_image_url;
-            }
-        },
-        userName: function userName() {
-            if (this.data.user && this.data.user.name) {
-                return this.data.user.name;
-            }
-        },
-        userScreenName: function userScreenName() {
-            if (this.data.user && this.data.user.screen_name) {
-                return this.data.user.screen_name;
-            }
-        },
-        userLink: function userLink() {
-            if (this.data.user && this.data.user.screen_name) {
-                return 'https://twitter.com/' + this.data.user.screen_name;
-            }
-        },
-        tweetLink: function tweetLink() {
-
-            if (this.data.user && this.data.user.screen_name) {
-                return 'https://twitter.com/' + this.data.user.screen_name + '/status/' + this.dispatch.tweet.id;
-            }
-        },
-        tweetCreatedAgo: function tweetCreatedAgo() {
-            if (this.dispatch.created_ago_text) {
-                return this.dispatch.created_ago_text;
-            }
-        }
-
-    },
-    watch: {},
-    props: ['dispatch'],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"stream-item-header\">\n    <a class=\"account-group js-account-group js-action-profile js-user-profile-link js-nav\" href=\"{{userLink}}\">\n        <img class=\"avatar js-action-profile-avatar\" v-bind:src=\"userAvatarUrl\" alt=\"\">\n        <strong class=\"fullname js-action-profile-name show-popup-with-id\" data-aria-label-part=\"\">{{userName}}</strong>\n        <span>‏</span><span class=\"username js-action-profile-name\" data-aria-label-part=\"\"><s>@</s><b>{{userScreenName}}</b></span>\n    </a>\n    <small class=\"time\">\n        <a target=\"_blank\" :href=\"tweetLink\" class=\"tweet-timestamp js-permalink js-nav js-tooltip\" title=\"3:12 AM - 5 Dec 2016\">\n            <span class=\"_timestamp js-short-timestamp js-relative-timestamp\">\n                {{tweetCreatedAgo}}\n            </span>\n            <span class=\"u-hiddenVisually\" data-aria-label-part=\"last\">{{tweetCreatedAgo}}</span></a>\n    </small>\n\n\n\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.completed { text-decoration: line-through;}\n.dispatch {\n\n}\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-04fe99fc", module.exports)
-  } else {
-    hotAPI.update("_v-04fe99fc", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"babel-runtime/core-js/object/assign":3,"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],125:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _Image = require('./media/Image.vue');
-
-var _Image2 = _interopRequireDefault(_Image);
-
-var _Video = require('./media/Video.vue');
-
-var _Video2 = _interopRequireDefault(_Video);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    components: {
-        MediaImage: _Image2.default,
-        MediaVideo: _Video2.default
-    },
-    ready: function ready() {},
-    created: function created() {},
-    data: function data() {
-        return {
-            classes: ['tweet']
-        };
-    },
-
-
-    computed: {
-        data: function data() {
-            return {};
-        },
-        tweetText: function tweetText() {
-            if (this.data.text) {
-                return this.data.text;
-            } else if (this.dispatch.text) {
-                return this.dispatch.text;
-            }
-        },
-        tweetLink: function tweetLink() {
-
-            if (this.data.user && this.data.user.screen_name) {
-                return 'https://twitter.com/' + this.data.user.screen_name + '/status/' + this.dispatch.tweet.id;
-            }
-        }
-    },
-    watch: {},
-    props: ['dispatch'],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div v-show=\"dispatch.images\" class=\"media images\">\n    <media-image :image=\"image\" v-for=\"image in dispatch.images\"></media-image>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-428a3702", module.exports)
-  } else {
-    hotAPI.update("_v-428a3702", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"./media/Image.vue":126,"./media/Video.vue":127,"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],126:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.tweet-image{\nmax-width: 100%;\nmin-width: 100%;\n}\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = {
-    components: {},
-    ready: function ready() {},
-    created: function created() {},
-    data: function data() {
-        return {};
-    },
-
-
-    computed: {
-        data: function data() {}
-    },
-    watch: {},
-    props: ['image'],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<img class=\"tweet-image\" v-bind:src=\"image.url\">\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.tweet-image{\nmax-width: 100%;\nmin-width: 100%;\n}\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-69962e3e", module.exports)
-  } else {
-    hotAPI.update("_v-69962e3e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],127:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = {
-    components: {},
-    ready: function ready() {},
-    created: function created() {},
-    data: function data() {
-        return {};
-    },
-
-
-    computed: {
-        data: function data() {}
-    },
-    watch: {},
-    props: ['dispatch'],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-253ded44", module.exports)
-  } else {
-    hotAPI.update("_v-253ded44", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],128:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = {
-    components: {},
-    ready: function ready() {},
-    created: function created() {},
-    data: function data() {
-        return {};
-    },
-
-
-    computed: {},
-    watch: {},
-    props: ['place'],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n{{place.formatted_address}}\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-5f167f6e", module.exports)
-  } else {
-    hotAPI.update("_v-5f167f6e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],129:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _AddressContainer = require('./AddressContainer.vue');
-
-var _AddressContainer2 = _interopRequireDefault(_AddressContainer);
-
-var _WebsiteContainer = require('./WebsiteContainer.vue');
-
-var _WebsiteContainer2 = _interopRequireDefault(_WebsiteContainer);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    components: {
-        IconContainer: _AddressContainer2.default,
-        AddressContainer: _AddressContainer2.default,
-        PhoneContainer: _AddressContainer2.default,
-        NameContainer: _AddressContainer2.default,
-        WebsiteContainer: _WebsiteContainer2.default,
-        MapContainer: _WebsiteContainer2.default,
-        ReviewsContainer: _WebsiteContainer2.default
-    },
-    ready: function ready() {},
-    created: function created() {},
-    data: function data() {
-        return {};
-    },
-
-
-    computed: {},
-    watch: {},
-    props: ['place'],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div v-show=\"place\">\n    <div v-show=\"place.icon\">\n        <icon-container :place=\"place\"></icon-container>\n    </div>\n    <div v-show=\"place.formatted_address\">\n        <address-container :place=\"place\"></address-container>\n    </div>\n    <div v-show=\"place.formatted_phone_number\">\n        <phone-container :place=\"place\"></phone-container>\n    </div>\n    <div v-show=\"place.name\">\n        <name-container :place=\"place\"></name-container>\n    </div>\n    <div v-show=\"place.website\">\n        <website-container :place=\"place\"></website-container>\n    </div>\n    <div v-show=\"place.website\">\n        <map-container :place=\"place\"></map-container>\n    </div>\n    <div v-show=\"place.reviews\">\n        <reviews-container :place=\"place\"></reviews-container>\n    </div>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-69c9895b", module.exports)
-  } else {
-    hotAPI.update("_v-69c9895b", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"./AddressContainer.vue":128,"./WebsiteContainer.vue":130,"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],130:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = {
-    components: {},
-    ready: function ready() {},
-    created: function created() {},
-    data: function data() {
-        return {};
-    },
-
-
-    computed: {},
-    watch: {},
-    props: ['place'],
-    methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\nWebsite: {{place.website}}\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-58e0f9fc", module.exports)
-  } else {
-    hotAPI.update("_v-58e0f9fc", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],131:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n.test{\n\n}\n\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _vue = require('vue');
-
-var _vue2 = _interopRequireDefault(_vue);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_vue2.default.use(require('vue-resource'));
-
-exports.default = {
-    data: function data() {
-        return {};
-    },
-    ready: function ready() {},
-
-    computed: {
-        buttonText: function buttonText() {
-            if (this.active == this.plan) {
-                return 'Active';
-            }
-            if (this.active.price < this.plan.price) {
-                return 'Upgrade';
-            }
-            return 'Downgrade';
-        }
-    },
-    watch: {},
-    props: ['plan', 'active'],
-    methods: {
-        setActivePlan: function setActivePlan() {
-            this.active = this.plan;
-        }
-
-    }
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n <span> {{ plan.name }}</span>\n <span> {{ plan.price }}/month</span>\n <button @click=\"setActivePlan\" v-show=\"plan !== active\">{{ buttonText }}</button>\n  <span v-else=\"\">Selected</span>\n</div>\n\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n.test{\n\n}\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-7a212c34", module.exports)
-  } else {
-    hotAPI.update("_v-7a212c34", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"vue":90,"vue-hot-reload-api":88,"vue-resource":89,"vueify/lib/insert-css":91}],132:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n")
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _vue = require('vue');
-
-var _vue2 = _interopRequireDefault(_vue);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_vue2.default.use(require('vue-resource'));
-exports.default = {
-    ready: function ready() {},
-    data: function data() {
-        return {};
-    },
-
-
-    computed: {},
-    watch: {},
-    props: ['task', 'tasks'],
-    methods: {
-        deleteTask: function deleteTask(task) {
-            this.tasks.$remove(task);
-        }
-    }
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<li :class=\"{ 'completed': task.completed}\" @click=\"task.completed = ! task.completed\">\n    {{ task.body }}\n    <span @click=\"deleteTask(task)\" )=\"\">x</span>\n</li>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-c74ee0f2", module.exports)
-  } else {
-    hotAPI.update("_v-c74ee0f2", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"vue":90,"vue-hot-reload-api":88,"vue-resource":89,"vueify/lib/insert-css":91}],133:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert("\n\n")
-"use strict";
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<blockquote class=\"twitter-tweet\">\n    <p>\n        <a href=\"\">Test</a> Twitter Tweet asdf is a long list of the words that we would be using\n    </p>\n</blockquote>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.dispose(function () {
-    __vueify_insert__.cache["\n\n"] = false
-    document.head.removeChild(__vueify_style__)
-  })
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-d701181e", module.exports)
-  } else {
-    hotAPI.update("_v-d701181e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"vue":90,"vue-hot-reload-api":88,"vueify/lib/insert-css":91}],134:[function(require,module,exports){
-'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 										value: true
 });
 
-var _BoycottList = require('../../boycott/BoycottList.vue');
+var _DispatchModel = require("../../dispatch/DispatchModel.vue");
 
-var _BoycottList2 = _interopRequireDefault(_BoycottList);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-										components: {
-																				BoycottList: _BoycottList2.default
-										},
-										filters: {},
-										data: function data() {
-																				return {
-																														messages: []
-																				};
-										},
-
-										directives: {},
-										events: {},
-										methods: {}
-
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div id=\"BoycotIndexView\">\n    <slot name=\"boycott_index\"></slot>\n</div>\n"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-e2fadc24", module.exports)
-  } else {
-    hotAPI.update("_v-e2fadc24", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"../../boycott/BoycottList.vue":107,"vue":90,"vue-hot-reload-api":88}],135:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-										value: true
-});
-
-var _Message = require('../../Message.vue');
-
-var _Message2 = _interopRequireDefault(_Message);
-
-var _DispatchList = require('../../dispatch/DispatchList.vue');
-
-var _DispatchList2 = _interopRequireDefault(_DispatchList);
+var _DispatchModel2 = _interopRequireDefault(_DispatchModel);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
 										components: {
-																				Message: _Message2.default,
-																				Dispatches: _DispatchList2.default
+																				Dispatch: _DispatchModel2.default
+
 										},
 										filters: {},
+										ready: function ready() {
+																				console.log("ready");
+										},
 										data: function data() {
 																				return {
 																														messages: []
@@ -23446,150 +20612,6 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-040d7aa2", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../../Message.vue":102,"../../dispatch/DispatchList.vue":119,"vue":90,"vue-hot-reload-api":88}],136:[function(require,module,exports){
-'use strict';
-
-module.exports = {
-    params: ['complete'],
-    bind: function bind() {
-        //When this directive is attached to an html tag do this
-        console.log(this.params);
-        this.el.addEventListener('submit', this.onFormSubmission.bind(this));
-    },
-    update: function update() {
-        //Repeatedly called whenever the bound value changes
-
-    },
-    unbind: function unbind() {
-        //When the directive is unbound, trigger this method
-    },
-    onFormSubmission: function onFormSubmission(e) {
-        //this refers to the form that was submitted if no bind on event listener object
-        e.preventDefault();
-        this.vm.$http[this.getRequestType()](this.el.action).then(this.onComplete.bind(this)).catch(this.onError.bind(this));
-    },
-    onComplete: function onComplete() {
-        if (this.params.complete) {
-            alert(this.params.complete);
-        }
-    },
-    onError: function onError(response) {
-        if (this.params.complete) {
-            console.log(response);
-            alert(response.data.message);
-        }
-    },
-    getRequestType: function getRequestType() {
-        var method = this.el.querySelector('input[name="_method"]');
-        return (method ? method.value : this.el.method).toLowerCase();
-    }
-
-};
-
-},{}],137:[function(require,module,exports){
-'use strict';
-
-module.exports = function (val) {
-    return val.split('').reverse().join('');
-};
-
-},{}],138:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var updateActiveCellPosition = exports.updateActiveCellPosition = function updateActiveCellPosition(_ref, rowIndex, columnIndex) {
-    var dispatch = _ref.dispatch;
-
-    dispatch('ACTIVE_CELL_POSITION', rowIndex, columnIndex);
-};
-var updateNewTweet = exports.updateNewTweet = function updateNewTweet(_ref2, groupId, tweetId) {
-    var dispatch = _ref2.dispatch;
-
-    dispatch('NEW_TWEET', groupId, tweetId);
-};
-
-},{}],139:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _vue = require('vue');
-
-var _vue2 = _interopRequireDefault(_vue);
-
-var _vuex = require('vuex');
-
-var _vuex2 = _interopRequireDefault(_vuex);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_vue2.default.use(_vuex2.default);
-
-exports.default = new _vuex2.default.Store({
-
-    state: function state() {
-
-        var activeRowIndex = -1;
-        var activeColumnIndex = -1;
-
-        var columns = ['row', 'name', 'date1', 'date2'];
-
-        var data = [{
-            row: 1,
-            name: 'Chuck Norris',
-            date1: '7',
-            date2: '7'
-        }, {
-            row: 2,
-            name: 'Bruce Lee',
-            date1: '3',
-            date2: '3'
-        }, {
-            row: 3,
-            name: 'Jackie Chan',
-            date1: '11',
-            date2: '11'
-        }, {
-            row: 4,
-            name: 'Jet Li',
-            date1: 'xs',
-            date2: 'xs'
-        }, {
-            row: 5,
-            name: 'Donnie Yen',
-            date1: '8a',
-            date2: '8a'
-        }, {
-            row: 6,
-            name: 'Jason Statham',
-            date1: 'B',
-            date2: 'B'
-        }];
-
-        return {
-            activeRowIndex: activeRowIndex,
-            activeColumnIndex: activeColumnIndex,
-            columns: columns,
-            data: data
-        };
-    },
-
-    mutations: {
-        ACTIVE_CELL_POSITION: function ACTIVE_CELL_POSITION(state, rowIndex, columnIndex) {
-            state.activeRowIndex = rowIndex;
-            state.activeColumnIndex = columnIndex;
-        },
-        NEW_TWEET: function NEW_TWEET(state, rowIndex, columnIndex) {
-            state.activeRowIndex = rowIndex;
-            state.activeColumnIndex = columnIndex;
-        }
-    }
-});
-
-},{"vue":90,"vuex":92}]},{},[95]);
+},{"../../dispatch/DispatchModel.vue":58,"vue":53,"vue-hot-reload-api":51}]},{},[57]);
 
 //# sourceMappingURL=app.js.map

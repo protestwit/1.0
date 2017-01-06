@@ -80,8 +80,7 @@ class AuthController extends Controller
 
     public function handleTwitterCallback()
     {
-        $twitterUser = Socialite::with('twitter')->user();
-        
+        $twitterUser = Socialite::with('twitter')->user(); 
         $token = $twitterUser->token;
         $id = $twitterUser->id;
         $tokenSecret = $twitterUser->tokenSecret;
@@ -110,16 +109,16 @@ class AuthController extends Controller
         ];
 
 
-
-
             $existing_user = User::where('twitter_id', '=', $id)->first();
 
         if (!isset($existing_user)) {
             //If we don't have an existing user create one
+
             try {
+                
                 $user = User::create($data);
                 \Auth::login($user);
-                dd(\Auth::user($id));
+                return redirect()->back();
             } catch (\Exception $e) {
                 \Log::info('Error in twitter_create_user_from_tweet '. $e->getMessage());
             }
@@ -127,7 +126,7 @@ class AuthController extends Controller
             //The user already exists
             $existing_user->update($data);
             \Auth::login($existing_user);
-            return redirect('home');
+            return redirect()->back();
         }
 
 

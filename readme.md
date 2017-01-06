@@ -42,7 +42,7 @@
 ```bower install
 ```
 * run gulpfile
-```gulp
+``` gulp
 ```
 * To start listening for tweets: (note that this has to be running in a separate console)
 ```php artisan connect_group_tweet_listeners

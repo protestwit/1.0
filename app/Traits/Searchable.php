@@ -7,7 +7,7 @@ trait Searchable
     {
         $query->where(function ($query) use($columns, $request){
             foreach ($columns as $column){
-                $query->orWhere($column, 'like', '%' . $request->key . '%');
+                $query->orWhere($column, 'like', '%' . $request->q . '%');
             }
         });
     }
