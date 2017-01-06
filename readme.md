@@ -1,3 +1,13 @@
+#About
+Protestwit is a twitter indexing platform that allows it's users to define groups and the tags that those groups are associated with.
+It then indexes all tweets and their retweets maintaining a relationship between the tweet authors , their tweets, tags, groups and statistics.
+
+In the example app, our seed data is tied to #nodapl for example.
+You can see tweets as they come in real time, set filters for those tweets for instance 
+limit by retweet count and then display those tweets on the groups page.
+
+The vision for protestwit is a two way means of topical communication that brings interested groups of people together based on the things they 
+are talking about, providing tools for colaboration and uncensored media in a way that can be customized for the group's situation.
 
 #Installation
 * Install Node
