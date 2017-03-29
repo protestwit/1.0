@@ -4,6 +4,7 @@
     <div class="content-footer navbar navbar-default" role="navigation">
         <div class="container">
             <div class="navbar-collapse collapse">
+                <h3>{{tweetOriginatedAt}}</h3>
                 <ul class="nav navbar-nav">
                     <li><a href="#about">{{tweetReplies}} replies</a></li>
                     <li><a href="#contact">{{tweetRetweets}} retweets</a></li>

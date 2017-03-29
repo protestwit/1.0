@@ -17,6 +17,7 @@ class TweetController extends Controller
 {
     public function index(IndexRequest $request, Group $group)
     {
+        dd('test');
         $orderby = 'created_at';
 
         if ($request->has('order_by')) {
@@ -30,7 +31,7 @@ class TweetController extends Controller
 
 
         $tag_ids = Tag::where('value','=',$group->public_tag)->orWhere('value','=',$group->private_tag)->lists('id')->toArray();
-        dd($tag_ids);
+
 
         $tweets = Tweet::whereIn('tweet.tags.id',$tag_ids)->paginate();
 
