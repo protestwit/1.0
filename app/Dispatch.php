@@ -249,8 +249,7 @@ class Dispatch extends Model
 
     public function tags()
     {
-//        return $this->belongsToMany('\App\Tag','group_tags');
-        return $this->belongsToMany('\App\Tag', 'dispatch_tags', 'dispatch_id', 'tag_id');
+        return $this->belongsToMany('\App\Tag', 'tags', 'tag_ids');
     }
 
     public function comments()

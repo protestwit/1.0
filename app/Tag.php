@@ -84,7 +84,7 @@ class Tag extends Model
 
     public function dispatches()
     {
-        return $this->belongsToMany('\App\Dispatch','dispatch_tags');
+        return $this->belongsToMany('\App\Dispatch','dispatches','dispatch_ids');
     }
 
     public function posts()
