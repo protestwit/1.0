@@ -3,10 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="afa44c5e-78b8-4fdb-b289-322c799a58b5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/GroupSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/GroupSeeder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Tweet.php" afterPath="$PROJECT_DIR$/app/Tweet.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/css/app-fdd1c4f10b.css" afterPath="$PROJECT_DIR$/public/build/css/app-fdd1c4f10b.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/css/app.css.map" afterPath="$PROJECT_DIR$/public/build/css/app.css.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/rev-manifest.json" afterPath="$PROJECT_DIR$/public/build/rev-manifest.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/app.css" afterPath="$PROJECT_DIR$/public/css/app.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/app.css.map" afterPath="$PROJECT_DIR$/public/css/app.css.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app.js" afterPath="$PROJECT_DIR$/public/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app.js.map" afterPath="$PROJECT_DIR$/public/js/app.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/backup/components/dispatch/dispatch/tweet/content/Footer.vue" afterPath="$PROJECT_DIR$/resources/assets/js/backup/components/dispatch/dispatch/tweet/content/Footer.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/GroupController.php" afterPath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/GroupController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TagController.php" afterPath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TagController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TweetController.php" afterPath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TweetController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Providers/TweetServiceProvider.php" afterPath="$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Providers/TweetServiceProvider.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/routes.php" afterPath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/dispatch/tweet/model.blade.php" afterPath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/dispatch/tweet/model.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/nav/group/rightmenu.blade.php" afterPath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/nav/group/rightmenu.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/group/show.blade.php" afterPath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/group/show.blade.php" />
     </list>
     <ignored path="protestwit.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,101 +39,101 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/app.php">
+      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/group/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3145">
-              <caret line="185" column="18" lean-forward="false" selection-start-line="185" selection-start-column="18" selection-end-line="185" selection-end-column="18" />
+            <state relative-caret-position="391">
+              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Kernel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2016_11_27_051948_create_groups_archive_table.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2016_11_27_051948_create_groups_archive_table.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="23" column="26" lean-forward="false" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GroupSeeder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/GroupSeeder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="83" column="14" lean-forward="false" selection-start-line="83" selection-start-column="14" selection-end-line="83" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Footer.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/assets/js/backup/components/dispatch/dispatch/tweet/content/Footer.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="25" lean-forward="true" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TweetController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TweetController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DispatchController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/DispatchController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="43" column="5" lean-forward="false" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GroupController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/GroupController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Boycott.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Boycott.php">
+      <file leaf-file-name="posts.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tag/posts.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
-              <caret line="16" column="15" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+              <caret line="13" column="28" lean-forward="true" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Dispatch.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Dispatch.php">
+      <file leaf-file-name="rightmenu.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/nav/group/rightmenu.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="24" column="18" lean-forward="false" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+            <state relative-caret-position="356">
+              <caret line="34" column="27" lean-forward="false" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/routes.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RouteServiceProvider.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Providers/RouteServiceProvider.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-204">
+              <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="comment.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/dispatch/comment.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Tweet.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Tweet.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="37" column="20" lean-forward="true" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/home/index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="28" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="model.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/dispatch/tweet/model.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" column="5" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="20" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/group/show.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="25" column="22" lean-forward="false" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -136,6 +148,15 @@
       <find>eloquent.create</find>
       <find>model</find>
       <find>hotness</find>
+      <find>tweetReplies</find>
+      <find>&lt;dispatch</find>
+      <find>Id Inc</find>
+      <find>group</find>
+      <find>$tag</find>
+      <find>posts.in</find>
+      <find>ind</find>
+      <find>Avatar</find>
+      <find>tweet</find>
     </findStrings>
     <dirStrings>
       <dir>G:\protestwit\1.0</dir>
@@ -150,19 +171,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/assets/less/place/place.less" />
-        <option value="$PROJECT_DIR$/resources/assets/js/components/company/CompanyFooter.vue" />
-        <option value="$PROJECT_DIR$/resources/assets/js/components/company/CompanyBody.vue" />
-        <option value="$PROJECT_DIR$/resources/assets/js/components/company/Company.vue" />
-        <option value="$PROJECT_DIR$/resources/assets/js/components/Modal.vue" />
-        <option value="$PROJECT_DIR$/resources/assets/js/components/company/CompanyHeader.vue" />
-        <option value="$PROJECT_DIR$/resources/assets/js/components/comment/CreateCommentModal.vue" />
-        <option value="$PROJECT_DIR$/resources/assets/js/components/event/CreateEventModal.vue" />
-        <option value="$PROJECT_DIR$/commitall.sh" />
-        <option value="$PROJECT_DIR$/app/Post.php" />
-        <option value="$PROJECT_DIR$/app/Link.php" />
-        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/GroupController.php" />
-        <option value="$PROJECT_DIR$/app/Dispatch.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/PostController.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/api/src/Protestwit/Api/Http/Requests/Post/IndexRequest.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/api/src/Protestwit/Api/Http/Requests/Post/DestroyRequest.php" />
@@ -175,10 +183,8 @@
         <option value="$PROJECT_DIR$/vendor/protestwit/api/src/Protestwit/Api/Http/Requests/User/DestroyRequest.php" />
         <option value="$PROJECT_DIR$/resources/assets/js/components/dispatch/types/PostModel.vue" />
         <option value="$PROJECT_DIR$/resources/assets/js/app.js" />
-        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/home/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Checkin.php" />
         <option value="$PROJECT_DIR$/app/Status.php" />
-        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/routes.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Requests/User/IndexRequest.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Requests/User/VoteUpRequest.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Requests/User/CommentStoreRequest.php" />
@@ -193,14 +199,29 @@
         <option value="$PROJECT_DIR$/readme.md" />
         <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Providers/TweetServiceProvider.php" />
-        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/dispatch/tweet/model.blade.php" />
         <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/storage/logs/laravel.log" />
         <option value="$PROJECT_DIR$/config/app.php" />
-        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TweetController.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/DispatchController.php" />
         <option value="$PROJECT_DIR$/database/seeds/GroupSeeder.php" />
+        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TweetController.php" />
         <option value="$PROJECT_DIR$/resources/assets/js/backup/components/dispatch/dispatch/tweet/content/Footer.vue" />
+        <option value="$PROJECT_DIR$/storage/logs/laravel.log" />
+        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Requests/Group/CreateRequest.php" />
+        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Requests/Group/StoreRequest.php" />
+        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Requests/Group/UpdateRequest.php" />
+        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/GroupController.php" />
+        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Requests/Tag/DispatchesRequest.php" />
+        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Requests/Tag/PostsRequest.php" />
+        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tag/posts.blade.php" />
+        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TagController.php" />
+        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/group/index.blade.php" />
+        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/nav/group/rightmenu.blade.php" />
+        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/group/show.blade.php" />
+        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/dispatch/comment.blade.php" />
+        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/home/index.blade.php" />
+        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/dispatch/tweet/model.blade.php" />
+        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/routes.php" />
+        <option value="$PROJECT_DIR$/app/Tweet.php" />
       </list>
     </option>
   </component>
@@ -240,6 +261,9 @@
       </GulpfileState>
     </gulpfiles>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="PhpServers">
     <servers />
@@ -403,7 +427,309 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protestwit" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Protestwit" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protestwit" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Protestwit" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="group" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protestwit" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Protestwit" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layouts" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protestwit" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Protestwit" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protestwit" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Protestwit" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protestwit" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Protestwit" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Requests" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protestwit" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Protestwit" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Requests" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tag" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -459,15 +785,11 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
+              <option name="myItemId" value="storage" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="protestwit" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
+              <option name="myItemId" value="logs" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -481,107 +803,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protestwit" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Protestwit" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Api" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="1" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protestwit" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Protestwit" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Api" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="1" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protestwit" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Protestwit" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Api" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
+              <option name="myItemId" value="storage" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -627,24 +849,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="migrations" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="1" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -664,28 +868,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="1" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Requests" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -722,7 +904,7 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="js-jscs-nodeInterpreter" value="F:\nodejs\node.exe" />
-    <property name="SearchEverywhereHistoryKey" value="GroupSe&#9;FILE&#9;file://G:/protestwit/1/database/seeds/GroupSeeder.php&#10;app.php&#9;FILE&#9;file://G:/protestwit/1/config/app.php&#10;lara&#9;FILE&#9;file://G:/protestwit/1/storage/logs/laravel.log&#10;dispa&#9;FILE&#9;file://G:/protestwit/1/app/Dispatch.php&#10;\frontend\src\Protestwit\Frontend\views\pages\home\index.blade.php&#9;FILE&#9;file://G:/protestwit/1/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/home/index.blade.php&#10;larave&#9;FILE&#9;file://G:/protestwit/1.0/storage/logs/laravel.log&#10;laravel.log&#9;FILE&#9;file://G:/protestwit/1.0/storage/logs/laravel.log&#10;read&#9;FILE&#9;file://G:/protestwit/1.0/readme.md&#10;rout&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/routes.php&#10;2co&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/views/layouts/2col-right.blade.php&#10;routes.php&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/routes.php&#10;RouteServicePro&#9;null&#9;null&#10;2col&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/views/layouts/2col-right.blade.php&#10;index.blad&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/home/index.blade.php&#10;index.blade&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/boycott/index.blade.php&#10;app.js&#9;FILE&#9;file://G:/gitscripts/protestwit/resources/assets/js/app.js&#10;DispatchContro&#9;null&#9;null&#10;CompanyAfter&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/CompanyAfterCreate.php&#10;Company&#9;FILE&#9;file://G:/gitscripts/protestwit/app/Company.php&#10;Comment&#9;null&#9;null&#10;Post&#9;null&#9;null&#10;Boy&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/BoycottController.php&#10;BoycottCon&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/BoycottController.php&#10;Place&#9;null&#9;null&#10;Place.php&#9;FILE&#9;file://G:/gitscripts/protestwit/app/Place.php&#10;placeAuto&#9;null&#9;null&#10;placeAutoComplete&#9;null&#9;null&#10;Test&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TestController.php&#10;TestCon&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TestController.php&#10;DatabaseSee&#9;null&#9;null&#10;TestControll&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TestController.php&#10;DispatchCont&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/DispatchController.php&#10;gulpf&#9;FILE&#9;file://G:/gitscripts/protestwit/gulpfile.js&#10;2&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/views/layouts/2col-right.blade.php&#10;DispatchCon&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/DispatchController.php&#10;laravel&#9;FILE&#9;file://G:/gitscripts/protestwit/storage/logs/laravel.log&#10;ProcessTwee&#9;null&#9;null&#10;Twee&#9;FILE&#9;file://G:/gitscripts/protestwit/app/Tweet.php&#10;dispatchControll&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/DispatchController.php&#10;Dispa&#9;FILE&#9;file://G:/gitscripts/protestwit/resources/assets/js/components/dispatch/Dispatch.vue&#10;Dispatch&#9;FILE&#9;file://G:/gitscripts/protestwit/app/Dispatch.php&#10;lo&#9;FILE&#9;file://G:/gitscripts/protestwit/storage/logs/laravel.log&#10;TweetAfter&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/TweetAfterCreate.php&#10;DispatchAfter&#9;null&#9;null&#10;Tweet&#9;null&#9;null&#10;TweetA&#9;null&#9;null&#10;laravel.lo&#9;FILE&#9;file://G:/gitscripts/protestwit/storage/logs/laravel.log&#10;welcom&#9;FILE&#9;file://G:/gitscripts/protestwit/resources/views/welcome.blade.php&#10;gulp&#9;FILE&#9;file://G:/gitscripts/protestwit/gulpfile.js&#10;Group&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/group/src/Protestwit/Group/Models/Group.php" />
+    <property name="SearchEverywhereHistoryKey" value="Twee&#9;FILE&#9;file://G:/protestwit/1/app/Tweet.php&#10;routeser&#9;null&#9;null&#10;RouteServic,&#9;null&#9;null&#10;model&#9;FILE&#9;file://G:/protestwit/1/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/dispatch/tweet/model.blade.php&#10;rightmen&#9;FILE&#9;file://G:/protestwit/1/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/nav/group/rightmenu.blade.php&#10;lara&#9;FILE&#9;file://G:/protestwit/1/storage/logs/laravel.log&#10;GroupSe&#9;FILE&#9;file://G:/protestwit/1/database/seeds/GroupSeeder.php&#10;app.php&#9;FILE&#9;file://G:/protestwit/1/config/app.php&#10;dispa&#9;FILE&#9;file://G:/protestwit/1/app/Dispatch.php&#10;\frontend\src\Protestwit\Frontend\views\pages\home\index.blade.php&#9;FILE&#9;file://G:/protestwit/1/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/home/index.blade.php&#10;larave&#9;FILE&#9;file://G:/protestwit/1.0/storage/logs/laravel.log&#10;laravel.log&#9;FILE&#9;file://G:/protestwit/1.0/storage/logs/laravel.log&#10;read&#9;FILE&#9;file://G:/protestwit/1.0/readme.md&#10;rout&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/routes.php&#10;2co&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/views/layouts/2col-right.blade.php&#10;routes.php&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/routes.php&#10;RouteServicePro&#9;null&#9;null&#10;2col&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/views/layouts/2col-right.blade.php&#10;index.blad&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/home/index.blade.php&#10;index.blade&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/boycott/index.blade.php&#10;app.js&#9;FILE&#9;file://G:/gitscripts/protestwit/resources/assets/js/app.js&#10;DispatchContro&#9;null&#9;null&#10;CompanyAfter&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/CompanyAfterCreate.php&#10;Company&#9;FILE&#9;file://G:/gitscripts/protestwit/app/Company.php&#10;Comment&#9;null&#9;null&#10;Post&#9;null&#9;null&#10;Boy&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/BoycottController.php&#10;BoycottCon&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/BoycottController.php&#10;Place&#9;null&#9;null&#10;Place.php&#9;FILE&#9;file://G:/gitscripts/protestwit/app/Place.php&#10;placeAuto&#9;null&#9;null&#10;placeAutoComplete&#9;null&#9;null&#10;Test&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TestController.php&#10;TestCon&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TestController.php&#10;DatabaseSee&#9;null&#9;null&#10;TestControll&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TestController.php&#10;DispatchCont&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/DispatchController.php&#10;gulpf&#9;FILE&#9;file://G:/gitscripts/protestwit/gulpfile.js&#10;2&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/views/layouts/2col-right.blade.php&#10;DispatchCon&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/DispatchController.php&#10;laravel&#9;FILE&#9;file://G:/gitscripts/protestwit/storage/logs/laravel.log&#10;ProcessTwee&#9;null&#9;null&#10;dispatchControll&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/DispatchController.php&#10;Dispa&#9;FILE&#9;file://G:/gitscripts/protestwit/resources/assets/js/components/dispatch/Dispatch.vue&#10;Dispatch&#9;FILE&#9;file://G:/gitscripts/protestwit/app/Dispatch.php&#10;lo&#9;FILE&#9;file://G:/gitscripts/protestwit/storage/logs/laravel.log&#10;TweetAfter&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/TweetAfterCreate.php&#10;DispatchAfter&#9;null&#9;null&#10;Tweet&#9;null&#9;null&#10;TweetA&#9;null&#9;null" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
@@ -731,19 +913,19 @@
     <property name="js.eslint.eslintPackage" value="" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\protestwit\1\vendor\protestwit\frontend\src\Protestwit\Frontend\Http\Requests\Tag" />
+      <recent name="G:\protestwit\1\vendor\protestwit\frontend\src\Protestwit\Frontend\views\pages\tag" />
+      <recent name="G:\protestwit\1\vendor\protestwit\frontend\src\Protestwit\Frontend\views\pages\group" />
+      <recent name="G:\protestwit\1\vendor\protestwit\frontend\src\Protestwit\Frontend\Http\Requests\Group" />
+      <recent name="G:\protestwit\1.0" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\gitscripts\protestwit\vendor\protestwit\frontend\src\Protestwit\Frontend\views\blocks\user\profile" />
       <recent name="G:\gitscripts\protestwit\app" />
       <recent name="G:\gitscripts\protestwit\vendor\protestwit\instagram\src\Protestwit\Instagram" />
       <recent name="G:\gitscripts\protestwit\vendor\protestwit\api" />
       <recent name="G:\gitscripts\protestwit\resources\assets\less" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="G:\protestwit\1.0" />
-      <recent name="G:\gitscripts\protestwit\vendor\protestwit\frontend\src\Protestwit\Frontend\views\blocks\user\profile\controls" />
-      <recent name="G:\gitscripts\protestwit\vendor\protestwit\frontend\src\Protestwit\Frontend\views\pages" />
-      <recent name="G:\gitscripts\protestwit\vendor\protestwit\frontend\src\Protestwit\Frontend\Http\Requests" />
-      <recent name="G:\gitscripts\protestwit\vendor\protestwit\frontend\src\Protestwit\Frontend\Http\Controllers" />
     </key>
   </component>
   <component name="RunManager">
@@ -849,12 +1031,12 @@
       <workItem from="1488288211816" duration="855000" />
       <workItem from="1489945709767" duration="728000" />
       <workItem from="1490149343507" duration="5164000" />
-      <workItem from="1490759628002" duration="495000" />
+      <workItem from="1490759628002" duration="10076000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="460991000" />
+    <option name="totallyTimeSpent" value="470572000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
@@ -862,14 +1044,14 @@
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22547974" sideWeight="0.50508904" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29744136" sideWeight="0.49491096" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20362474" sideWeight="0.49491096" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23005182" sideWeight="0.5063966" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18879668" sideWeight="0.49573562" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18879668" sideWeight="0.49573562" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30863538" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2821577" sideWeight="0.4936034" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2821577" sideWeight="0.4936034" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -929,59 +1111,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="37" lean-forward="false" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Boycott.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="15" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Dispatch.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="18" lean-forward="false" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/group/src/Protestwit/Group/Providers/GroupServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Providers/TweetServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="35" column="42" lean-forward="false" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/home/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/dispatch/tweet/model.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -994,6 +1123,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="30" column="14" lean-forward="false" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1047,6 +1177,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="35" column="42" lean-forward="false" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1054,6 +1185,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1069,6 +1201,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="30" column="14" lean-forward="false" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1122,114 +1255,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="35" column="42" lean-forward="false" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/home/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/dispatch/tweet/model.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="43" lean-forward="false" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="14" lean-forward="false" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storage/logs/laravel.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="37" lean-forward="false" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Boycott.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="15" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Dispatch.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="18" lean-forward="false" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/group/src/Protestwit/Group/Providers/GroupServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Providers/TweetServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="35" column="42" lean-forward="false" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/home/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/dispatch/tweet/model.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="43" lean-forward="false" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="14" lean-forward="false" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storage/logs/laravel.log">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
@@ -1248,6 +1275,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Dispatch.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="24" column="18" lean-forward="false" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/GroupSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="83" column="14" lean-forward="false" selection-start-line="83" selection-start-column="14" selection-end-line="83" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Boycott.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1256,10 +1299,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Dispatch.php">
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/DispatchController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="24" column="18" lean-forward="false" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+        <state relative-caret-position="575">
+          <caret line="43" column="5" lean-forward="false" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TweetController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1280,42 +1331,193 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TweetController.php">
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/backup/components/dispatch/dispatch/tweet/content/Footer.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+        <state relative-caret-position="102">
+          <caret line="6" column="24" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/DispatchController.php">
+    <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="43" column="5" lean-forward="false" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+        <state relative-caret-position="204">
+          <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/backup/components/dispatch/DispatchList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="10" lean-forward="false" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="10" />
+          <folding>
+            <element signature="e#339#361#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/logs/laravel.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="19" column="39" lean-forward="false" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="LargeFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Requests/Group/CreateRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Requests/Group/UpdateRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Requests/Group/StoreRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/GroupController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+        <state relative-caret-position="544">
+          <caret line="53" column="71" lean-forward="false" selection-start-line="53" selection-start-column="71" selection-end-line="53" selection-end-column="71" />
+          <folding>
+            <element signature="e#55#71#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/layouts/2col-right.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/GroupSeeder.php">
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Requests/Tag/PostsRequest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="83" column="14" lean-forward="false" selection-start-line="83" selection-start-column="14" selection-end-line="83" selection-end-column="14" />
+        <state relative-caret-position="170">
+          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/backup/components/dispatch/dispatch/tweet/content/Footer.vue">
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TagController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="25" lean-forward="true" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+        <state relative-caret-position="476">
+          <caret line="34" column="42" lean-forward="false" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Requests/Tag/DispatchesRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tag/dispatches.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="50" lean-forward="true" selection-start-line="23" selection-start-column="50" selection-end-line="23" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/group/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tag/posts.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="28" lean-forward="true" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/nav/group/rightmenu.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="34" column="27" lean-forward="false" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/group/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="25" column="22" lean-forward="false" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/home/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="28" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/dispatch/tweet/model.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="5" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="20" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/RouteServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-204">
+          <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/dispatch/comment.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Tweet.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="37" column="20" lean-forward="true" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
           <folding />
         </state>
       </provider>

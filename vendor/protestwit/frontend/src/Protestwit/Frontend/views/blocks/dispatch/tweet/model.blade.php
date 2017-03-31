@@ -15,5 +15,7 @@
     <div class="col-xs-4">Retweets: {{$dispatch->vote_count}}</div>
     <div class="col-xs-4">hotness: {{$dispatch->hotness}}</div>
     <div class="col-xs-4"><a target="_blank" href="{{$dispatch->external_url}}">View Tweet</a></div>
+
+    <div class="col-xs-4"><a target="_blank" href="{{route('tweet.show',$dispatch->tweet->id)}}">Tweet Data</a></div>
 </div>
 <hr/>

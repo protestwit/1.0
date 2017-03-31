@@ -33,8 +33,14 @@ class Tweet extends Model implements \App\Contracts\DispatchableInterface
     protected $searchableRelations = [];
 
 
+    public function getRouteKeyName()
+    {
+        return 'id';
+    }
+
     public function save(array $options = [])
     {
+        \Log::info(print_r($this->attributes,true));
         \Log::info('Id Inc:' . $this->id_inc);
         if (!isset($this->id_inc) || is_null($this->id_inc)) {
             $this->id_inc = Tweet::all()->count();

@@ -17,7 +17,6 @@ class TweetController extends Controller
 {
     public function index(IndexRequest $request, Group $group)
     {
-        dd('test');
         $orderby = 'created_at';
 
         if ($request->has('order_by')) {

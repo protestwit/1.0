@@ -517,393 +517,10 @@ module.exports = function(a, b){
   a.prototype.constructor = a;
 };
 },{}],10:[function(require,module,exports){
-(function (process){
-
-/**
- * This is the web browser implementation of `debug()`.
- *
- * Expose `debug()` as the module.
- */
-
-exports = module.exports = require('./debug');
-exports.log = log;
-exports.formatArgs = formatArgs;
-exports.save = save;
-exports.load = load;
-exports.useColors = useColors;
-exports.storage = 'undefined' != typeof chrome
-               && 'undefined' != typeof chrome.storage
-                  ? chrome.storage.local
-                  : localstorage();
-
-/**
- * Colors.
- */
-
-exports.colors = [
-  'lightseagreen',
-  'forestgreen',
-  'goldenrod',
-  'dodgerblue',
-  'darkorchid',
-  'crimson'
-];
-
-/**
- * Currently only WebKit-based Web Inspectors, Firefox >= v31,
- * and the Firebug extension (any Firefox version) are known
- * to support "%c" CSS customizations.
- *
- * TODO: add a `localStorage` variable to explicitly enable/disable colors
- */
-
-function useColors() {
-  // is webkit? http://stackoverflow.com/a/16459606/376773
-  // document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
-  return (typeof document !== 'undefined' && 'WebkitAppearance' in document.documentElement.style) ||
-    // is firebug? http://stackoverflow.com/a/398120/376773
-    (window.console && (console.firebug || (console.exception && console.table))) ||
-    // is firefox >= v31?
-    // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
-    (navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31);
-}
-
-/**
- * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
- */
-
-exports.formatters.j = function(v) {
-  try {
-    return JSON.stringify(v);
-  } catch (err) {
-    return '[UnexpectedJSONParseError]: ' + err.message;
-  }
-};
-
-
-/**
- * Colorize log arguments if enabled.
- *
- * @api public
- */
-
-function formatArgs() {
-  var args = arguments;
-  var useColors = this.useColors;
-
-  args[0] = (useColors ? '%c' : '')
-    + this.namespace
-    + (useColors ? ' %c' : ' ')
-    + args[0]
-    + (useColors ? '%c ' : ' ')
-    + '+' + exports.humanize(this.diff);
-
-  if (!useColors) return args;
-
-  var c = 'color: ' + this.color;
-  args = [args[0], c, 'color: inherit'].concat(Array.prototype.slice.call(args, 1));
-
-  // the final "%c" is somewhat tricky, because there could be other
-  // arguments passed either before or after the %c, so we need to
-  // figure out the correct index to insert the CSS into
-  var index = 0;
-  var lastC = 0;
-  args[0].replace(/%[a-z%]/g, function(match) {
-    if ('%%' === match) return;
-    index++;
-    if ('%c' === match) {
-      // we only are interested in the *last* %c
-      // (the user may have provided their own)
-      lastC = index;
-    }
-  });
-
-  args.splice(lastC, 0, c);
-  return args;
-}
-
-/**
- * Invokes `console.log()` when available.
- * No-op when `console.log` is not a "function".
- *
- * @api public
- */
-
-function log() {
-  // this hackery is required for IE8/9, where
-  // the `console.log` function doesn't have 'apply'
-  return 'object' === typeof console
-    && console.log
-    && Function.prototype.apply.call(console.log, console, arguments);
-}
-
-/**
- * Save `namespaces`.
- *
- * @param {String} namespaces
- * @api private
- */
-
-function save(namespaces) {
-  try {
-    if (null == namespaces) {
-      exports.storage.removeItem('debug');
-    } else {
-      exports.storage.debug = namespaces;
-    }
-  } catch(e) {}
-}
-
-/**
- * Load `namespaces`.
- *
- * @return {String} returns the previously persisted debug modes
- * @api private
- */
-
-function load() {
-  var r;
-  try {
-    return exports.storage.debug;
-  } catch(e) {}
-
-  // If debug isn't set in LS, and we're in Electron, try to load $DEBUG
-  if (typeof process !== 'undefined' && 'env' in process) {
-    return process.env.DEBUG;
-  }
-}
-
-/**
- * Enable namespaces listed in `localStorage.debug` initially.
- */
-
-exports.enable(load());
-
-/**
- * Localstorage attempts to return the localstorage.
- *
- * This is necessary because safari throws
- * when a user disables cookies/localstorage
- * and you attempt to access it.
- *
- * @return {LocalStorage}
- * @api private
- */
-
-function localstorage(){
-  try {
-    return window.localStorage;
-  } catch (e) {}
-}
-
-}).call(this,require('_process'))
-},{"./debug":11,"_process":36}],11:[function(require,module,exports){
-
-/**
- * This is the common logic for both the Node.js and web browser
- * implementations of `debug()`.
- *
- * Expose `debug()` as the module.
- */
-
-exports = module.exports = debug.debug = debug;
-exports.coerce = coerce;
-exports.disable = disable;
-exports.enable = enable;
-exports.enabled = enabled;
-exports.humanize = require('ms');
-
-/**
- * The currently active debug mode names, and names to skip.
- */
-
-exports.names = [];
-exports.skips = [];
-
-/**
- * Map of special "%n" handling functions, for the debug "format" argument.
- *
- * Valid key names are a single, lowercased letter, i.e. "n".
- */
-
-exports.formatters = {};
-
-/**
- * Previously assigned color.
- */
-
-var prevColor = 0;
-
-/**
- * Previous log timestamp.
- */
-
-var prevTime;
-
-/**
- * Select a color.
- *
- * @return {Number}
- * @api private
- */
-
-function selectColor() {
-  return exports.colors[prevColor++ % exports.colors.length];
-}
-
-/**
- * Create a debugger with the given `namespace`.
- *
- * @param {String} namespace
- * @return {Function}
- * @api public
- */
-
-function debug(namespace) {
-
-  // define the `disabled` version
-  function disabled() {
-  }
-  disabled.enabled = false;
-
-  // define the `enabled` version
-  function enabled() {
-
-    var self = enabled;
-
-    // set `diff` timestamp
-    var curr = +new Date();
-    var ms = curr - (prevTime || curr);
-    self.diff = ms;
-    self.prev = prevTime;
-    self.curr = curr;
-    prevTime = curr;
-
-    // add the `color` if not set
-    if (null == self.useColors) self.useColors = exports.useColors();
-    if (null == self.color && self.useColors) self.color = selectColor();
-
-    var args = new Array(arguments.length);
-    for (var i = 0; i < args.length; i++) {
-      args[i] = arguments[i];
-    }
-
-    args[0] = exports.coerce(args[0]);
-
-    if ('string' !== typeof args[0]) {
-      // anything else let's inspect with %o
-      args = ['%o'].concat(args);
-    }
-
-    // apply any `formatters` transformations
-    var index = 0;
-    args[0] = args[0].replace(/%([a-z%])/g, function(match, format) {
-      // if we encounter an escaped % then don't increase the array index
-      if (match === '%%') return match;
-      index++;
-      var formatter = exports.formatters[format];
-      if ('function' === typeof formatter) {
-        var val = args[index];
-        match = formatter.call(self, val);
-
-        // now we need to remove `args[index]` since it's inlined in the `format`
-        args.splice(index, 1);
-        index--;
-      }
-      return match;
-    });
-
-    // apply env-specific formatting
-    args = exports.formatArgs.apply(self, args);
-
-    var logFn = enabled.log || exports.log || console.log.bind(console);
-    logFn.apply(self, args);
-  }
-  enabled.enabled = true;
-
-  var fn = exports.enabled(namespace) ? enabled : disabled;
-
-  fn.namespace = namespace;
-
-  return fn;
-}
-
-/**
- * Enables a debug mode by namespaces. This can include modes
- * separated by a colon and wildcards.
- *
- * @param {String} namespaces
- * @api public
- */
-
-function enable(namespaces) {
-  exports.save(namespaces);
-
-  var split = (namespaces || '').split(/[\s,]+/);
-  var len = split.length;
-
-  for (var i = 0; i < len; i++) {
-    if (!split[i]) continue; // ignore empty strings
-    namespaces = split[i].replace(/[\\^$+?.()|[\]{}]/g, '\\$&').replace(/\*/g, '.*?');
-    if (namespaces[0] === '-') {
-      exports.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
-    } else {
-      exports.names.push(new RegExp('^' + namespaces + '$'));
-    }
-  }
-}
-
-/**
- * Disable debug output.
- *
- * @api public
- */
-
-function disable() {
-  exports.enable('');
-}
-
-/**
- * Returns true if the given mode name is enabled, false otherwise.
- *
- * @param {String} name
- * @return {Boolean}
- * @api public
- */
-
-function enabled(name) {
-  var i, len;
-  for (i = 0, len = exports.skips.length; i < len; i++) {
-    if (exports.skips[i].test(name)) {
-      return false;
-    }
-  }
-  for (i = 0, len = exports.names.length; i < len; i++) {
-    if (exports.names[i].test(name)) {
-      return true;
-    }
-  }
-  return false;
-}
-
-/**
- * Coerce `val`.
- *
- * @param {Mixed} val
- * @return {Mixed}
- * @api private
- */
-
-function coerce(val) {
-  if (val instanceof Error) return val.stack || val.message;
-  return val;
-}
-
-},{"ms":32}],12:[function(require,module,exports){
 
 module.exports = require('./lib/index');
 
-},{"./lib/index":13}],13:[function(require,module,exports){
+},{"./lib/index":11}],11:[function(require,module,exports){
 
 module.exports = require('./socket');
 
@@ -915,7 +532,7 @@ module.exports = require('./socket');
  */
 module.exports.parser = require('engine.io-parser');
 
-},{"./socket":14,"engine.io-parser":23}],14:[function(require,module,exports){
+},{"./socket":12,"engine.io-parser":23}],12:[function(require,module,exports){
 (function (global){
 /**
  * Module dependencies.
@@ -1657,7 +1274,7 @@ Socket.prototype.filterUpgrades = function (upgrades) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./transport":15,"./transports/index":16,"component-emitter":22,"debug":10,"engine.io-parser":23,"indexof":30,"parsejson":33,"parseqs":34,"parseuri":35}],15:[function(require,module,exports){
+},{"./transport":13,"./transports/index":14,"component-emitter":20,"debug":21,"engine.io-parser":23,"indexof":27,"parsejson":31,"parseqs":32,"parseuri":33}],13:[function(require,module,exports){
 /**
  * Module dependencies.
  */
@@ -1816,7 +1433,7 @@ Transport.prototype.onClose = function () {
   this.emit('close');
 };
 
-},{"component-emitter":22,"engine.io-parser":23}],16:[function(require,module,exports){
+},{"component-emitter":20,"engine.io-parser":23}],14:[function(require,module,exports){
 (function (global){
 /**
  * Module dependencies
@@ -1873,7 +1490,7 @@ function polling (opts) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./polling-jsonp":17,"./polling-xhr":18,"./websocket":20,"xmlhttprequest-ssl":21}],17:[function(require,module,exports){
+},{"./polling-jsonp":15,"./polling-xhr":16,"./websocket":18,"xmlhttprequest-ssl":19}],15:[function(require,module,exports){
 (function (global){
 
 /**
@@ -2108,7 +1725,7 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./polling":19,"component-inherit":9}],18:[function(require,module,exports){
+},{"./polling":17,"component-inherit":9}],16:[function(require,module,exports){
 (function (global){
 /**
  * Module requirements.
@@ -2536,7 +2153,7 @@ function unloadHandler () {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./polling":19,"component-emitter":22,"component-inherit":9,"debug":10,"xmlhttprequest-ssl":21}],19:[function(require,module,exports){
+},{"./polling":17,"component-emitter":20,"component-inherit":9,"debug":21,"xmlhttprequest-ssl":19}],17:[function(require,module,exports){
 /**
  * Module dependencies.
  */
@@ -2783,7 +2400,7 @@ Polling.prototype.uri = function () {
   return schema + '://' + (ipv6 ? '[' + this.hostname + ']' : this.hostname) + port + this.path + query;
 };
 
-},{"../transport":15,"component-inherit":9,"debug":10,"engine.io-parser":23,"parseqs":34,"xmlhttprequest-ssl":21,"yeast":56}],20:[function(require,module,exports){
+},{"../transport":13,"component-inherit":9,"debug":21,"engine.io-parser":23,"parseqs":32,"xmlhttprequest-ssl":19,"yeast":55}],18:[function(require,module,exports){
 (function (global){
 /**
  * Module dependencies.
@@ -3072,7 +2689,7 @@ WS.prototype.check = function () {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../transport":15,"component-inherit":9,"debug":10,"engine.io-parser":23,"parseqs":34,"ws":6,"yeast":56}],21:[function(require,module,exports){
+},{"../transport":13,"component-inherit":9,"debug":21,"engine.io-parser":23,"parseqs":32,"ws":6,"yeast":55}],19:[function(require,module,exports){
 (function (global){
 // browser shim for xmlhttprequest module
 
@@ -3113,7 +2730,7 @@ module.exports = function (opts) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"has-cors":29}],22:[function(require,module,exports){
+},{"has-cors":26}],20:[function(require,module,exports){
 
 /**
  * Expose `Emitter`.
@@ -3278,7 +2895,390 @@ Emitter.prototype.hasListeners = function(event){
   return !! this.listeners(event).length;
 };
 
-},{}],23:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
+(function (process){
+
+/**
+ * This is the web browser implementation of `debug()`.
+ *
+ * Expose `debug()` as the module.
+ */
+
+exports = module.exports = require('./debug');
+exports.log = log;
+exports.formatArgs = formatArgs;
+exports.save = save;
+exports.load = load;
+exports.useColors = useColors;
+exports.storage = 'undefined' != typeof chrome
+               && 'undefined' != typeof chrome.storage
+                  ? chrome.storage.local
+                  : localstorage();
+
+/**
+ * Colors.
+ */
+
+exports.colors = [
+  'lightseagreen',
+  'forestgreen',
+  'goldenrod',
+  'dodgerblue',
+  'darkorchid',
+  'crimson'
+];
+
+/**
+ * Currently only WebKit-based Web Inspectors, Firefox >= v31,
+ * and the Firebug extension (any Firefox version) are known
+ * to support "%c" CSS customizations.
+ *
+ * TODO: add a `localStorage` variable to explicitly enable/disable colors
+ */
+
+function useColors() {
+  // is webkit? http://stackoverflow.com/a/16459606/376773
+  // document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
+  return (typeof document !== 'undefined' && 'WebkitAppearance' in document.documentElement.style) ||
+    // is firebug? http://stackoverflow.com/a/398120/376773
+    (window.console && (console.firebug || (console.exception && console.table))) ||
+    // is firefox >= v31?
+    // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
+    (navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31);
+}
+
+/**
+ * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
+ */
+
+exports.formatters.j = function(v) {
+  try {
+    return JSON.stringify(v);
+  } catch (err) {
+    return '[UnexpectedJSONParseError]: ' + err.message;
+  }
+};
+
+
+/**
+ * Colorize log arguments if enabled.
+ *
+ * @api public
+ */
+
+function formatArgs() {
+  var args = arguments;
+  var useColors = this.useColors;
+
+  args[0] = (useColors ? '%c' : '')
+    + this.namespace
+    + (useColors ? ' %c' : ' ')
+    + args[0]
+    + (useColors ? '%c ' : ' ')
+    + '+' + exports.humanize(this.diff);
+
+  if (!useColors) return args;
+
+  var c = 'color: ' + this.color;
+  args = [args[0], c, 'color: inherit'].concat(Array.prototype.slice.call(args, 1));
+
+  // the final "%c" is somewhat tricky, because there could be other
+  // arguments passed either before or after the %c, so we need to
+  // figure out the correct index to insert the CSS into
+  var index = 0;
+  var lastC = 0;
+  args[0].replace(/%[a-z%]/g, function(match) {
+    if ('%%' === match) return;
+    index++;
+    if ('%c' === match) {
+      // we only are interested in the *last* %c
+      // (the user may have provided their own)
+      lastC = index;
+    }
+  });
+
+  args.splice(lastC, 0, c);
+  return args;
+}
+
+/**
+ * Invokes `console.log()` when available.
+ * No-op when `console.log` is not a "function".
+ *
+ * @api public
+ */
+
+function log() {
+  // this hackery is required for IE8/9, where
+  // the `console.log` function doesn't have 'apply'
+  return 'object' === typeof console
+    && console.log
+    && Function.prototype.apply.call(console.log, console, arguments);
+}
+
+/**
+ * Save `namespaces`.
+ *
+ * @param {String} namespaces
+ * @api private
+ */
+
+function save(namespaces) {
+  try {
+    if (null == namespaces) {
+      exports.storage.removeItem('debug');
+    } else {
+      exports.storage.debug = namespaces;
+    }
+  } catch(e) {}
+}
+
+/**
+ * Load `namespaces`.
+ *
+ * @return {String} returns the previously persisted debug modes
+ * @api private
+ */
+
+function load() {
+  var r;
+  try {
+    return exports.storage.debug;
+  } catch(e) {}
+
+  // If debug isn't set in LS, and we're in Electron, try to load $DEBUG
+  if (typeof process !== 'undefined' && 'env' in process) {
+    return process.env.DEBUG;
+  }
+}
+
+/**
+ * Enable namespaces listed in `localStorage.debug` initially.
+ */
+
+exports.enable(load());
+
+/**
+ * Localstorage attempts to return the localstorage.
+ *
+ * This is necessary because safari throws
+ * when a user disables cookies/localstorage
+ * and you attempt to access it.
+ *
+ * @return {LocalStorage}
+ * @api private
+ */
+
+function localstorage(){
+  try {
+    return window.localStorage;
+  } catch (e) {}
+}
+
+}).call(this,require('_process'))
+},{"./debug":22,"_process":34}],22:[function(require,module,exports){
+
+/**
+ * This is the common logic for both the Node.js and web browser
+ * implementations of `debug()`.
+ *
+ * Expose `debug()` as the module.
+ */
+
+exports = module.exports = debug.debug = debug;
+exports.coerce = coerce;
+exports.disable = disable;
+exports.enable = enable;
+exports.enabled = enabled;
+exports.humanize = require('ms');
+
+/**
+ * The currently active debug mode names, and names to skip.
+ */
+
+exports.names = [];
+exports.skips = [];
+
+/**
+ * Map of special "%n" handling functions, for the debug "format" argument.
+ *
+ * Valid key names are a single, lowercased letter, i.e. "n".
+ */
+
+exports.formatters = {};
+
+/**
+ * Previously assigned color.
+ */
+
+var prevColor = 0;
+
+/**
+ * Previous log timestamp.
+ */
+
+var prevTime;
+
+/**
+ * Select a color.
+ *
+ * @return {Number}
+ * @api private
+ */
+
+function selectColor() {
+  return exports.colors[prevColor++ % exports.colors.length];
+}
+
+/**
+ * Create a debugger with the given `namespace`.
+ *
+ * @param {String} namespace
+ * @return {Function}
+ * @api public
+ */
+
+function debug(namespace) {
+
+  // define the `disabled` version
+  function disabled() {
+  }
+  disabled.enabled = false;
+
+  // define the `enabled` version
+  function enabled() {
+
+    var self = enabled;
+
+    // set `diff` timestamp
+    var curr = +new Date();
+    var ms = curr - (prevTime || curr);
+    self.diff = ms;
+    self.prev = prevTime;
+    self.curr = curr;
+    prevTime = curr;
+
+    // add the `color` if not set
+    if (null == self.useColors) self.useColors = exports.useColors();
+    if (null == self.color && self.useColors) self.color = selectColor();
+
+    var args = new Array(arguments.length);
+    for (var i = 0; i < args.length; i++) {
+      args[i] = arguments[i];
+    }
+
+    args[0] = exports.coerce(args[0]);
+
+    if ('string' !== typeof args[0]) {
+      // anything else let's inspect with %o
+      args = ['%o'].concat(args);
+    }
+
+    // apply any `formatters` transformations
+    var index = 0;
+    args[0] = args[0].replace(/%([a-z%])/g, function(match, format) {
+      // if we encounter an escaped % then don't increase the array index
+      if (match === '%%') return match;
+      index++;
+      var formatter = exports.formatters[format];
+      if ('function' === typeof formatter) {
+        var val = args[index];
+        match = formatter.call(self, val);
+
+        // now we need to remove `args[index]` since it's inlined in the `format`
+        args.splice(index, 1);
+        index--;
+      }
+      return match;
+    });
+
+    // apply env-specific formatting
+    args = exports.formatArgs.apply(self, args);
+
+    var logFn = enabled.log || exports.log || console.log.bind(console);
+    logFn.apply(self, args);
+  }
+  enabled.enabled = true;
+
+  var fn = exports.enabled(namespace) ? enabled : disabled;
+
+  fn.namespace = namespace;
+
+  return fn;
+}
+
+/**
+ * Enables a debug mode by namespaces. This can include modes
+ * separated by a colon and wildcards.
+ *
+ * @param {String} namespaces
+ * @api public
+ */
+
+function enable(namespaces) {
+  exports.save(namespaces);
+
+  var split = (namespaces || '').split(/[\s,]+/);
+  var len = split.length;
+
+  for (var i = 0; i < len; i++) {
+    if (!split[i]) continue; // ignore empty strings
+    namespaces = split[i].replace(/[\\^$+?.()|[\]{}]/g, '\\$&').replace(/\*/g, '.*?');
+    if (namespaces[0] === '-') {
+      exports.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
+    } else {
+      exports.names.push(new RegExp('^' + namespaces + '$'));
+    }
+  }
+}
+
+/**
+ * Disable debug output.
+ *
+ * @api public
+ */
+
+function disable() {
+  exports.enable('');
+}
+
+/**
+ * Returns true if the given mode name is enabled, false otherwise.
+ *
+ * @param {String} name
+ * @return {Boolean}
+ * @api public
+ */
+
+function enabled(name) {
+  var i, len;
+  for (i = 0, len = exports.skips.length; i < len; i++) {
+    if (exports.skips[i].test(name)) {
+      return false;
+    }
+  }
+  for (i = 0, len = exports.names.length; i < len; i++) {
+    if (exports.names[i].test(name)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * Coerce `val`.
+ *
+ * @param {Mixed} val
+ * @return {Mixed}
+ * @api private
+ */
+
+function coerce(val) {
+  if (val instanceof Error) return val.stack || val.message;
+  return val;
+}
+
+},{"ms":30}],23:[function(require,module,exports){
 (function (global){
 /**
  * Module dependencies.
@@ -3891,7 +3891,7 @@ exports.decodePayloadAsBinary = function (data, binaryType, callback) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./keys":24,"after":1,"arraybuffer.slice":2,"base64-arraybuffer":4,"blob":5,"has-binary":25,"wtf-8":55}],24:[function(require,module,exports){
+},{"./keys":24,"after":1,"arraybuffer.slice":2,"base64-arraybuffer":4,"blob":5,"has-binary":25,"wtf-8":54}],24:[function(require,module,exports){
 
 /**
  * Gets the keys for an object.
@@ -3913,73 +3913,6 @@ module.exports = Object.keys || function keys (obj){
 };
 
 },{}],25:[function(require,module,exports){
-(function (global){
-
-/*
- * Module requirements.
- */
-
-var isArray = require('isarray');
-
-/**
- * Module exports.
- */
-
-module.exports = hasBinary;
-
-/**
- * Checks for binary data.
- *
- * Right now only Buffer and ArrayBuffer are supported..
- *
- * @param {Object} anything
- * @api public
- */
-
-function hasBinary(data) {
-
-  function _hasBinary(obj) {
-    if (!obj) return false;
-
-    if ( (global.Buffer && global.Buffer.isBuffer(obj)) ||
-         (global.ArrayBuffer && obj instanceof ArrayBuffer) ||
-         (global.Blob && obj instanceof Blob) ||
-         (global.File && obj instanceof File)
-        ) {
-      return true;
-    }
-
-    if (isArray(obj)) {
-      for (var i = 0; i < obj.length; i++) {
-          if (_hasBinary(obj[i])) {
-              return true;
-          }
-      }
-    } else if (obj && 'object' == typeof obj) {
-      if (obj.toJSON) {
-        obj = obj.toJSON();
-      }
-
-      for (var key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key) && _hasBinary(obj[key])) {
-          return true;
-        }
-      }
-    }
-
-    return false;
-  }
-
-  return _hasBinary(data);
-}
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"isarray":26}],26:[function(require,module,exports){
-module.exports = Array.isArray || function (arr) {
-  return Object.prototype.toString.call(arr) == '[object Array]';
-};
-
-},{}],27:[function(require,module,exports){
 (function (global){
 
 /*
@@ -4042,9 +3975,7 @@ function hasBinary(data) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"isarray":28}],28:[function(require,module,exports){
-arguments[4][26][0].apply(exports,arguments)
-},{"dup":26}],29:[function(require,module,exports){
+},{"isarray":28}],26:[function(require,module,exports){
 
 /**
  * Module exports.
@@ -4063,7 +3994,7 @@ try {
   module.exports = false;
 }
 
-},{}],30:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 
 var indexOf = [].indexOf;
 
@@ -4074,7 +4005,12 @@ module.exports = function(arr, obj){
   }
   return -1;
 };
-},{}],31:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
+module.exports = Array.isArray || function (arr) {
+  return Object.prototype.toString.call(arr) == '[object Array]';
+};
+
+},{}],29:[function(require,module,exports){
 (function (global){
 /*! JSON v3.3.2 | http://bestiejs.github.io/json3 | Copyright 2012-2014, Kit Cambridge | http://kit.mit-license.org */
 ;(function () {
@@ -4980,7 +4916,7 @@ module.exports = function(arr, obj){
 }).call(this);
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],32:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -5131,7 +5067,7 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's'
 }
 
-},{}],33:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 (function (global){
 /**
  * JSON parse.
@@ -5166,7 +5102,7 @@ module.exports = function parsejson(data) {
   }
 };
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],34:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 /**
  * Compiles a querystring
  * Returns string representation of the object
@@ -5205,7 +5141,7 @@ exports.decode = function(qs){
   return qry;
 };
 
-},{}],35:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 /**
  * Parses an URI
  *
@@ -5246,7 +5182,7 @@ module.exports = function parseuri(str) {
     return uri;
 };
 
-},{}],36:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -5428,7 +5364,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],37:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -5539,7 +5475,7 @@ exports.connect = lookup;
 exports.Manager = require('./manager');
 exports.Socket = require('./socket');
 
-},{"./manager":38,"./socket":40,"./url":41,"debug":10,"socket.io-parser":44}],38:[function(require,module,exports){
+},{"./manager":36,"./socket":38,"./url":39,"debug":41,"socket.io-parser":44}],36:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -6101,7 +6037,7 @@ Manager.prototype.onreconnect = function () {
   this.emitAll('reconnect', attempt);
 };
 
-},{"./on":39,"./socket":40,"backo2":3,"component-bind":7,"component-emitter":42,"debug":10,"engine.io-client":12,"indexof":30,"socket.io-parser":44}],39:[function(require,module,exports){
+},{"./on":37,"./socket":38,"backo2":3,"component-bind":7,"component-emitter":40,"debug":41,"engine.io-client":10,"indexof":27,"socket.io-parser":44}],37:[function(require,module,exports){
 
 /**
  * Module exports.
@@ -6127,7 +6063,7 @@ function on (obj, ev, fn) {
   };
 }
 
-},{}],40:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -6548,7 +6484,7 @@ Socket.prototype.compress = function (compress) {
   return this;
 };
 
-},{"./on":39,"component-bind":7,"component-emitter":42,"debug":10,"has-binary":27,"socket.io-parser":44,"to-array":50}],41:[function(require,module,exports){
+},{"./on":37,"component-bind":7,"component-emitter":40,"debug":41,"has-binary":25,"socket.io-parser":44,"to-array":49}],39:[function(require,module,exports){
 (function (global){
 
 /**
@@ -6627,9 +6563,13 @@ function url (uri, loc) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"debug":10,"parseuri":35}],42:[function(require,module,exports){
+},{"debug":41,"parseuri":33}],40:[function(require,module,exports){
+arguments[4][20][0].apply(exports,arguments)
+},{"dup":20}],41:[function(require,module,exports){
+arguments[4][21][0].apply(exports,arguments)
+},{"./debug":42,"_process":34,"dup":21}],42:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"dup":22}],43:[function(require,module,exports){
+},{"dup":22,"ms":30}],43:[function(require,module,exports){
 (function (global){
 /*global Blob,File*/
 
@@ -6774,7 +6714,7 @@ exports.removeBlobs = function(data, callback) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./is-buffer":45,"isarray":48}],44:[function(require,module,exports){
+},{"./is-buffer":45,"isarray":28}],44:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -7180,7 +7120,7 @@ function error(data){
   };
 }
 
-},{"./binary":43,"./is-buffer":45,"component-emitter":8,"debug":46,"json3":31}],45:[function(require,module,exports){
+},{"./binary":43,"./is-buffer":45,"component-emitter":8,"debug":46,"json3":29}],45:[function(require,module,exports){
 (function (global){
 
 module.exports = isBuf;
@@ -7566,9 +7506,7 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":49}],48:[function(require,module,exports){
-arguments[4][26][0].apply(exports,arguments)
-},{"dup":26}],49:[function(require,module,exports){
+},{"ms":48}],48:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -7695,7 +7633,7 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-},{}],50:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 module.exports = toArray
 
 function toArray(list, index) {
@@ -7710,7 +7648,7 @@ function toArray(list, index) {
     return array
 }
 
-},{}],51:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 var Vue // late bind
 var map = Object.create(null)
 var shimmed = false
@@ -8011,7 +7949,7 @@ function format (id) {
   return match ? match[0] : id
 }
 
-},{}],52:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 /*!
  * vue-resource v0.7.4
  * https://github.com/vuejs/vue-resource
@@ -9388,7 +9326,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 module.exports = plugin;
-},{}],53:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 (function (process){
 /*!
  * Vue.js v1.0.28
@@ -19629,7 +19567,7 @@ setTimeout(function () {
 
 module.exports = Vue;
 }).call(this,require('_process'))
-},{"_process":36}],54:[function(require,module,exports){
+},{"_process":34}],53:[function(require,module,exports){
 var inserted = exports.cache = {}
 
 exports.insert = function (css) {
@@ -19649,7 +19587,7 @@ exports.insert = function (css) {
   return elem
 }
 
-},{}],55:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 (function (global){
 /*! https://mths.be/wtf8 v1.0.0 by @mathias */
 ;(function(root) {
@@ -19887,7 +19825,7 @@ exports.insert = function (css) {
 }(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],56:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 'use strict';
 
 var alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_'.split('')
@@ -19957,7 +19895,7 @@ yeast.encode = encode;
 yeast.decode = decode;
 module.exports = yeast;
 
-},{}],57:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -20005,7 +19943,7 @@ window.addEventListener('load', function () {
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./components/views/home/IndexView.vue":66,"socket.io-client":37,"vue":53,"vue-resource":52}],58:[function(require,module,exports){
+},{"./components/views/home/IndexView.vue":65,"socket.io-client":35,"vue":52,"vue-resource":51}],57:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n\n")
 'use strict';
@@ -20099,12 +20037,12 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-0100e758", module.exports)
+    hotAPI.createRecord("_v-f2820bee", module.exports)
   } else {
-    hotAPI.update("_v-0100e758", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-f2820bee", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"./controllers/TweetController.vue":60,"./media/ImageModel.vue":61,"./media/VideoModel.vue":62,"./types/TweetModel.vue":65,"vue":53,"vue-hot-reload-api":51,"vueify/lib/insert-css":54}],59:[function(require,module,exports){
+},{"./controllers/TweetController.vue":59,"./media/ImageModel.vue":60,"./media/VideoModel.vue":61,"./types/TweetModel.vue":64,"vue":52,"vue-hot-reload-api":50,"vueify/lib/insert-css":53}],58:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n\n")
 'use strict';
@@ -20163,12 +20101,12 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-67add968", module.exports)
+    hotAPI.createRecord("_v-63f253b7", module.exports)
   } else {
-    hotAPI.update("_v-67add968", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-63f253b7", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":53,"vue-hot-reload-api":51,"vueify/lib/insert-css":54}],60:[function(require,module,exports){
+},{"vue":52,"vue-hot-reload-api":50,"vueify/lib/insert-css":53}],59:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n\n")
 'use strict';
@@ -20227,12 +20165,12 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-907a64a6", module.exports)
+    hotAPI.createRecord("_v-19219aa2", module.exports)
   } else {
-    hotAPI.update("_v-907a64a6", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-19219aa2", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":53,"vue-hot-reload-api":51,"vueify/lib/insert-css":54}],61:[function(require,module,exports){
+},{"vue":52,"vue-hot-reload-api":50,"vueify/lib/insert-css":53}],60:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.image-container img{max-width:100%}\n.image-container {position:relative;}\n.media-container .image-thumb img{height:50px}\n")
 'use strict';
@@ -20301,12 +20239,12 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-53a84791", module.exports)
+    hotAPI.createRecord("_v-41e801bc", module.exports)
   } else {
-    hotAPI.update("_v-53a84791", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-41e801bc", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../types/PostModel.vue":64,"./controllers/ImageController.vue":63,"vue":53,"vue-hot-reload-api":51,"vueify/lib/insert-css":54}],62:[function(require,module,exports){
+},{"../types/PostModel.vue":63,"./controllers/ImageController.vue":62,"vue":52,"vue-hot-reload-api":50,"vueify/lib/insert-css":53}],61:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n\n")
 "use strict";
@@ -20345,12 +20283,12 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-ebed3f1e", module.exports)
+    hotAPI.createRecord("_v-78491a9c", module.exports)
   } else {
-    hotAPI.update("_v-ebed3f1e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-78491a9c", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":53,"vue-hot-reload-api":51,"vueify/lib/insert-css":54}],63:[function(require,module,exports){
+},{"vue":52,"vue-hot-reload-api":50,"vueify/lib/insert-css":53}],62:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.image-controller{}\n.media-container .ImageController {\n        position: absolute;\n        top: 0;\n        width: 100%;\n        height: 100%;\n        background-color: rgba(255,255,255,0.1);\n        color: #fff;\n}\n .ImageController .navbar.transparent , .ImageController .navbar.transparent > nav > li:hover, .ImageController .navbar.transparent  .nav > li > a:hover, .ImageController .navbar.transparent .nav > li > a:focus {\n    background: rgba(0,0,0,0.4);\n    color: #fff;\n}\n.ImageController .navbar.transparent .nav > li > a:hover, .nav > li > a:focus {\n    color: #000;\n}\n\n\n")
 "use strict";
@@ -20414,12 +20352,12 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-08ac5542", module.exports)
+    hotAPI.createRecord("_v-76165694", module.exports)
   } else {
-    hotAPI.update("_v-08ac5542", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-76165694", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":53,"vue-hot-reload-api":51,"vueify/lib/insert-css":54}],64:[function(require,module,exports){
+},{"vue":52,"vue-hot-reload-api":50,"vueify/lib/insert-css":53}],63:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n\n")
 'use strict';
@@ -20481,12 +20419,12 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-4c64098b", module.exports)
+    hotAPI.createRecord("_v-017ede00", module.exports)
   } else {
-    hotAPI.update("_v-4c64098b", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-017ede00", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../controllers/PostController.vue":59,"../media/ImageModel.vue":61,"../media/VideoModel.vue":62,"vue":53,"vue-hot-reload-api":51,"vueify/lib/insert-css":54}],65:[function(require,module,exports){
+},{"../controllers/PostController.vue":58,"../media/ImageModel.vue":60,"../media/VideoModel.vue":61,"vue":52,"vue-hot-reload-api":50,"vueify/lib/insert-css":53}],64:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n\n")
 'use strict';
@@ -20553,12 +20491,12 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-547383f4", module.exports)
+    hotAPI.createRecord("_v-77f40f9e", module.exports)
   } else {
-    hotAPI.update("_v-547383f4", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-77f40f9e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../controllers/TweetController.vue":60,"../media/ImageModel.vue":61,"../media/VideoModel.vue":62,"vue":53,"vue-hot-reload-api":51,"vueify/lib/insert-css":54}],66:[function(require,module,exports){
+},{"../controllers/TweetController.vue":59,"../media/ImageModel.vue":60,"../media/VideoModel.vue":61,"vue":52,"vue-hot-reload-api":50,"vueify/lib/insert-css":53}],65:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -20607,11 +20545,11 @@ if (module.hot) {(function () {  module.hot.accept()
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-040d7aa2", module.exports)
+    hotAPI.createRecord("_v-a39accb8", module.exports)
   } else {
-    hotAPI.update("_v-040d7aa2", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-a39accb8", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../../dispatch/DispatchModel.vue":58,"vue":53,"vue-hot-reload-api":51}]},{},[57]);
+},{"../../dispatch/DispatchModel.vue":57,"vue":52,"vue-hot-reload-api":50}]},{},[56]);
 
 //# sourceMappingURL=app.js.map

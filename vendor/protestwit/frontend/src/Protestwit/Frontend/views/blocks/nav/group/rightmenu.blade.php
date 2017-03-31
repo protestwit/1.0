@@ -23,17 +23,17 @@
                                 Dispatches</a>
                         </li>
                         <li>
-                            <a href="{{route('posts.index',$group)}}">
+                            <a href="{{route('group.posts.index',$group)}}">
                                 <i class="glyphicon glyphicon-user"></i>
                                 Posts </a>
                         </li>
                         <li>
-                            <a href="#" target="_blank">
+                            <a href="{{route('group.images.index',$group)}}" target="_blank">
                                 <i class="glyphicon glyphicon-ok"></i>
                                 Images </a>
                         </li>
-                        <li>
-                            <a href="#">
+                        <li
+                            <a href="{{route('group.events.index',$group)}}">
                                 <i class="glyphicon glyphicon-flag"></i>
                                 Events </a>
                         </li>

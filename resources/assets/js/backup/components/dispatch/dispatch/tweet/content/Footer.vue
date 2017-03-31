@@ -4,7 +4,7 @@
     <div class="content-footer navbar navbar-default" role="navigation">
         <div class="container">
             <div class="navbar-collapse collapse">
-                <h3>{{tweetOriginatedAt}}</h3>
+                <h3>Test{{tweetOriginatedAt}}</h3>
                 <ul class="nav navbar-nav">
                     <li><a href="#about">{{tweetReplies}} replies</a></li>
                     <li><a href="#contact">{{tweetRetweets}} retweets</a></li>
@@ -51,6 +51,13 @@
 
                 return {};
 
+            },
+            tweetOriginatedAt: function(){
+                console.log(this.dispatch.json.created_at);
+                if(this.dispatch.comments)
+                {
+                    return this.dispatch.json.created_at;
+                }
             },
             tweetReplies: function(){
                 if(this.dispatch.comments)

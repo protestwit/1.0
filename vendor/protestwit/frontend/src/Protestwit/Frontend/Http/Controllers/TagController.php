@@ -3,7 +3,9 @@
 use App\Tag;
 use App\Tweet;
 use Illuminate\Routing\Controller;
+use Protestwit\Frontend\Http\Requests\Tag\DispatchesRequest;
 use Protestwit\Frontend\Http\Requests\Tag\IndexRequest;
+use Protestwit\Frontend\Http\Requests\Tag\PostsRequest;
 use Protestwit\Frontend\Http\Requests\Tag\ShowRequest;
 
 class TagController extends Controller
@@ -16,8 +18,6 @@ class TagController extends Controller
         {
             $orderby = $request->get('order_by');
         }
-
-
         $tags = Tag::orderBy($orderby,'DESC')
             ->with('tweets')
             ->search($request)
@@ -29,6 +29,25 @@ class TagController extends Controller
         return view('frontend::pages.tag.index',compact(['request','tags']));
 
     }
+
+    public function posts(PostsRequest $request, Tag $tag)
+    {
+        $posts = $tag->posts()->paginate();
+        return view('frontend::pages.tag.posts',compact(['posts']));
+    }
+
+    public function dispatches(DispatchesRequest $request, Tag $tag)
+    {
+        $dispatches = $tag->dispatches;
+        return view('frontend::pages.tag.dispatches',compact(['dispatches']));
+    }
+
+
+
+
+
+
+
 
     public function show(ShowRequest $request, Tag $tag)
     {

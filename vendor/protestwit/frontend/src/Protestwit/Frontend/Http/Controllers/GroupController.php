@@ -8,6 +8,9 @@ use App\Vote;
 use Illuminate\Routing\Controller;
 use Protestwit\Frontend\Http\Requests\Group\IndexRequest;
 use Protestwit\Frontend\Http\Requests\Group\ShowRequest;
+use Protestwit\Frontend\Http\Requests\Group\CreateRequest;
+use Protestwit\Frontend\Http\Requests\Group\StoreRequest;
+use Protestwit\Frontend\Http\Requests\Group\UpdateRequest;
 
 use Protestwit\Group\Models\Group;
 
@@ -22,27 +25,33 @@ class GroupController extends Controller
                     ->with('link')
                     ->with('post')
                     ->with('tweet')
-
                     ->paginate();
 
-//                $blogroll = Post::all();
-
-
-
-//                    ->sortBy(function($tag){
-//                        return $tag->tweets->count();
-//                    },null,true)->take(20);
-        
-        
         
         return view('frontend::pages.group.show',compact(['request','group','dispatches']));
     }
-    
+
+    public function create(CreateRequest $request)
+    {
+        return view('frontend::pages.group.create');
+    }
+
+    public function store(StoreRequest $request)
+    {
+        $group = Group::create($request);
+        return redirect()->back();
+    }
+
+    public function update(UpdateRequest $request, Group $group)
+    {
+        return view('frontend::pages.group.u');
+    }
     
     
     public function index(IndexRequest $request, Group $group)
     {
-       
+        $groups = Group::all();
+        return view('frontend::pages.group.index',compact(['groups']));
     }
 
 
