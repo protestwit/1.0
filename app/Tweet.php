@@ -337,8 +337,7 @@ class Tweet extends Model implements \App\Contracts\DispatchableInterface
 
     public function tags()
     {
-
-        return $this->belongsToMany('\App\Tag', 'tags', 'tag_ids');
+        return $this->belongsToMany('\App\Tag', 'tags', 'tweet_ids','tag_ids');
 
     }
 }

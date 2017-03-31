@@ -42,12 +42,6 @@ class TagController extends Controller
     }
 
 
-
-
-
-
-
-
     public function show(ShowRequest $request, Tag $tag)
     {
         $orderby = 'created_at';
@@ -58,7 +52,7 @@ class TagController extends Controller
         }
 
 
-        $tweets = $tag->tweets()->orderBy($orderby,'DESC')->search($request);
+        $tweets = $tag->tweets;
         return view('frontend::pages.tag.show',compact(['request','tag','tweets']));
 
     }
