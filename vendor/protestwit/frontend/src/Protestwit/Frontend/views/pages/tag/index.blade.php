@@ -30,7 +30,7 @@
             <a href="{{route('tag.show',$tag->value)}}">{{$tag->value}}</a>
         </div>
         <div class="col-md-2">{{$tag->tweets->unique('id')->count()}}</div>
-        <div class="col-md-2">{{$tag->users->unique('id')->count()}}</div>
+        <div class="col-md-2">{{$tag->authors->unique('id')->count()}}</div>
         <div class="col-md-2">{{$tag->dispatches->count()}}</div>
         <div class="col-md-2">{{$tag->groups->count()}}</div>
     </div>

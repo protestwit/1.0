@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\Searchable;
+use Illuminate\Database\Eloquent\Collection;
 use Jenssegers\Mongodb\Eloquent\Model as Model;
 use Jenssegers\Mongodb\Eloquent\HybridRelations;
 
@@ -97,8 +98,22 @@ class Tag extends Model
         return $this->belongsToMany('\Protestwit\Group\Models\Group','group_tags');
     }
 
+    public function getAuthorsAttribute()
+    {
+        return new Collection();
+    }
+//    public function authors()
+//    {
+////        $tweet_ids = $this->tweets->toArray();
+////        dd($tweet_ids);
+////        return $this->
+//    }
     public function users()
     {
+
+
+
+
         return $this->belongsToMany('\App\User', 'users', 'tag_ids', 'user_ids');
     }
     

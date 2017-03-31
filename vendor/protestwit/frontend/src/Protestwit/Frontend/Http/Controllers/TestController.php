@@ -24,6 +24,25 @@ class TestController extends Controller
 
     public function index(IndexRequest $request, Group $group)
     {
+        $faker = \Faker\Factory::create();
+
+
+        $tweet = Tweet::create([
+            'id' => $faker->numberBetween(99,99999999),
+            'json' => json_encode([]),
+            'tweet_text' => 'Test With A #tagincluded',
+            'user_id' => $faker->numberBetween(999,99999),
+            'user_screen_name' => $faker->word. $faker->numberBetween(1,99),
+        ]);
+
+
+
+die();
+
+
+
+
+
 //        $response = \GooglePlaces::placeDetails('ChIJiQmtGEFRDogRPVxlkKz2wPY',[]);
 //        dd($response);
         $response = \GooglePlaces::placeAutocomplete('SunCoke Energy');
@@ -42,7 +61,7 @@ class TestController extends Controller
         $nyse = Nyse::setSymbol('SUN')->quotes;
         $instagram = \Instagram::searchTags('nodapl');
 
-        $faker = \Faker\Factory::create();
+
 
         $event = Event::create([
             'name' => $faker->name,

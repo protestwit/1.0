@@ -35,7 +35,7 @@ class TweetAfterCreate
         $this->tweet = $tweet;
         $this->tags = Tag::getModel()->newCollection();
         $this->groups = Group::getModel()->newCollection();
-        
+
         //Build Tags From Tweet
         $text = $tweet->text;
         $extractedTags = $this->extractTags($text);
@@ -96,16 +96,24 @@ class TweetAfterCreate
         //Build a list of groups from the tags
         foreach ($this->tags as $tag) {
             $groups = Group::where('public_tag','=',$tag->value)->orWhere('private_tag','=',$tag->value)->get();
+
+            \Log::info('Group List:');
+
+            \Log::info(print_r($groups->toArray(),true));
             foreach($groups as $group)
             {
+                $this->tags = $this->tags->merger($group->tags);
                 $this->groups->add($group);
             }
         }
 
-
+        \Log::info('Tags List:');
+        \Log::info(print_r($this->tags->toArray(),true));
         
         foreach($this->tags as $tag)
         {
+
+            $tag->tweets()->attach($tag->id);
             $this->tweet->tags()->save($tag);
         } 
         
