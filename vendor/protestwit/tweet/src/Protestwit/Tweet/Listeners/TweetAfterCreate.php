@@ -62,13 +62,14 @@ class TweetAfterCreate
 //            \Log::info(print_r($user_data_array,true));
             if (isset($user_data_array['user']) && isset($user_data_array['user']['id'])) {
                 //Trade the id for twitter_id
-                $user_data_array['user']['twitter_id'] = $user_data_array['user']['id'];
+                $user_data_array['user']['twitter_id'] = (int) $user_data_array['user']['id'];
                 unset($user_data_array['user']['id']);
 
                 \Log::info('Find or create user');
                 $this->user = User::findOrCreate($user_data_array['user']);
             }
         }
+
 
 
 

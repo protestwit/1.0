@@ -29,15 +29,14 @@ class TweetServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-//        Comment::created('Protestwit\Tweet\Listeners\CommentAfterCreate');
+        Comment::created('Protestwit\Tweet\Listeners\CommentAfterCreate');
         Dispatch::created('Protestwit\Tweet\Listeners\DispatchAfterCreate');
-//        Event::created('Protestwit\Tweet\Listeners\EventAfterCreate');
-//        Group::created('Protestwit\Tweet\Listeners\GroupAfterCreate');
-//        Image::created('Protestwit\Tweet\Listeners\ImageAfterCreate');
-//        Post::created('Protestwit\Tweet\Listeners\PostAfterCreate');
-//        Tag::created('Protestwit\Tweet\Listeners\TagAfterCreate');
+        Event::created('Protestwit\Tweet\Listeners\EventAfterCreate');
+        Group::created('Protestwit\Tweet\Listeners\GroupAfterCreate');
+        Image::created('Protestwit\Tweet\Listeners\ImageAfterCreate');
+        Post::created('Protestwit\Tweet\Listeners\PostAfterCreate');
+        Tag::created('Protestwit\Tweet\Listeners\TagAfterCreate');
         Tweet::created('Protestwit\Tweet\Listeners\TweetAfterCreate');
-//        Company::created('Protestwit\Tweet\Listeners\CompanyAfterCreate');
     }
 
     /**

@@ -45,6 +45,10 @@ class Tweet extends Model implements \App\Contracts\DispatchableInterface
     {
         \Log::info(print_r($this->attributes,true));
         \Log::info('Id Inc:' . $this->id_inc);
+
+
+
+
         if (!isset($this->id_inc) || is_null($this->id_inc)) {
             $this->id_inc = Tweet::all()->count();
             \Log::info('Setting Tweet id_inc to: ' . $this->id_inc);
@@ -180,12 +184,11 @@ class Tweet extends Model implements \App\Contracts\DispatchableInterface
 
     public function retweet()
     {
-
         //Retweet the passed tweet
         \Log::info('Retweeting tweet' . $this->twitter_id);
         if (!$this->is_retweeted) {
             try {
-//                Twitter::postRt($this->twitter_id);
+             Twitter::postRt($this->twitter_id);
                 $this->is_retweeted = 1;
                 $this->save();
 
@@ -201,10 +204,7 @@ class Tweet extends Model implements \App\Contracts\DispatchableInterface
                 'content' => $this->text,
                 'tweet_id' => $this->id_inc,
             ]);
-//            \Log::info(print_r($this->tags,true));
-//            \Log::info($this->tags()->toSql());
 
-//            \Log::info(print_r($this->tags,true));
 
             foreach ($this->tags as $tag) {
                 $dispatch->tags()->save($tag);
@@ -312,6 +312,10 @@ class Tweet extends Model implements \App\Contracts\DispatchableInterface
 
     //Relations
 
+    public function author()
+    {
+        return $this->hasOne('\App\User','twitter_id','author_id');
+    }
 
     public function user()
     {

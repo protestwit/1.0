@@ -99,7 +99,7 @@ class Tag extends Model
 
     public function users()
     {
-        return $this->belongsToMany('\App\User','user_tags');
+        return $this->belongsToMany('\App\User', 'users', 'tag_ids', 'user_ids');
     }
     
 
