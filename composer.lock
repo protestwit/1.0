@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "080bf674addb3e5865711c480e8587ba",
+    "content-hash": "739b99d17eae55836162da98aab56750",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1807,6 +1807,59 @@
                 "schedule"
             ],
             "time": "2017-01-23T04:29:33+00:00"
+        },
+        {
+            "name": "nahid/linkify",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nahid/linkify.git",
+                "reference": "613e81768f5971528906d29eb1558c1218854ed2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nahid/linkify/zipball/613e81768f5971528906d29eb1558c1218854ed2",
+                "reference": "613e81768f5971528906d29eb1558c1218854ed2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Nahid\\Linkify\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nahid Bin Azhar",
+                    "email": "nahid.dns@gmail.com"
+                }
+            ],
+            "description": "Converts URLs and email addresses in text into HTML links its extended from Misd\\Linify its also support laravel 5",
+            "homepage": "https://github.com/nahid/linkify",
+            "keywords": [
+                "convert",
+                "email address",
+                "laravel",
+                "laravel 5",
+                "link",
+                "url"
+            ],
+            "time": "2016-04-16T10:00:43+00:00"
         },
         {
             "name": "nesbot/carbon",

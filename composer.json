@@ -17,7 +17,8 @@
         "fzaninotto/faker": "^1.6",
         "predis/predis": "^1.1",
         "cosenary/instagram": "^2.3",
-        "skagarwal/google-places-api": "^1.0"
+        "skagarwal/google-places-api": "^1.0",
+        "Nahid/linkify": "^1.0"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",

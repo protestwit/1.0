@@ -8,6 +8,7 @@ use App\Vote;
 use Illuminate\Routing\Controller;
 use Protestwit\Frontend\Http\Requests\Tweet\CommentRequest;
 use Protestwit\Frontend\Http\Requests\Tweet\CommentStoreRequest;
+use Protestwit\Frontend\Http\Requests\Tweet\ShowRequest;
 use Protestwit\Frontend\Http\Requests\Tweet\VoteDownRequest;
 use Protestwit\Frontend\Http\Requests\Tweet\VoteUpRequest;
 use Protestwit\Frontend\Http\Requests\Tweet\IndexRequest;
@@ -43,6 +44,12 @@ class TweetController extends Controller
 
 
         return view('frontend::pages.dispatch.comment', compact(['request', 'comments', 'dispatch']));
+
+    }
+
+    public function show(ShowRequest $request, Tweet $tweet)
+    {
+        return view('frontend::pages.tweet.show', compact(['tweet']));
 
     }
 

@@ -79,7 +79,7 @@ class Tag extends Model
 
     public function tweets()
     {
-        return $this->embedsMany('\App\Tweet','id','tweet_id');
+        return $this->belongsToMany('\App\Tweet', 'tweets', 'tweet_ids');
     }
 
     public function dispatches()

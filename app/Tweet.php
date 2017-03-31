@@ -26,6 +26,9 @@ class Tweet extends Model implements \App\Contracts\DispatchableInterface
         'user',
         'retweet_count'
     ];
+    protected $appends = [
+        'tags',
+    ];
 
     protected $primaryKey = 'id_inc';
 
@@ -131,6 +134,21 @@ class Tweet extends Model implements \App\Contracts\DispatchableInterface
         return 0;
     }
 
+
+    public function getHotnessAttribute()
+    {
+        if ($this->minutes_since_creation > 0) {
+            return (int)(($this->vote_count / $this->minutes_since_creation) * 100);
+        }
+        return $this->vote_count;
+
+    }
+
+    public function getMinutesSinceCreationAttribute()
+    {
+        return Carbon::createFromTimeStamp(strtotime($this->created_at))->diffInMinutes();
+    }
+
     public function getLikeCountAttribute()
     {
         if (isset($this->dispatch) && isset($this->dispatch->vote_count)) {
@@ -194,15 +212,16 @@ class Tweet extends Model implements \App\Contracts\DispatchableInterface
         }
     }
 
-//    public function getTagsAttribute()
-//    {
-//        $tag_ids = DB::table('tags')
-//            ->join('tweet_tags', 'tags.id', '=', 'tweet_tags.tag_id')
-//            ->select('id')
-//            ->where('tweet_tags.tweet_id','=',$this->id_inc)->get();
-//
-//        return Tag::whereIn('id',$tag_ids);
-//    }
+    public function getTagsAttribute()
+    {
+        return [];
+        $tag_ids = DB::table('tags')
+            ->join('tweet_tags', 'tags.id', '=', 'tweet_tags.tag_id')
+            ->select('id')
+            ->where('tweet_tags.tweet_id','=',$this->id_inc)->get();
+
+        return Tag::whereIn('id',$tag_ids)->get();
+    }
 
 
     public function getRetweetCountAttribute($val = null)
@@ -299,6 +318,7 @@ class Tweet extends Model implements \App\Contracts\DispatchableInterface
         return $this->hasOne('\App\User','twitter_id','user_id');
     }
 
+
     public function groups()
     {
         return $this->belongsToMany('\Protestwit\Group\Models\Group', 'group_tweets', 'tweet_id', 'group_id');
@@ -318,7 +338,7 @@ class Tweet extends Model implements \App\Contracts\DispatchableInterface
     public function tags()
     {
 
-        return $this->embedsMany('\App\Tag', 'id_inc', 'tweet_id');
+        return $this->belongsToMany('\App\Tag', 'tags', 'tag_ids');
 
     }
 }

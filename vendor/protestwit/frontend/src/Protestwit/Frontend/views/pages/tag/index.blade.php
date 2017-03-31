@@ -36,4 +36,7 @@
     </div>
     @endforeach
     </ul>
+    <div>
+        {{$tags->links()}}
+    </div>
 @stop

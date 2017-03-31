@@ -14,18 +14,17 @@ class TagController extends Controller
     {
         $orderby = 'created_at';
 
+        $tags = Tag::getModel();
         if($request->has('order_by'))
         {
             $orderby = $request->get('order_by');
+            $tags = $tags->orderBy($orderby,'DESC');
         }
-        $tags = Tag::orderBy($orderby,'DESC')
+
+        $tags = $tags
             ->with('tweets')
-            ->search($request)
-            ->has('tweets','>',40)
-            ->get()
-            ->sortBy(function($tag){
-            return $tag->tweets->count();
-        },null,true);
+            ->search($request)->paginate();
+
         return view('frontend::pages.tag.index',compact(['request','tags']));
 
     }
@@ -59,7 +58,7 @@ class TagController extends Controller
         }
 
 
-        $tweets = $tag->tweets()->orderBy($orderby,'DESC')->search($request)->paginate($request->get('per_page'));
+        $tweets = $tag->tweets()->orderBy($orderby,'DESC')->search($request);
         return view('frontend::pages.tag.show',compact(['request','tag','tweets']));
 
     }
