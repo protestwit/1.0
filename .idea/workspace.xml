@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="afa44c5e-78b8-4fdb-b289-322c799a58b5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Tag.php" afterPath="$PROJECT_DIR$/app/Tag.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Tweet.php" afterPath="$PROJECT_DIR$/app/Tweet.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TagController.php" afterPath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TagController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TestController.php" afterPath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TestController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/nav/top/menu.blade.php" afterPath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/nav/top/menu.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tag/index.blade.php" afterPath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tag/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/TweetAfterCreate.php" afterPath="$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/TweetAfterCreate.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Console/Kernel.php" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" />
     </list>
     <ignored path="protestwit.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,6 +44,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Kernel.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="10" column="55" lean-forward="false" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/HomeController.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -70,11 +74,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Tag.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Tag.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Tag.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="284">
               <caret line="123" column="0" lean-forward="false" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConnectGroupTweetListeners.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Console/Commands/ConnectGroupTweetListeners.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="71" column="8" lean-forward="true" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConnectUserTweetListeners.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Console/Commands/ConnectUserTweetListeners.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="60" column="39" lean-forward="false" selection-start-line="60" selection-start-column="39" selection-end-line="60" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -134,13 +158,13 @@
       <find>Actions</find>
       <find>scope</find>
       <find>sort_</find>
-      <find>Hotness</find>
       <find>round</find>
+      <find>Hotness</find>
     </findStrings>
     <replaceStrings>
       <replace>$tweet-&gt;dispatch</replace>
-      <replace>$tweet</replace>
       <replace>order_by</replace>
+      <replace>$tweet</replace>
     </replaceStrings>
     <dirStrings>
       <dir>G:\protestwit\1.0</dir>
@@ -159,8 +183,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/DispatchController.php" />
-        <option value="$PROJECT_DIR$/resources/assets/js/backup/components/dispatch/dispatch/tweet/content/Footer.vue" />
         <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Requests/Group/CreateRequest.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Requests/Group/StoreRequest.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Requests/Group/UpdateRequest.php" />
@@ -210,6 +232,8 @@
         <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/nav/top/menu.blade.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tag/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Tag.php" />
+        <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
+        <option value="$PROJECT_DIR$/app/Console/Commands/ConnectUserTweetListeners.php" />
       </list>
     </option>
   </component>
@@ -764,11 +788,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\protestwit\1\app\Console\Commands" />
       <recent name="G:\protestwit\1\vendor\protestwit\tweet\src\Protestwit\Tweet\Listeners" />
       <recent name="G:\protestwit\1\vendor\protestwit\frontend\src\Protestwit\Frontend\views\pages\tweet" />
       <recent name="G:\protestwit\1\vendor\protestwit\frontend\src\Protestwit\Frontend\Http\Requests\Tweet" />
       <recent name="G:\protestwit\1\vendor\protestwit\frontend\src\Protestwit\Frontend\Http\Requests\Tag" />
-      <recent name="G:\protestwit\1\vendor\protestwit\frontend\src\Protestwit\Frontend\views\pages\tag" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\gitscripts\protestwit\vendor\protestwit\frontend\src\Protestwit\Frontend\views\blocks\user\profile" />
@@ -881,22 +905,22 @@
       <workItem from="1488288211816" duration="855000" />
       <workItem from="1489945709767" duration="728000" />
       <workItem from="1490149343507" duration="5164000" />
-      <workItem from="1490759628002" duration="33819000" />
+      <workItem from="1490759628002" duration="34792000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="494315000" />
+    <option name="totallyTimeSpent" value="495288000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23005182" sideWeight="0.5063966" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29356846" sideWeight="0.4936034" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29356846" sideWeight="0.4936034" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22547974" sideWeight="0.50508904" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23240939" sideWeight="0.49491096" order="0" side_tool="false" content_ui="tabs" />
@@ -961,22 +985,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/group/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/nav/group/rightmenu.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="34" column="27" lean-forward="false" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Providers/RouteServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-204">
@@ -1181,14 +1189,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Console/Commands/ConnectGroupTweetListeners.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="71" column="8" lean-forward="true" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/GroupSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
@@ -1374,6 +1374,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="284">
           <caret line="123" column="0" lean-forward="false" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Console/Commands/ConnectGroupTweetListeners.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="71" column="8" lean-forward="true" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="10" column="55" lean-forward="false" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Console/Commands/ConnectUserTweetListeners.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="60" column="39" lean-forward="false" selection-start-line="60" selection-start-column="39" selection-end-line="60" selection-end-column="39" />
           <folding />
         </state>
       </provider>

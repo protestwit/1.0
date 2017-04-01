@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\ConnectGroupTweetListeners::class,
+        Commands\ConnectUserTweetListeners::class,
         Commands\BuildGroupsFromTags::class,
         Commands\TagAfterCreate::class,
         Commands\Twitter\ArchiveTweets::class,
