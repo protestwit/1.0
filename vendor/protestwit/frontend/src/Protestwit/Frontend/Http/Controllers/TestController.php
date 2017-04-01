@@ -24,6 +24,17 @@ class TestController extends Controller
 
     public function index(IndexRequest $request, Group $group)
     {
+
+        foreach(Tag::all() as $tag)
+        {
+            $tag->buildHotnessScore();
+        }
+
+        dd();
+
+
+
+
         $v = 'nodapl';
 
         $tag = Tag::Create(['value' => strtolower($v)]);

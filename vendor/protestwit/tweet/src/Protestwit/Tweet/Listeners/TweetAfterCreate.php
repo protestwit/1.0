@@ -107,15 +107,19 @@ class TweetAfterCreate
             }
         }
 
-        \Log::info('Tags List:');
         \Log::info(print_r($this->tags->toArray(),true));
         
         foreach($this->tags as $tag)
         {
-
             $tag->tweets()->attach($tag->id);
             $this->tweet->tags()->save($tag);
-        } 
+
+        }
+        //Reset all tag heat scores
+        foreach(Tag::all() as $tag)
+        {
+            $tag->buildHotnessScore();
+        }
         
     }
 }

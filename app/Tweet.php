@@ -242,9 +242,18 @@ class Tweet extends Model implements \App\Contracts\DispatchableInterface
     {
         if(isset($val)) return $val;
 
+        if(isset($this->json))
+        {
         $data = json_decode($this->json);
+        }
 
-        return Carbon::createFromTimeStamp(strtotime($data->created_at));
+        if(isset($data->created_at))
+        {
+            return Carbon::createFromTimeStamp(strtotime($data->created_at));
+        }
+
+        return '';
+
      }
 
     public function getHotnessAttribute()
@@ -417,7 +426,12 @@ class Tweet extends Model implements \App\Contracts\DispatchableInterface
 //        return $value;
 //    }
 
+    //Scopes
 
+    public function scopeRecent($query)
+    {
+        return $query;
+    }
     //Relations
 
     public function author()

@@ -116,6 +116,14 @@ class Tag extends Model
         return $this->belongsToMany('\App\User', 'users', 'tag_ids', 'user_ids');
     }
 
+    public function buildHotnessScore()
+    {
+        $recent_tweets = $this->tweets()->recent()->get();
+        $avg_collection = collect($recent_tweets->lists('hotness_score'));
+        $average = $avg_collection->avg();
+        $this->hotness_score = (int)$average;
+    }
+
     public function scanAndTagAllDocuments()
     {
         $tweets = Tweet::where('tweet_text', 'like', '%' . str_replace('#','',$this->value) . '%')->get();
