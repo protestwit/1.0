@@ -27,7 +27,7 @@
         @endforeach
     </ul>
     <div class="paginator">
-        {{$dispatches->links()}}
+        {{$dispatches->appends($request->except('page'))->links()}}
     </div>
     </component>
 @stop

@@ -12,32 +12,32 @@
             Tag
         </div>
         <div class="col-md-2">
-            Tweets
+            <a href="{{route('tags.index',['sort_by' => 'tweet_count'])}}">Tweets</a>
         </div>
         <div class="col-md-2">
-            Users
+            <a href="{{route('tags.index',['sort_by' => 'user_count'])}}">Users</a>
         </div>
         <div class="col-md-2">
-            Dispatches
+            <a href="{{route('tags.index',['sort_by' => 'dispatch_count'])}}">Dispatches</a>
         </div>
         <div class="col-md-2">
-            Groups
+            <a href="{{route('tags.index',['sort_by' => 'group_count'])}}">Groups</a>
         </div>
     </div>
     @foreach($tags as $tag)
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-xs-1">Actions</div>
+        <div class="col-md-3">
             <a href="{{route('tag.show',$tag->value)}}">{{$tag->value}}</a>
         </div>
         <div class="col-md-2">{{$tag->tweet_count}}</div>
-        <div class="col-md-2">{{$tag->authors->unique('id')->count()}}</div>
+        <div class="col-md-2">{{$tag->author_count}}</div>
         <div class="col-md-2">{{$tag->dispatches->count()}}</div>
         <div class="col-md-2">{{$tag->groups->count()}}</div>
     </div>
     @endforeach
     </ul>
     <div>
-        pag
-        {{$tags->links()}}
+        {{$tags->appends($request->except('page'))->links()}}
     </div>
 @stop

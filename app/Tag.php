@@ -29,7 +29,8 @@ class Tag extends Model
         $this->tweet_count = $this->tweets->count();
         $this->dispatch_count = $this->dispatches->count();
         $this->post_count = $this->posts->count();
-        $this->groups_count = $this->groups->count();
+        $this->authors_count = $this->authors->count();
+        $this->group_count = $this->groups->count();
 
 
 

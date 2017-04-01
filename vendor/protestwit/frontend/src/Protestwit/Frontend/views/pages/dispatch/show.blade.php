@@ -32,6 +32,6 @@
     </div>
     @endforeach
     <div class="pagination">
-        {{$tweets->links()}}
+        {{$tweets->appends($request->except('page'))->links()}}
     </div>
 @stop

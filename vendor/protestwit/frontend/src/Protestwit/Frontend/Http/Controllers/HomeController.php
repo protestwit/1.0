@@ -8,11 +8,13 @@ class HomeController extends Controller
 {
     public function index(IndexRequest $request)
     {
-        $orderBy = $request->has('order_by') ? $request->get('order_by') : 'hotness_score';
+        $order_by = $request->has('order_by') ? $request->get('order_by') : 'hotness_score';
+        $order_dir = $request->has('order_dir') ? $request->get('order_dir') : 'DESC';
+
 
 
         $dispatches = Dispatch::
-        orderBy($orderBy,'DESC')->
+        orderBy($order_by,$order_dir)->
         with('tweet')->
         with('post')->
         with('link')->
@@ -31,7 +33,7 @@ class HomeController extends Controller
         paginate();
 
         
-        return view('frontend::pages.home.index',compact(['request','dispatches']));
+        return view('frontend::pages.home.index',compact(['request','dispatches','request']));
 
     }
 }

@@ -15,7 +15,7 @@
                             <li><a href="#">One more separated link</a></li>
                         </ul>
                     </li>
-                    @foreach($groups->random(5) as $group)
+                    @foreach($groups as $group)
                     <li><a href="{{route('group.show',$group->slug)}}">{{$group->name}}</a></li>
                     @endforeach
 
@@ -38,8 +38,8 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Hot</a></li>
-                    <li><a href="#about">New</a></li>
+                    <li><a href="{{route('home',['sort_by' => 'hotness_score', 'order_dir' => 'desc'])}}">Hot</a></li>
+                    <li><a href="{{route('home',['sort_by' => 'created_at', 'order_dir' => 'desc'])}}">New</a></li>
                     <li><a href="#contact">Top</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>

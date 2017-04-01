@@ -14,10 +14,10 @@ class Menu
 
     public function compose(View $view)
     {
-        $groups = Group::with('tags')->get()
+        $groups = Group::hot()->with('tags')->get()
             ->sortBy(function($tag){
                 return $tag->tweets->count();
-            },null,true)->take(20);
+            },null,true)->take(8);
 
 
 

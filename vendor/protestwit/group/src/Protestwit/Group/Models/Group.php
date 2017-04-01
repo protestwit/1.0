@@ -33,8 +33,11 @@ class Group extends Model
 
         return parent::save($options);
     }
-    
-    
+
+    public function scopeHot($query)
+    {
+        return $query;
+    }
     
     
     

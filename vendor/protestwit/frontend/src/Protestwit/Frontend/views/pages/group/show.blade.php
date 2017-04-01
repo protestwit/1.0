@@ -61,7 +61,7 @@
     </ul>
 
     <div class="pagination">
-        {{$dispatches->links()}}
+        {{$dispatches->appends($request->except('page'))->links()}}
     </div>
 
 @stop
