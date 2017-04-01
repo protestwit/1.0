@@ -36,6 +36,19 @@ class Dispatch extends Model
 
     public function save(array $options = [])
     {
+        //If A Tweet
+        if($tweet = $this->tweet)
+        {
+            $this->hotness_score = $tweet->hotness_score;
+            $this->retweet_score = $tweet->retweet_count;
+        }
+
+
+
+
+
+
+
         if (!isset($this->id) || is_null($this->id)) {
             $this->id = Dispatch::all()->count();
         }

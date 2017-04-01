@@ -13,14 +13,12 @@ class TagController extends Controller
     public function index(IndexRequest $request)
     {
         $per_page = $request->has('per_page')? $request->get('per_page') : 100;
-        $orderby = 'created_at';
-
+        $orderby = 'tweet_count';
         $tags = Tag::getModel();
-        if($request->has('order_by'))
-        {
-            $orderby = $request->get('order_by');
-            $tags = $tags->orderBy($orderby,'DESC');
-        }
+
+
+        $tags = $tags->orderBy($orderby,'ASC');
+
 
         $tags = $tags
             ->with('tweets')

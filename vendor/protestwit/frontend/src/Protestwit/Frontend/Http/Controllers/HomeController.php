@@ -8,9 +8,11 @@ class HomeController extends Controller
 {
     public function index(IndexRequest $request)
     {
-        $dispatches = Dispatch::
-        orderBy('created_at','desc')->
+        $orderBy = $request->has('order_by') ? $request->get('order_by') : 'hotness_score';
 
+
+        $dispatches = Dispatch::
+        orderBy($orderBy,'ASC')->
         with('tweet')->
         with('post')->
         with('link')->

@@ -26,6 +26,13 @@ class Tag extends Model
 
     public function save(array $options = [])
     {
+        $this->tweet_count = $this->tweets->count();
+        $this->dispatch_count = $this->dispatches->count();
+        $this->post_count = $this->posts->count();
+        $this->groups_count = $this->groups->count();
+
+
+
         if(!isset($this->id))
         {
             $this->id = Tag::where(1,'=',1)->increment('id');
@@ -102,18 +109,9 @@ class Tag extends Model
     {
         return new Collection();
     }
-//    public function authors()
-//    {
-////        $tweet_ids = $this->tweets->toArray();
-////        dd($tweet_ids);
-////        return $this->
-//    }
+
     public function users()
     {
-
-
-
-
         return $this->belongsToMany('\App\User', 'users', 'tag_ids', 'user_ids');
     }
 

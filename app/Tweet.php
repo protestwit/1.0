@@ -44,11 +44,9 @@ class Tweet extends Model implements \App\Contracts\DispatchableInterface
 
     public function save(array $options = [])
     {
-        \Log::info(print_r($this->attributes,true));
-        \Log::info('Id Inc:' . $this->id_inc);
-
-
-
+        $this->hotness_score = $this->hotness;
+        $this->retweet_score = $this->retweet_count;
+        $this->created_at = $this->getCreatedAtAttribute();
 
         if (!isset($this->id_inc) || is_null($this->id_inc)) {
             $this->id_inc = Tweet::all()->count();
@@ -240,11 +238,19 @@ class Tweet extends Model implements \App\Contracts\DispatchableInterface
         return 0;
     }
 
+    public function getCreatedAtAttribute($val = null)
+    {
+        if(isset($val)) return $val;
+
+        $data = json_decode($this->json);
+
+        return Carbon::createFromTimeStamp(strtotime($data->created_at));
+     }
 
     public function getHotnessAttribute()
     {
         if ($this->minutes_since_creation > 0) {
-            return (int)(($this->vote_count / $this->minutes_since_creation) * 100);
+            return (int)(($this->retweet_count / $this->minutes_since_creation) * 100);
         }
         return $this->vote_count;
 

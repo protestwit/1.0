@@ -21,8 +21,6 @@
                     <p>Followers: {{$tweet->author_followers_count}}  Friends: {{$tweet->author_friends_count}} Tweets: {{$tweet->author_listed_count}}  Favourites: {{$tweet->author_favourites_count}}</p>
                     <p>
                         {!!\Linkify::process($tweet->tweet_text)!!}
-                    <p>
-                        {{\Twitter::linkTweet($tweet)}}
                     </p>
                     <p><a target="_blank" href="https://twitter.com/{{ $tweet->user_screen_name }}/status/{{ $tweet->id }}">
                             View on Twitter
