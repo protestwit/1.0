@@ -2,7 +2,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul  class="nav navbar-nav">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Groups <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -15,7 +15,7 @@
                             <li><a href="#">One more separated link</a></li>
                         </ul>
                     </li>
-                    @foreach($groups as $group)
+                    @foreach($groups->random(5) as $group)
                     <li><a href="{{route('group.show',$group->slug)}}">{{$group->name}}</a></li>
                     @endforeach
 

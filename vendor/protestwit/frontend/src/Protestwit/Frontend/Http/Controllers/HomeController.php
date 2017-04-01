@@ -12,7 +12,7 @@ class HomeController extends Controller
 
 
         $dispatches = Dispatch::
-        orderBy($orderBy,'ASC')->
+        orderBy($orderBy,'DESC')->
         with('tweet')->
         with('post')->
         with('link')->
