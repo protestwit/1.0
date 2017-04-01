@@ -12,10 +12,15 @@
             <div class="media">
                 <div class="media-left">
                     <img class="img-thumbnail media-object" src="{{ $tweet->user_avatar_url }}" alt="Avatar">
+                    <div><a target="_blank" href="{{route('tweet.show',$tweet->id)}}">Tweet Data</a></div>
                 </div>
+
                 <div class="media-body">
-                    <h4 class="media-heading">{{ '@' . $tweet->user_screen_name }}</h4>
-                    <p>{{ $tweet->tweet_text }}</p>
+                    <h4 class="media-heading">{{ '@' . $tweet->user_screen_name }} , {{ $tweet->author_location }}</h4>
+                    <p>{!!\Linkify::process($tweet->author_description)!!}</p>
+                    <p>Followers: {{$tweet->author_followers_count}}  Friends: {{$tweet->author_friends_count}} Tweets: {{$tweet->author_listed_count}}  Favourites: {{$tweet->author_favourites_count}}</p>
+                    <p>
+                        {!!\Linkify::process($tweet->tweet_text)!!}
                     <p>
                         {{\Twitter::linkTweet($tweet)}}
                     </p>

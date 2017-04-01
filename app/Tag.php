@@ -116,6 +116,17 @@ class Tag extends Model
 
         return $this->belongsToMany('\App\User', 'users', 'tag_ids', 'user_ids');
     }
-    
+
+    public function scanAndTagAllDocuments()
+    {
+        $tweets = Tweet::where('tweet_text', 'like', '%' . str_replace('#','',$this->value) . '%')->get();
+        $this->tweets()->saveMany($tweets);
+        foreach($tweets as $tweet)
+        {
+            $tweet->tags()->attach($this);
+
+        }
+
+    }
 
 }

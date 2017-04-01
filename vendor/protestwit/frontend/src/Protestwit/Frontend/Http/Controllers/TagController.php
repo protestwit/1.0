@@ -12,6 +12,7 @@ class TagController extends Controller
 {
     public function index(IndexRequest $request)
     {
+        $per_page = $request->has('per_page')? $request->get('per_page') : 100;
         $orderby = 'created_at';
 
         $tags = Tag::getModel();
@@ -23,7 +24,7 @@ class TagController extends Controller
 
         $tags = $tags
             ->with('tweets')
-            ->search($request)->paginate();
+            ->search($request)->paginate($per_page);
 
         return view('frontend::pages.tag.index',compact(['request','tags']));
 

@@ -24,6 +24,17 @@ class TestController extends Controller
 
     public function index(IndexRequest $request, Group $group)
     {
+        $v = 'nodapl';
+
+        $tag = Tag::Create(['value' => strtolower($v)]);
+
+        dd($tag->tweets);
+
+
+        dd($tag->toArray());
+
+
+
         $faker = \Faker\Factory::create();
 
 

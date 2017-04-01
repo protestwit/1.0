@@ -4,9 +4,14 @@
     <list default="true" id="afa44c5e-78b8-4fdb-b289-322c799a58b5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Tag.php" afterPath="$PROJECT_DIR$/app/Tag.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Tweet.php" afterPath="$PROJECT_DIR$/app/Tweet.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TagController.php" afterPath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TagController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TestController.php" afterPath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TestController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tag/index.blade.php" afterPath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tag/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/TweetAfterCreate.php" afterPath="$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/TweetAfterCreate.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tag/show.blade.php" afterPath="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tag/show.blade.php" />
     </list>
     <ignored path="protestwit.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,21 +32,81 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Tweet.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Tweet.php">
+      <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/composer.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="319" column="26" lean-forward="true" selection-start-line="319" selection-start-column="26" selection-end-line="319" selection-end-column="26" />
+            <state relative-caret-position="170">
+              <caret line="10" column="34" lean-forward="true" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/User.php">
+      <file leaf-file-name="app.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/app.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="179">
+              <caret line="210" column="65" lean-forward="true" selection-start-line="210" selection-start-column="65" selection-end-line="210" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bootstrap/app.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
-              <caret line="74" column="5" lean-forward="false" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
+              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AppServiceProvider.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-76">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Tweet.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Tweet.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="203">
+              <caret line="97" column="45" lean-forward="false" selection-start-line="97" selection-start-column="45" selection-end-line="97" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tag/show.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="19" column="71" lean-forward="false" selection-start-line="19" selection-start-column="71" selection-end-line="19" selection-end-column="71" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/home/index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="48" lean-forward="true" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="model.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/dispatch/tweet/model.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="4" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="117" />
               <folding />
             </state>
           </provider>
@@ -57,63 +122,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TweetAfterCreate.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/TweetAfterCreate.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TagAfterCreate.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/TagAfterCreate.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="30" lean-forward="false" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
-              <folding>
-                <element signature="e#45#66#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TweetServiceProvider.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Providers/TweetServiceProvider.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="33" column="70" lean-forward="true" selection-start-line="33" selection-start-column="70" selection-end-line="33" selection-end-column="70" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TestController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="32" column="54" lean-forward="false" selection-start-line="32" selection-start-column="54" selection-end-line="32" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Tag.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Tag.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
-              <caret line="81" column="5" lean-forward="true" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tag/index.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
-              <caret line="32" column="45" lean-forward="false" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
+            <state relative-caret-position="390">
+              <caret line="70" column="5" lean-forward="true" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -123,15 +136,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$tag</find>
-      <find>ind</find>
-      <find>Avatar</find>
-      <find>tweet</find>
-      <find>posts.in</find>
-      <find>function dis</find>
-      <find>retwee</find>
-      <find>HotnessAtt</find>
-      <find>$dispatch</find>
       <find>pagina</find>
       <find>Retweet</find>
       <find>@foreach($tweets as $tweet</find>
@@ -147,12 +151,21 @@
       <find>Protestwit\Tweet\Listeners\CommentAfterCreate</find>
       <find>tagsAttribute</find>
       <find>User Case</find>
-      <find>$faker</find>
       <find>paginate</find>
-      <find>setAu</find>
       <find>Group</find>
       <find>Tags List</find>
+      <find>setAu</find>
+      <find>Tag::findOrCreate()</find>
+      <find>Tag::findOrCreate(</find>
       <find>$this-&gt;tags</find>
+      <find>dd(</find>
+      <find>$faker</find>
+      <find>Tag::</find>
+      <find>findOrCreate</find>
+      <find>location</find>
+      <find>location:</find>
+      <find>getAuthorNameAttribute</find>
+      <find>follower_count</find>
     </findStrings>
     <replaceStrings>
       <replace>$tweet-&gt;dispatch</replace>
@@ -183,7 +196,6 @@
         <option value="$PROJECT_DIR$/readme.md" />
         <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
         <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/DispatchController.php" />
         <option value="$PROJECT_DIR$/database/seeds/GroupSeeder.php" />
         <option value="$PROJECT_DIR$/resources/assets/js/backup/components/dispatch/dispatch/tweet/content/Footer.vue" />
@@ -206,25 +218,26 @@
         <option value="$PROJECT_DIR$/storage/framework/views/4299cc0342990b8fc589a649698f9f506097314d.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tweet/show.blade.php" />
         <option value="$PROJECT_DIR$/app/Dispatch.php" />
-        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tag/show.blade.php" />
         <option value="$PROJECT_DIR$/vendor/thujohn/twitter/src/Thujohn/Twitter/TwitterServiceProvider.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/instagram/src/Protestwit/Instagram/Providers/InstagramServiceProvider.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Providers/TweetServiceProvider.php" />
-        <option value="$PROJECT_DIR$/app/Tweet.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
-        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TagController.php" />
         <option value="$PROJECT_DIR$/storage/framework/views/da46cec6320b14038bd296bdfb34bfd077016b54.php" />
-        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tag/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Tag.php" />
-        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TestController.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/CommentAfterCreate.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/EventAfterCreate.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/GroupAfterCreate.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/ImageAfterCreate.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/PostAfterCreate.php" />
-        <option value="$PROJECT_DIR$/storage/logs/laravel.log" />
+        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TestController.php" />
+        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TagController.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/TweetAfterCreate.php" />
+        <option value="$PROJECT_DIR$/app/Tag.php" />
         <option value="$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/TagAfterCreate.php" />
+        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tag/index.blade.php" />
+        <option value="$PROJECT_DIR$/storage/logs/laravel.log" />
+        <option value="$PROJECT_DIR$/config/app.php" />
+        <option value="$PROJECT_DIR$/app/Tweet.php" />
+        <option value="$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tag/show.blade.php" />
       </list>
     </option>
   </component>
@@ -717,6 +730,52 @@
               <option name="myItemId" value="views" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protestwit" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Protestwit" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -872,47 +931,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="1" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="1" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
+              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -927,7 +946,7 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="js-jscs-nodeInterpreter" value="F:\nodejs\node.exe" />
-    <property name="SearchEverywhereHistoryKey" value="TagAft&#9;FILE&#9;file://G:/protestwit/1/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/TagAfterCreate.php&#10;Protestwit\Tweet\Listeners\TweetAfterCreate&#9;null&#9;null&#10;TweetSer&#9;FILE&#9;file://G:/protestwit/1/vendor/protestwit/tweet/src/Protestwit/Tweet/Providers/TweetServiceProvider.php&#10;TestController&#9;null&#9;null&#10;TweetA&#9;FILE&#9;file://G:/protestwit/1/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/TweetAfterCreate.php&#10;Tag&#9;FILE&#9;file://G:/protestwit/1/app/Tag.php&#10;da46cec6320b14038bd296bdfb34bfd077016b54&#9;FILE&#9;file://G:/protestwit/1/storage/framework/views/da46cec6320b14038bd296bdfb34bfd077016b54.php&#10;lara&#9;FILE&#9;file://G:/protestwit/1/storage/logs/laravel.log&#10;larave&#9;FILE&#9;file://G:/protestwit/1/storage/logs/laravel.log&#10;TweetAfter&#9;null&#9;null&#10;TwitterSer&#9;null&#9;null&#10;Dispatch&#9;FILE&#9;file://G:/protestwit/1/app/Dispatch.php&#10;Disp&#9;FILE&#9;file://G:/protestwit/1/app/Dispatch.php&#10;Tweet&#9;FILE&#9;file://G:/protestwit/1/app/Tweet.php&#10;welcom&#9;FILE&#9;file://G:/protestwit/1/resources/views/welcome.blade.php&#10;4299cc0342990b8fc589a649698f9f506097314d&#9;FILE&#9;file://G:/protestwit/1/storage/framework/views/4299cc0342990b8fc589a649698f9f506097314d.php&#10;Twe&#9;FILE&#9;file://G:/protestwit/1/app/Tweet.php&#10;model&#9;FILE&#9;file://G:/protestwit/1/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/dispatch/tweet/model.blade.php&#10;TweetCon&#9;FILE&#9;file://G:/protestwit/1/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TweetController.php&#10;Twee&#9;FILE&#9;file://G:/protestwit/1/app/Tweet.php&#10;routeser&#9;null&#9;null&#10;RouteServic,&#9;null&#9;null&#10;rightmen&#9;FILE&#9;file://G:/protestwit/1/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/nav/group/rightmenu.blade.php&#10;GroupSe&#9;FILE&#9;file://G:/protestwit/1/database/seeds/GroupSeeder.php&#10;app.php&#9;FILE&#9;file://G:/protestwit/1/config/app.php&#10;dispa&#9;FILE&#9;file://G:/protestwit/1/app/Dispatch.php&#10;\frontend\src\Protestwit\Frontend\views\pages\home\index.blade.php&#9;FILE&#9;file://G:/protestwit/1/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/home/index.blade.php&#10;laravel.log&#9;FILE&#9;file://G:/protestwit/1.0/storage/logs/laravel.log&#10;read&#9;FILE&#9;file://G:/protestwit/1.0/readme.md&#10;rout&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/routes.php&#10;2co&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/views/layouts/2col-right.blade.php&#10;routes.php&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/routes.php&#10;RouteServicePro&#9;null&#9;null&#10;2col&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/views/layouts/2col-right.blade.php&#10;index.blad&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/home/index.blade.php&#10;index.blade&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/boycott/index.blade.php&#10;app.js&#9;FILE&#9;file://G:/gitscripts/protestwit/resources/assets/js/app.js&#10;DispatchContro&#9;null&#9;null&#10;CompanyAfter&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/CompanyAfterCreate.php&#10;Company&#9;FILE&#9;file://G:/gitscripts/protestwit/app/Company.php&#10;Comment&#9;null&#9;null&#10;Post&#9;null&#9;null&#10;Boy&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/BoycottController.php&#10;BoycottCon&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/BoycottController.php&#10;Place&#9;null&#9;null&#10;Place.php&#9;FILE&#9;file://G:/gitscripts/protestwit/app/Place.php&#10;placeAuto&#9;null&#9;null&#10;placeAutoComplete&#9;null&#9;null&#10;Test&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TestController.php&#10;TestCon&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TestController.php" />
+    <property name="SearchEverywhereHistoryKey" value="model&#9;FILE&#9;file://G:/protestwit/1/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/dispatch/tweet/model.blade.php&#10;app.php&#9;FILE&#9;file://G:/protestwit/1/bootstrap/app.php&#10;Tag&#9;FILE&#9;file://G:/protestwit/1/app/Tag.php&#10;lara&#9;FILE&#9;file://G:/protestwit/1/storage/logs/laravel.log&#10;Tweet&#9;FILE&#9;file://G:/protestwit/1/app/Tweet.php&#10;Test&#9;FILE&#9;file://G:/protestwit/1/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TestController.php&#10;TagAft&#9;FILE&#9;file://G:/protestwit/1/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/TagAfterCreate.php&#10;Protestwit\Tweet\Listeners\TweetAfterCreate&#9;null&#9;null&#10;TweetSer&#9;FILE&#9;file://G:/protestwit/1/vendor/protestwit/tweet/src/Protestwit/Tweet/Providers/TweetServiceProvider.php&#10;TestController&#9;null&#9;null&#10;TweetA&#9;FILE&#9;file://G:/protestwit/1/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/TweetAfterCreate.php&#10;da46cec6320b14038bd296bdfb34bfd077016b54&#9;FILE&#9;file://G:/protestwit/1/storage/framework/views/da46cec6320b14038bd296bdfb34bfd077016b54.php&#10;larave&#9;FILE&#9;file://G:/protestwit/1/storage/logs/laravel.log&#10;TweetAfter&#9;null&#9;null&#10;TwitterSer&#9;null&#9;null&#10;Dispatch&#9;FILE&#9;file://G:/protestwit/1/app/Dispatch.php&#10;Disp&#9;FILE&#9;file://G:/protestwit/1/app/Dispatch.php&#10;welcom&#9;FILE&#9;file://G:/protestwit/1/resources/views/welcome.blade.php&#10;4299cc0342990b8fc589a649698f9f506097314d&#9;FILE&#9;file://G:/protestwit/1/storage/framework/views/4299cc0342990b8fc589a649698f9f506097314d.php&#10;Twe&#9;FILE&#9;file://G:/protestwit/1/app/Tweet.php&#10;TweetCon&#9;FILE&#9;file://G:/protestwit/1/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TweetController.php&#10;Twee&#9;FILE&#9;file://G:/protestwit/1/app/Tweet.php&#10;routeser&#9;null&#9;null&#10;RouteServic,&#9;null&#9;null&#10;rightmen&#9;FILE&#9;file://G:/protestwit/1/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/nav/group/rightmenu.blade.php&#10;GroupSe&#9;FILE&#9;file://G:/protestwit/1/database/seeds/GroupSeeder.php&#10;dispa&#9;FILE&#9;file://G:/protestwit/1/app/Dispatch.php&#10;\frontend\src\Protestwit\Frontend\views\pages\home\index.blade.php&#9;FILE&#9;file://G:/protestwit/1/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/home/index.blade.php&#10;laravel.log&#9;FILE&#9;file://G:/protestwit/1.0/storage/logs/laravel.log&#10;read&#9;FILE&#9;file://G:/protestwit/1.0/readme.md&#10;rout&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/routes.php&#10;2co&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/views/layouts/2col-right.blade.php&#10;routes.php&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/routes.php&#10;RouteServicePro&#9;null&#9;null&#10;2col&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/views/layouts/2col-right.blade.php&#10;index.blad&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/home/index.blade.php&#10;index.blade&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/boycott/index.blade.php&#10;app.js&#9;FILE&#9;file://G:/gitscripts/protestwit/resources/assets/js/app.js&#10;DispatchContro&#9;null&#9;null&#10;CompanyAfter&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/CompanyAfterCreate.php&#10;Company&#9;FILE&#9;file://G:/gitscripts/protestwit/app/Company.php&#10;Comment&#9;null&#9;null&#10;Post&#9;null&#9;null&#10;Boy&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/BoycottController.php&#10;BoycottCon&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/BoycottController.php&#10;Place&#9;null&#9;null&#10;Place.php&#9;FILE&#9;file://G:/gitscripts/protestwit/app/Place.php&#10;placeAuto&#9;null&#9;null&#10;placeAutoComplete&#9;null&#9;null&#10;TestCon&#9;FILE&#9;file://G:/gitscripts/protestwit/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TestController.php" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
@@ -1054,12 +1073,12 @@
       <workItem from="1488288211816" duration="855000" />
       <workItem from="1489945709767" duration="728000" />
       <workItem from="1490149343507" duration="5164000" />
-      <workItem from="1490759628002" duration="18198000" />
+      <workItem from="1490759628002" duration="22930000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="478694000" />
+    <option name="totallyTimeSpent" value="483426000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
@@ -1072,7 +1091,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2821577" sideWeight="0.4936034" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22547974" sideWeight="0.50508904" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25906184" sideWeight="0.49491096" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19083156" sideWeight="0.49491096" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18879668" sideWeight="0.49573562" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30863538" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1134,38 +1153,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/api/src/Protestwit/Api/Http/Controllers/DispatchController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="43" column="5" lean-forward="false" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2016_11_27_051948_create_groups_archive_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="23" column="26" lean-forward="false" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/backup/components/dispatch/dispatch/tweet/content/Footer.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="24" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -1298,34 +1285,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tweet/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2754">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/dispatch/tweet/model.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="6" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="19" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/dispatch/comment.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/home/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="28" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -1394,26 +1357,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tag/show.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="84" lean-forward="false" selection-start-line="13" selection-start-column="84" selection-end-line="13" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/protestwit/instagram/src/Protestwit/Instagram/Providers/InstagramServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
           <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TagController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="45" column="5" lean-forward="true" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1434,42 +1381,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tag/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="32" column="45" lean-forward="false" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Tweet.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="319" column="26" lean-forward="true" selection-start-line="319" selection-start-column="26" selection-end-line="319" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="74" column="5" lean-forward="false" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Tag.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="81" column="5" lean-forward="true" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TestController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="32" column="54" lean-forward="false" selection-start-line="32" selection-start-column="54" selection-end-line="32" selection-end-column="54" />
           <folding />
         </state>
       </provider>
@@ -1517,7 +1432,67 @@
     <entry file="file://$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Providers/TweetServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="33" column="70" lean-forward="true" selection-start-line="33" selection-start-column="70" selection-end-line="33" selection-end-column="70" />
+          <caret line="33" column="70" lean-forward="false" selection-start-line="33" selection-start-column="70" selection-end-line="33" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TestController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="30" column="25" lean-forward="false" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+          <folding>
+            <element signature="e#55#71#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/Http/Controllers/TagController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="14" column="79" lean-forward="false" selection-start-line="14" selection-start-column="79" selection-end-line="14" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/TweetAfterCreate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="43" column="9" lean-forward="true" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/TagAfterCreate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding>
+            <element signature="e#45#66#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tweet/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3009">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tag/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Tag.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="70" column="5" lean-forward="true" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1533,20 +1508,66 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/TagAfterCreate.php">
+    <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="10" column="30" lean-forward="false" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
-          <folding>
-            <element signature="e#45#66#0#PHP" expanded="true" />
-          </folding>
+          <caret line="10" column="34" lean-forward="true" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/protestwit/tweet/src/Protestwit/Tweet/Listeners/TweetAfterCreate.php">
+    <entry file="file://$PROJECT_DIR$/bootstrap/app.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+        <state relative-caret-position="306">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-76">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="210" column="65" lean-forward="true" selection-start-line="210" selection-start-column="65" selection-end-line="210" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Tweet.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="97" column="45" lean-forward="false" selection-start-line="97" selection-start-column="45" selection-end-line="97" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/home/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="48" lean-forward="true" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/blocks/dispatch/tweet/model.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="4" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="117" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/protestwit/frontend/src/Protestwit/Frontend/views/pages/tag/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="19" column="71" lean-forward="false" selection-start-line="19" selection-start-column="71" selection-end-line="19" selection-end-column="71" />
           <folding />
         </state>
       </provider>

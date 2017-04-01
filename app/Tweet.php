@@ -28,6 +28,7 @@ class Tweet extends Model implements \App\Contracts\DispatchableInterface
     ];
     protected $appends = [
         'tags',
+        'author_location',
     ];
 
     protected $primaryKey = 'id_inc';
@@ -69,6 +70,119 @@ class Tweet extends Model implements \App\Contracts\DispatchableInterface
     }
 
 
+    public function getAuthorDescriptionAttribute()
+    {
+        if(isset($this->json))
+        {
+
+            $data = json_decode($this->json);
+
+            if($data->user)
+            {
+                return $data->user->description;
+            }
+            return '';
+
+        }
+    }
+
+    public function getAuthorFollowersCountAttribute()
+    {
+        if(isset($this->json))
+        {
+
+            $data = json_decode($this->json);
+
+            if($data->user)
+            {
+                return $data->user->followers_count;
+            }
+            return '';
+
+        }
+    }
+
+    public function getAuthorFriendsCountAttribute()
+    {
+        if(isset($this->json))
+        {
+
+            $data = json_decode($this->json);
+
+            if($data->user)
+            {
+                return $data->user->friends_count;
+            }
+            return '';
+
+        }
+    }
+
+    public function getAuthorListedCountAttribute()
+    {
+        if(isset($this->json))
+        {
+
+            $data = json_decode($this->json);
+
+            if($data->user)
+            {
+                return $data->user->listed_count;
+            }
+            return '';
+
+        }
+    }
+
+    public function getAuthorFavouritesCountAttribute()
+    {
+        if(isset($this->json))
+        {
+
+            $data = json_decode($this->json);
+
+            if($data->user)
+            {
+                return $data->user->favourites_count;
+            }
+            return '';
+
+        }
+    }
+
+    public function getAuthorNameAttribute()
+    {
+        if(isset($this->json))
+        {
+
+            $data = json_decode($this->json);
+
+            if($data->user)
+            {
+                return $data->user->name;
+            }
+            return '';
+
+        }
+    }
+
+    public function getAuthorLocationAttribute()
+    {
+        if(isset($this->json))
+        {
+
+            $data = json_decode($this->json);
+
+            if($data->user)
+            {
+                \Log::info('location:');
+                \Log::info($data->user->location);
+                return $data->user->location;
+            }
+            return '';
+
+        }
+    }
     public function getAuthorProfileUrlAttribute()
     {
         return 'https://twitter.com/' . $this->getAuthorHandleAttribute();
@@ -79,18 +193,6 @@ class Tweet extends Model implements \App\Contracts\DispatchableInterface
         if (isset($this->user_avatar_url)) {
             return $this->user_avatar_url;
         }
-    }
-
-    public function getAuthorNameAttribute()
-    {
-        try{
-        if ($this->user && isset($this->user->name)) {
-            return $this->user->name;
-        }
-        } catch (\Exception $e){
-            dd($this->user);
-        }
-
     }
 
     public function getAuthorHandleAttribute()

@@ -37,6 +37,7 @@
     @endforeach
     </ul>
     <div>
+        pag
         {{$tags->links()}}
     </div>
 @stop

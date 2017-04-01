@@ -162,6 +162,8 @@ return [
         Jenssegers\Mongodb\MongodbServiceProvider::class,
         SKAgarwal\GoogleApi\ServiceProvider::class,
 
+        Nahid\Linkify\LinkifyServiceProvider::class,
+
         Protestwit\Api\Providers\ApiServiceProvider::class,
         Protestwit\Frontend\Providers\FrontendServiceProvider::class,
         Protestwit\Finance\Providers\FinanceServiceProvider::class,
@@ -203,6 +205,7 @@ return [
         'Hash' => Illuminate\Support\Facades\Hash::class,
         'Instagram' => Protestwit\Instagram\Facades\Instagram::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
+        'Linkify' => Nahid\Linkify\Facades\Linkify::class,
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
         'Password' => Illuminate\Support\Facades\Password::class,
