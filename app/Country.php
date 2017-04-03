@@ -18,10 +18,32 @@ class Country extends Model
         'code',
         'name',
     ];
-    protected $appends = ['states','counties','districts','zipcodes'];
+    protected $appends = [];
 
     protected $searchableColumns = ['name', 'code'];
     protected $searchableRelations = [];
+
+    public function findOrCreate($attributes = [])
+    {
+        if(!isset($attributes['name']) || !isset($attributes['code']))
+        {
+            throw new \Exception('name and code must be defined');
+        }
+
+        if($existing = Country::getModel()->where('code','=',$attributes['code'])->first())
+        {
+            $existing->update($attributes);
+            return $existing;
+        }
+
+        return Country::create($attributes);
+    }
+
+
+    public function states()
+    {
+        return $this->belongsToMany('\App\State','states');
+    }
 
 
 
