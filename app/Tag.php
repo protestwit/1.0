@@ -31,6 +31,7 @@ class Tag extends Model
         $this->post_count = $this->posts->count();
         $this->authors_count = $this->authors->count();
         $this->group_count = $this->groups->count();
+        $this->buildHotnessScore();
 
 
 

@@ -6,7 +6,11 @@ use App\Event;
 use App\Tag;
 use App\Tweet;
 use App\Vote;
+use App\Zip;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Routing\Controller;
+use Protestwit\Csv\Facades\Csv;
+use Protestwit\Csv\Models\ZipsImport;
 use Protestwit\Finance\Nyse;
 use Protestwit\Frontend\Http\Requests\Dispatch\CommentRequest;
 use Protestwit\Frontend\Http\Requests\Dispatch\CommentStoreRequest;
@@ -24,6 +28,97 @@ class TestController extends Controller
 
     public function index(IndexRequest $request, Group $group)
     {
+
+
+
+
+        $test = 1;
+
+
+        if($test == 1)
+        {
+            $zip = Zip::all()->first();
+
+            dd($zip->toArray());
+
+        }
+
+        //Test Import Of Zips
+        try {
+            $csv = Csv::load(base_path().DIRECTORY_SEPARATOR."database".DIRECTORY_SEPARATOR.'datafiles'.DIRECTORY_SEPARATOR.'usa_zipcodes.csv', ZipsImport::getModel());
+        } catch (FileNotFoundException $e) {
+            dd($e->getMessage());
+            return back();
+        }
+
+        $csv->getReader()->process();
+
+        if ($csv->getReader()->hasError()) {
+            dd($csv->getReader()->errorString);
+        } else {
+            $request->session()->flash('notification', [
+                'type' => 'success',
+                'msg' => 'CSV Imported Successfully',
+            ]);
+        }
+        dd('done');
+        return back();
+
+
+
+        //Geography
+
+        dd(config('geography'));
+
+        $output = \Os::load('getLegislators',['id' => 'WI','output' => 'json']);
+        dd($output);
+
+
+        //Provides sector total of specified politician's receipts
+        $output = \Os::load('orgSummary',['id' => 'D000032305','output' => 'json']);
+        dd($output);
+
+        //Provides sector total of specified politician's receipts
+        $output = \Os::load('getOrgs',['org' => 'City','output' => 'json']);
+        dd($output);
+
+        //Provides sector total of specified politician's receipts
+        $output = \Os::load('congCmteIndus',['cmte' => 'HARM','congno' => '114','indus' => 'F10','output' => 'json']);
+        dd($output);
+
+        //Provides sector total of specified politician's receipts
+        $output = \Os::load('candSector',['cid' => 'N00026914','cycle' => '2014','output' => 'json']);
+        dd($output);
+
+        //provides total contributed to specified candidate from specified industry for specified cycle
+        $output = \Os::load('candIndByInd',['cid' => 'N00026914','cycle' => '2014','ind' => 'K02','output' => 'json']);
+        dd($output);
+
+
+        //Top industries contributing to a specified politician
+        $output = \Os::load('candIndustry',['cid' => 'N00026914','cycle' => '2014','output' => 'json']);
+        dd($output);
+
+        //Get Candidate Contributors (Expenses, Spend) Data
+        $output = \Os::load('candContrib',['cid' => 'N00026914','cycle' => '2014','output' => 'json']);
+        dd($output);
+
+        //Get Candidate Summary (Expenses, Spend) Data
+        $output = \Os::load('candSummary',['cid' => 'N00026914','cycle' => '2014','output' => 'json']);
+        dd($output);
+
+        //Get legislator information specific to their id
+        $output = \Os::load('memPFDprofile',['cid' => 'N00026914','year' => '2016','output' => 'json']);
+        dd($output);
+
+
+
+
+        //Get legislators for a particular state
+        $output = \Os::load('getLegislators',['id' => 'WI','output' => 'json']);
+        dd($output);
+
+
 
         foreach(Tag::all() as $tag)
         {

@@ -165,6 +165,7 @@ return [
         Nahid\Linkify\LinkifyServiceProvider::class,
 
         Protestwit\Api\Providers\ApiServiceProvider::class,
+        Protestwit\Csv\Providers\CsvServiceProvider::class,
         Protestwit\Frontend\Providers\FrontendServiceProvider::class,
         Protestwit\Finance\Providers\FinanceServiceProvider::class,
         Protestwit\Twitter\Providers\TwitterServiceProvider::class,
@@ -195,6 +196,7 @@ return [
         'Config' => Illuminate\Support\Facades\Config::class,
         'Cookie' => Illuminate\Support\Facades\Cookie::class,
         'Crypt' => Illuminate\Support\Facades\Crypt::class,
+        'CSV' => \Protestwit\Csv\Facades\Csv::class,
         'DB' => Illuminate\Support\Facades\DB::class,
         'Eloquent' => Illuminate\Database\Eloquent\Model::class,
         'Event' => Illuminate\Support\Facades\Event::class,
@@ -208,6 +210,7 @@ return [
         'Linkify' => Nahid\Linkify\Facades\Linkify::class,
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
+        'Os' => Protestwit\Opensecrets\Facades\Os::class,
         'Password' => Illuminate\Support\Facades\Password::class,
         'Queue' => Illuminate\Support\Facades\Queue::class,
         'Redirect' => Illuminate\Support\Facades\Redirect::class,

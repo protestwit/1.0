@@ -21,6 +21,7 @@ class TwitterStream extends OauthPhirehose
     */
     public function enqueueStatus($status)
     {
+        \Log::info('enqueued');
         $this->dispatch(new ProcessTweet($status,$this->getTrack()));
     }
     

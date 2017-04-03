@@ -3,12 +3,11 @@
     <div class="col-xs-2"><a target="_blank" href="{{$dispatch->author_profile_url}}"><img src="{{$dispatch->author_profile_image_url}}"/></a></div>
     <div class="col-xs-10">
 
-            <a href="{{$dispatch->author_profile_url}}">{{$dispatch->author_name}}</a> <a href="{{$dispatch->author_profile_url}}">{{'@'.$dispatch->author_handle}}</a>
-
-
-                    <span>
-            {{$dispatch->content}}
-                    </span>
+        <a href="{{$dispatch->author_profile_url}}">{{$dispatch->author_name}}</a> <a
+                href="{{$dispatch->author_profile_url}}">{{'@'.$dispatch->author_handle}}</a>
+        <span>
+           {!!\Linkify::process($dispatch->content)!!}
+        </span>
     </div>
 </div>
 <div class="row">

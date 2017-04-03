@@ -30,12 +30,14 @@
     "autoload": {
         "files": [
             "vendor/protestwit/api/vendor/autoload.php",
+            "vendor/protestwit/csv/vendor/autoload.php",
             "vendor/protestwit/finance/vendor/autoload.php",
             "vendor/protestwit/frontend/vendor/autoload.php",
             "vendor/protestwit/group/vendor/autoload.php",
             "vendor/protestwit/instagram/vendor/autoload.php",
             "vendor/protestwit/tweet/vendor/autoload.php",
-            "vendor/protestwit/twitter/vendor/autoload.php"
+            "vendor/protestwit/twitter/vendor/autoload.php",
+            "vendor/protestwit/opensecrets/vendor/autoload.php"
         ],
         "classmap": [
             "database",

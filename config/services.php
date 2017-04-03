@@ -34,6 +34,9 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    'opensecrets' => [
+        'api_key' => env('OPENSECRETS_API_KEY'),
+    ],
 
     'instagram' => [
         'client_id' => env('INSTAGRAM_CONSUMER_KEY'),

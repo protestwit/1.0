@@ -51,7 +51,7 @@ class ConnectUserTweetListeners extends Command
         $this->twitterStream->consumerKey = env('TWITTER_CONSUMER_KEY');
         $this->twitterStream->consumerSecret = env('TWITTER_CONSUMER_SECRET');
 
-        foreach(User::all() as $user)
+        foreach(User::popular()->get() as $user)
         {
             if (isset($user->twitter_id)) {
                 $this->tracked[] = $user->twitter_id;

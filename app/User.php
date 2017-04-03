@@ -137,4 +137,11 @@ class User extends Authenticatable
         }
     }
 
+    //Scopes
+
+    public function scopePopular($query)
+    {
+        return $query->where('friends_count','>',2000);
+    }
+
 }
